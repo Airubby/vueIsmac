@@ -1,0 +1,329 @@
+@charset "utf-8";
+html,body,div,h2,ul,li,span,em,p,dl,dd,i,input, textarea, select, option,button{
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body{
+    font-family: "宋体","Microsoft Yahei", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "WenQuanYi Micro Hei", "sans-serif";
+    font-size: 14px;
+    background: #fff;
+    height: 100%;
+    overflow: hidden;
+}
+html,body,#app{
+  width: 100%;
+  height: 100%;
+}
+ul,li{
+  list-style: none;
+}
+button{
+  border: none;
+  cursor: pointer;
+}
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+em{
+  font-style: normal;
+}
+
+.loncom_fl{
+  float:left;
+}
+.loncom_fr{
+  float: right;
+}
+.loncom_public_shadow {
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.35);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.35);
+}
+.loncom_public_shadow:hover {
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.45);
+}
+.loncom_dis_inline{
+  display: inline;
+}
+.loncom_content{
+  width: 100%;
+  height: 100%;
+}
+/*sidebar侧边导航*/
+.loncom_sidebar{
+  width: 200px;
+  height: 100%;
+  display: block;
+  background: #26344B;
+  float: left;
+  color: #fff;
+  position: relative;
+}
+.loncom_sidebar_top{
+  width: 100%;
+  height: 65px;
+  padding: 15px;
+  background: #17C4BB;
+  font-size: 21px;
+  line-height: 35px;
+}
+.loncom_sidebar_list li p{
+  text-align: center;
+}
+.loncom_sidebar_list li p span{
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  margin: 10px 0 5px 0;
+}
+.loncom_sidebar_list li a span.loncom_environment{
+  background: url(../images/loncom_environment.svg) no-repeat;
+  background-size: contain;
+}
+.loncom_sidebar_list li a span.loncom_power{
+  background: url(../images/loncom_power.svg) no-repeat;
+  background-size: contain;
+}
+.loncom_sidebar_list li a span.loncom_security{
+  background: url(../images/loncom_security.svg) no-repeat;
+  background-size: contain;
+}
+.loncom_sidebar_list li a span.loncom_energy{
+  background: url(../images/loncom_energy.svg) no-repeat;
+  background-size: contain;
+}
+.loncom_sidebar_list li a span.loncom_alarm{
+  background: url(../images/loncom_alarm.svg) no-repeat;
+  background-size: contain;
+}
+.loncom_sidebar_list li a span.loncom_statement{
+  background: url(../images/loncom_statement.svg) no-repeat;
+  background-size: contain;
+}
+.loncom_sidebar_list li a span.loncom_equipment{
+  background: url(../images/loncom_equipment.svg) no-repeat;
+  background-size: contain;
+}
+.loncom_sidebar_list li a span.loncom_system{
+  background: url(../images/loncom_system.svg) no-repeat;
+  background-size: contain;
+}
+.loncom_sidebar_list li a{
+  width: 100%;
+  height: 65px;
+  display: block;
+  color: #fff;
+  font-size: 12px;
+  border-bottom: 1px solid #2B3B55;
+}
+.loncom_sidebar_list .router-link-active{
+  background: #1F2B3D;
+}
+.loncom_sidebar_bottom{
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  height: 45px;
+  text-align: center;
+}
+.loncom_sidebar_bottom span.loncom_home{
+  width: 45px;
+  height: 45px;
+  display: inline-block;
+  background: url(../images/loncom_home.svg) no-repeat;
+  background-size: contain;
+}
+
+/*公共右边*/
+.loncom_sidebar_right{
+  width: -webkit-calc(100% - 200px);
+  width: -moz-calc(100% - 200px);
+  width: calc(100% - 200px);
+  float: left;
+}
+.loncom_public_top{
+  width: 100%;
+  height: 65px;
+  background: #F2F2F2;
+  -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.35);
+}
+.loncom_public_top h2{
+  line-height: 65px;
+  text-indent: 20px;
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  display: inline-block;
+}
+.loncom_public_top ul {
+  padding: 18px 20px 0 0;
+}
+.loncom_public_top ul li{
+  padding: 0 15px;
+  height: 28px;
+  line-height: 28px;
+  font-size: 12px;
+  background: #fff;
+  color: #666;
+  float: left;
+  cursor: pointer;
+  border: 1px solid #D9D9D9;
+}
+.loncom_public_top ul li.loncom_active{
+  background: #239EBB;
+  border-color: #239EBB;
+  color: #fff;
+}
+.loncom_public_top ul li:nth-of-type(1){
+  border-radius: 5px 0 0 5px;
+}
+.loncom_public_top ul li:nth-last-of-type(1){
+  border-radius: 0 5px 5px 0;
+}
+.loncom_public_card{
+  padding: 20px 0 0 20px;
+}
+.loncom_public_card li{
+  width: 50%;
+  float: left;
+  padding: 0 20px 20px 0;
+}
+.loncom_public_card_box{
+    width: 100%;
+    height: 250px;
+    position: relative;
+}
+.loncom_public_card_box:hover .loncom_public_card_box_bottom{
+  display: block;
+}
+.loncom_public_card_box_top{
+  height: 35px;
+  font-size: 12px;
+  padding: 12px 0 0 20px;
+  cursor: auto;
+}
+.loncom_public_card_box_topr{
+  width: 100px;
+  position: relative;
+}
+.loncom_public_card_box_topr:hover .loncom_public_card_box_toprcon{
+  display: block;
+}
+.loncom_public_card_box_toprtitle{
+  text-align: center;
+  color: #00a413;
+  font-weight: bold;
+  position: relative;
+  height: 20px;
+}
+.loncom_public_card_box_toprtitle:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #999;
+    position: absolute;
+    top: 5px;
+    right: 20px;
+}
+.loncom_public_card_box_toprcon {
+    width: 100%;
+    display: none;
+    position: absolute;
+    top: 20px;
+    z-index: 999;
+    background: #fff;
+}
+.loncom_public_card_box_toprcon a {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    color: #666;
+    text-align: center;
+}
+.loncom_public_card_box_toprcon a:hover {
+    color: #fff;
+    background: #0064aa;
+}
+.loncom_public_card_box_cimg{
+  width: 45%;
+  padding: 15px 0 0 15px; 
+}
+.loncom_public_card_box_cimg img {
+    max-height: 100%;
+    max-width: 100%;
+}
+.loncom_public_card_box_cinfo{
+  width: 55%;
+  height: 165px;
+}
+.loncom_public_card_box_cinfo p {
+    width: 100%;
+    float: left;
+    font-size: 12px;
+    margin-top: 20px;
+    color: #999;
+}
+.loncom_public_card_box_cinfo p em {
+    width: 70px;
+    overflow: hidden;
+    height: 14px;
+    float: left;
+    text-align: right;
+}
+.loncom_public_card_box_cinfo p span {
+    color: #00A512;
+}
+.loncom_public_card_box_bottom {
+    width: 100%;
+    height: 38px;
+    overflow: hidden;
+    line-height: 20px;
+    background: #E4E4E4;
+    display: none;
+    position: absolute;
+    bottom: 0;
+    padding: 9px 0;
+}
+.loncom_public_card_box_bottom div {
+    width: 33%;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    color: #333;
+}
+.loncom_public_card_box_bottom div:nth-of-type(2){
+  border-left: 1px solid #999999;
+  border-right: 1px solid #999999; 
+}
+
+
+
+
+.loncom_public_table{
+  padding: 20px 20px 0 20px;
+}
+
+
+@media (min-width: 1200px) {
+  .loncom_public_card li {
+    width: 25%;
+  }
+
+}
+
+
+
+
+
+ 
