@@ -18,7 +18,7 @@ function open_ajax(url, parameter, request,type, error, async) {
         }
     });
 }
-//替换字符串,指定用在样式替换上
+//替换字符串,指定用在样式替换上,切换风格用的
 function replaceString(string,str){
     var startStr=string.substring(0,9);
     var endStr=string.substring(string.indexOf('/css/'),string.length);
@@ -92,7 +92,22 @@ function windowOpen(url,Width,Height){
     var iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
     window.open(url, name, 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft + ',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no');
 }
-
+//日期格式化
+Date.prototype.Format = function (fmt) { //author: meizz 
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
 
 
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <div class="header" style="width:1000px;margin: 30px auto;">
       
 
       <template>
@@ -106,18 +106,18 @@ export default {
         '地址': {
           width: 'auto',
           // propsHandler 可用于转换传给自定义组件的 props 这里将 props 变成了 address
-          propsHandler ({ col, row }) {
-            return { address: row[col.prop] }
-          },
-          // 这里的 props 是 address
-          component: Vue.extend({
-            props: ['address'],
-            render (h) {
-              return h('span', {
-                style: { color: '#20A0FF' }
-              }, this.address)
-            }
-          })
+          // propsHandler ({ col, row }) {
+          //   return { address: row[col.prop] }
+          // },
+          // // 这里的 props 是 address
+          // component: Vue.extend({
+          //   props: ['address'],
+          //   render (h) {
+          //     return h('span', {
+          //       style: { color: '#20A0FF' }
+          //     }, this.address)
+          //   }
+          // })
         }
       }
 

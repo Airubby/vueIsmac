@@ -6,7 +6,7 @@
       </el-search-table-pagination> 
 -->
       <div style="width: 1000px;margin:0 auto; position:relative;">
-       <el-search-table-pagination type="local" :show-pagination="true" height="192" fit border stripe select :data="tableData" :page-sizes="[2, 10]" :columns="columns" :form-options="formOptions"  >
+       <el-search-table-pagination type="local" :show-selection="true" :show-pagination="true" height="192" fit border stripe select :data="tableData" :page-sizes="[2, 10]" :columns="columns" :form-options="formOptions"  >
           
         <!--  
           <template slot="preview-column" slot-scope="scope" type="selection"></template>
@@ -93,8 +93,8 @@ export default {
           { prop: 'name1', label: 'Name'},
           { prop: 'mobile1', label: 'Mobile'},
           {label: '自定义dom', prop:'sex1',align:'center',
-            formatter:({row,column,cellValue}) => {
-              return "123"
+            render: row => {
+              console.log(row)
             }
           },
         ],
