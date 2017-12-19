@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import ElSearchTablePagination from 'el-search-table-pagination'
+import Egrid from 'egrid'
 import App from './App'
 import router from './router'
 import Loading from './components/loading'
@@ -19,6 +21,8 @@ Vue.prototype.styleLink="default";
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+Vue.use(ElSearchTablePagination);
+Vue.use(Egrid)
 Vue.use(Loading)
 
 /* eslint-disable no-new */

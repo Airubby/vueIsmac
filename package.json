@@ -10,6 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "egrid": "^1.0.6",
+    "el-search-table-pagination": "^0.4.18",
     "element-ui": "^2.0.7",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"

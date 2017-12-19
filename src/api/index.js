@@ -1,7 +1,7 @@
 const path = require('path')
 // 配置API接口地址
-//var root = '/api'  //开发环境
-var root='http://192.168.10.51:8080'   //生产环境
+var root = '/api'  //开发环境
+//var root='http://192.168.10.51:8080'   //生产环境
 // 引用axios
 var axios = require('axios')
 // 自定义判断元素类型JS
@@ -48,9 +48,9 @@ function apiAxios (method, url, params, success, failure) {
     withCredentials: true
   })
   .then(function (res) {
-    
-    if (res.data.err_code === "0") {
-     // console.log("success:"+ JSON.stringify(res.data))
+    console.log(res);
+    if (res.data.success === true) {
+      //console.log("success:"+ JSON.stringify(res.data))
       if (success) {
         success(res.data)
       }

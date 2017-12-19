@@ -4,18 +4,18 @@ import Index from '@/page/index'
 import Login from '@/page/login'
 import Loncom from '@/page/loncom'
 
-import Environment from '@/page/environment'
+import Environment from '@/page/environment'  //环境页面
 import Environment_detail from '@/page/environment_detail'
-import Environment_card from '@/page/environment_card'
+import Tendency from '@/page/tendency'   //趋势页面
 import Environment_table from '@/page/environment_table'
 
-import Power from '@/page/power'
-import Security from '@/page/security'
-import Energy from '@/page/energy'
-import Alarm from '@/page/alarm'
-import Statement from '@/page/statement'
-import Equipment from '@/page/equipment'
-import System from '@/page/system'
+import Power from '@/page/power' //动力系统
+import Security from '@/page/security' //安防系统
+import Energy from '@/page/energy' //能效管理
+import Alarm from '@/page/alarm' //动环事件
+import Statement from '@/page/statement'  //监控报表
+import Equipment from '@/page/equipment'  //设备管理
+import System from '@/page/system'  //系统管理
 
 
 import Testindex from '@/page/testindex'
@@ -23,6 +23,9 @@ import Testindex from '@/page/testindex'
 import Anfang from '@/page/anfang'
 import Anfang1 from '@/page/anfang1'
 import Anfang2 from '@/page/anfang2'
+import TestTable from '@/page/testTable'
+import TestTable1 from '@/page/testTable1'
+
 
 Vue.use(Router)
 
@@ -53,10 +56,16 @@ export default new Router({
         {path:'/loncom/alarm',component:Alarm}, //动环事件
         {path:'/loncom/statement',component:Statement}, //监控报表
         {path:'/loncom/equipment',component:Equipment},  //设备管理
-        {path:'/loncom/system',component:System}  //系统管理
+        {path:'/loncom/system',component:System},  //系统管理
       ]
     },
-    
+     //公共页面
+    {path:'/tendency',component:Tendency}, //趋势页面
+
+
+
+
+
     
 
     {
@@ -71,7 +80,14 @@ export default new Router({
         {path:'/anfang/anfang1',name:'Anfang1',component:Anfang1},
         {path:'/anfang/anfang2',name:'Anfang2',component:Anfang2}
       ]
-    }
+    },
+    {
+      path:'/testtable',
+      component:TestTable
+    },{
+      path:'/testtable1',
+      component:TestTable1
+    },
 
   ]
 })

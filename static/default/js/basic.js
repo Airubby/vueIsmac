@@ -76,6 +76,23 @@ function switcFullScreen(){
         }
     }
 }	
+//打开window弹窗
+function windowOpen(url,Width,Height){
+    var iWidth,iHeight;
+    if(Width!=undefined&&Height!=undefined){
+        iWidth=Width;
+        iHeight=Height;
+    }else{
+        iWidth=1000;
+        iHeight=600;
+    }
+    //获得窗口的垂直位置
+    var iTop = (window.screen.availHeight - 10 - iHeight) / 2;
+    //获得窗口的水平位置
+    var iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
+    window.open(url, name, 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft + ',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no');
+}
+
 
 
 

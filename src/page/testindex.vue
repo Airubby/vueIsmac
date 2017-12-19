@@ -37,7 +37,8 @@
       </div>
       <Loading></Loading>
       <!--子向父-->
-      <ChildtoFather v-on:childToParentMsg="showChildToParentMsg" ></ChildtoFather>
+      <ChildtoFather @childToParentMsg="showChildToParentMsg" ></ChildtoFather>
+      
       <!--父向子-->
       <FathertoChild v-bind:parentToChild="parentMsg"></FathertoChild>
 
@@ -76,9 +77,9 @@ export default {
     //   { message: 'Bar' }];
     // })
    
-    this.$api.get('/ISmac/BaseServlet', null, function(r) {
-      console.log(r)
-    })
+    // this.$api.get('/ISmac/BaseServlet', null, function(r) {
+    //   console.log(r)
+    // })
     // open_ajax("http://192.168.10.51:8080/Dev",{'action':'query','model':{"devtypeid":"1"},'sid':'0424d65992c13f9657cb0fc7a4adcc56'},function(result){
     //   console.log(result)
     // })
@@ -97,7 +98,10 @@ export default {
       logoUrl:require("../../static/"+this.styleLink+"/images/login_logo.png"),
       testData:[],
       testData1:[],
-      parentMsg:'父组件向子组件传值,我这个是父传给子显示的'
+      parentMsg:{
+        title:"父组件向子组件传值,我这个是父传给子显示的",
+        content:"132"
+      }
     }
   },
   methods:{

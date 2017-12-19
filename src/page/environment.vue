@@ -8,43 +8,11 @@
         </div>
         <div class="loncom_scroll_con loncom_environment">
             <div :class="{'loncom_active':loncom_active}" class="loncom_public_card loncom_environment_card">
-                <ul>
-                    <li>
-                        <div class="loncom_public_card_box loncom_public_shadow">
-                            <div class="loncom_public_card_box_top">
-                                <div class="loncom_fl">122</div>
-                                <div class="loncom_fr loncom_public_card_box_topr">
-                                    <div class="loncom_public_card_box_toprtitle">启用</div>
-                                    <div class="loncom_public_card_box_toprcon loncom_public_shadow">
-                                        <a href="javascript:;">停用</a>
-                                        <a href="javascript:;">编辑</a>
-                                        <a href="javascript:;">删除</a>
-                                        <a href="javascript:;">克隆</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="loncom_public_card_box_center">
-                                <div class="loncom_fl loncom_public_card_box_cimg">
-                                    <img src="static/default/images/shebei.png">
-                                </div>
-                                <div class="loncom_fr loncom_public_card_box_cinfo">
-                                    <p><em>通讯状态</em>：<span>正常</span></p>
-                                    <p><em>告警状态</em>：<span>正常</span></p>
-                                    <p><em>温度</em>：<span>22.22</span></p>
-                                    <p><em>湿度</em>：<span>30</span></p>
-                                </div>
-                            </div>
-                            <div class="loncom_public_card_box_bottom">
-                                <div @click="trend()">趋势</div>
-                                <div @click="events()">事件</div>
-                                <div @click="detail()">详情</div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <CardInfo v-bind:cardInfo="cardInfo"></CardInfo>
             </div>
-            <div :class="{'loncom_active':!loncom_active}" class="loncom_public_table loncom_environment_table">
 
+            <div :class="{'loncom_active':!loncom_active}" class="loncom_public_table loncom_environment_table">
+                
             </div>
         </div>
     </div>
@@ -53,6 +21,9 @@
 
 <script>
 import Vue from 'vue' 
+import CardInfo from '../components/cardInfo.vue'
+
+
 export default {
     
   created () {
@@ -63,11 +34,74 @@ export default {
   },
    data() {
        return {
-           loncom_active: true,
-           　top_items: [
+           //头部切换
+            loncom_active: true,
+          　top_items: [
 　　　　　　　　　　{select:'卡片',loncom_active:true},
 　　　　　　　　　　{select:'列表',loncom_active:false},
-　　　　　　　　]
+　　　　　　　],
+            cardInfo:{
+                err_code:"0",
+                err_msg:"操作成功",
+                data:[
+                    {
+                        state:"1",
+                        mgrobjid:"09110874",
+                        htmlurl:"baidu.com",
+                        devtypename:"温湿度",
+                        dev_name:"05",
+                        dev_image:"wenshidu.png",
+                        commStatus:"1",
+                        almStatus:1,
+                        addrname:"数据机房",
+                        addrid:"1",
+                        DevvouList:[
+                            {
+                                ch:"温度",
+                                datachar:"Analogy",
+                                format:"",
+                                id:"HT_Temp",
+                                value:"0"
+                            },
+                            {
+                                ch:"湿度",
+                                datachar:"Analogy",
+                                format:"",
+                                id:"HT_Hum",
+                                value:"0"
+                            }
+                        ]
+                    },
+                    {
+                        state:"1",
+                        mgrobjid:"09110874",
+                        htmlurl:"",
+                        devtypename:"温湿度",
+                        dev_name:"06",
+                        dev_image:"wenshidu.png",
+                        commStatus:"0",
+                        almStatus:0,
+                        addrname:"数据机房",
+                        addrid:"1",
+                        DevvouList:[
+                            {
+                                ch:"温度",
+                                datachar:"Analogy",
+                                format:"",
+                                id:"HT_Temp",
+                                value:"19.5"
+                            },
+                            {
+                                ch:"湿度",
+                                datachar:"Analogy",
+                                format:"",
+                                id:"HT_Hum",
+                                value:"35"
+                            }
+                        ]
+                    }
+                ]
+            }
        }
    },
    methods:{
@@ -81,20 +115,8 @@ export default {
                this.loncom_active=!(this.loncom_active);
 　　　　　　});
         },
-        //趋势
-        trend(){
-
-        },
-        //事件
-        events(){
-            
-        },
-        //详情
-        detail(){
-
-        }
-   }
-
+   },
+   components:{CardInfo},
 }
 </script>
 

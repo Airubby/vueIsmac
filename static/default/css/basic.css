@@ -307,12 +307,12 @@ em{
   border-right: 1px solid #999999; 
 }
 
-
-
-
 .loncom_public_table{
   padding: 20px 20px 0 20px;
 }
+
+/*趋势页面*/
+
 
 
 @media (min-width: 1200px) {
