@@ -16,7 +16,7 @@
                             <span><em>*</em>{{item.topDetail}}</span>
                         </div>
                         <div class="loncom_fr">
-                            <a href="javascript:;" class="loncom_search_btn">配置</a>
+                            <a href="javascript:;" class="loncom_search_btn" @click="deploy(item)">配置</a>
                         </div>
                     </div>
                     <div class="loncom_system_inform_con">
@@ -36,10 +36,14 @@
                     </div>
                 </div>
 
+                <DialogDeploy v-bind:dialogDeploy="inform_deploy"></DialogDeploy>
+
             </div>
             <!--用户-->
             <div :class="{'loncom_active':top_items[1].loncom_active}" class="loncom_public_table">
-                2
+                
+
+
             </div>
             <!--后台-->
             <div :class="{'loncom_active':top_items[2].loncom_active}" class="loncom_public_table">
@@ -54,7 +58,7 @@
 <script>
 
 import TopChangeInfo from '../components/topChangeInfo.vue'
-
+import DialogDeploy from '../components/dialogDeploy.vue'
 
 export default {
     
@@ -63,7 +67,7 @@ export default {
   },
   mounted() {
       //超出滚动
-        scrollCon()
+      scrollCon()
   },
    data() {
        return {
@@ -73,7 +77,7 @@ export default {
 　　　　　　　　　{select:'用户',loncom_active:false},
                 {select:'后台',loncom_active:false},
 　　　　　　　],
-            //通知：
+            //通知的页面展示信息
             inform_box:[
                 {
                     topImgClass:'loncom_index_alarm4',topTitle:'紧急',topDetail:'备注：等级高于等于“紧急”的事件将按此规则通知。',
@@ -91,13 +95,23 @@ export default {
                     topImgClass:'loncom_index_alarm1',topTitle:'提示',topDetail:'备注：等级高于等于“提示”的事件将按此规则通知。',
                     system_dx:true,system_dh:false,system_sg:false,system_yj:false,system_gly:false,system_xtyh:false,system_fxtyh:false
                 }
-            ]
+            ],
+            //通知页面配置要用的信息
+            inform_deploy:{
+                visible:false,
+                title:"趋势分析",
+                width: "600px",
+                data:{}
+            }
        }
    },
    methods:{
-        
+        deploy(item){
+            this.inform_deploy.visible=true;
+            this.inform_deploy.data=item;
+        }
    },
-   components:{TopChangeInfo},
+   components:{TopChangeInfo,DialogDeploy},
 }
 </script>
 
