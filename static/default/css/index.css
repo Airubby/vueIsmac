@@ -529,26 +529,6 @@
   float: left;
 }
 
-.loncom_index_list_info h2 span.loncom_index_alarm1 {
-  background: url(../images/index_alarm1.png) no-repeat;
-   background-size: contain;
-}
-
-.loncom_index_list_info h2 span.loncom_index_alarm2 {
-  background: url(../images/index_alarm2.png) no-repeat;
-   background-size: contain;
-}
-
-.loncom_index_list_info h2 span.loncom_index_alarm3 {
-  background: url(../images/index_alarm3.png) no-repeat;
-   background-size: contain;
-}
-
-.loncom_index_list_info h2 span.loncom_index_alarm4 {
-  background: url(../images/index_alarm4.png) no-repeat;
-   background-size: contain;
-}
-
 .loncom_index_list_info p {
   width: 100%;
   overflow: hidden;

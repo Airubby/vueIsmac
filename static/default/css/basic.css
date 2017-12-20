@@ -74,7 +74,23 @@ em{
 .el-dialog__body{
   padding: 0px 0px 20px 0px !important;
 }
-
+/*告警图标*/
+.loncom_index_alarm1 {
+  background: url(../images/index_alarm1.png) no-repeat;
+   background-size: contain;
+}
+.loncom_index_alarm2 {
+  background: url(../images/index_alarm2.png) no-repeat;
+   background-size: contain;
+}
+.loncom_index_alarm3 {
+  background: url(../images/index_alarm3.png) no-repeat;
+   background-size: contain;
+}
+.loncom_index_alarm4 {
+  background: url(../images/index_alarm4.png) no-repeat;
+   background-size: contain;
+}
 /*sidebar侧边导航*/
 .loncom_sidebar{
   width: 200px;
@@ -351,7 +367,7 @@ em{
 .loncom_search_btn i{
   margin-right: 5px;
 }
-/*头部两个的切换*/
+/*头部有切换的要用这个class*/
 .loncom_right_changecon>div{
   display: none;
 }
