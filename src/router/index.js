@@ -6,8 +6,6 @@ import Loncom from '@/page/loncom'
 
 import Environment from '@/page/environment'  //环境页面
 import Environment_detail from '@/page/environment_detail'
-import Tendency from '@/page/tendency'   //趋势页面
-import Environment_table from '@/page/environment_table'
 
 import Power from '@/page/power' //动力系统
 import Security from '@/page/security' //安防系统
@@ -60,14 +58,14 @@ export default new Router({
       ]
     },
      //公共页面
-    {path:'/tendency',component:Tendency}, //趋势页面
+
 
 
 
 
 
     
-
+    //以下为测试页面
     {
       path:'/testindex',
       component:Testindex

@@ -52,10 +52,9 @@ $(window).resize(function () {
 	scrollCon();
 });
 //全屏切换
-var isFullScreen=true;//是否全屏
+var isFullScreen=false;//是否是全屏状态
 function switcFullScreen(){
-    isFullScreen=!isFullScreen;
-    if(isFullScreen){
+    if(isFullScreen){//是全屏就退出全屏
         if(document.exitFullscreen) {
             document.exitFullscreen();
         } else if(document.mozCancelFullScreen) {
@@ -63,7 +62,7 @@ function switcFullScreen(){
         } else if(document.webkitExitFullscreen) {
             document.webkitExitFullscreen();
         }
-    }else{
+    }else{//不是就全屏
         var element=document.documentElement;
         if(element.requestFullscreen) {
             element.requestFullscreen();
@@ -75,6 +74,7 @@ function switcFullScreen(){
             element.msRequestFullscreen();
         }
     }
+    isFullScreen=!isFullScreen;
 }	
 //打开window弹窗
 function windowOpen(url,Width,Height){
@@ -90,7 +90,7 @@ function windowOpen(url,Width,Height){
     var iTop = (window.screen.availHeight - 10 - iHeight) / 2;
     //获得窗口的水平位置
     var iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
-    window.open(url, name, 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft + ',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no');
+    window.open(url, "_blank", 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft + ',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no');
 }
 //日期格式化
 Date.prototype.Format = function (fmt) { //author: meizz 

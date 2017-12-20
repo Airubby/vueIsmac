@@ -1,4 +1,5 @@
 <template>
+  <div>
     <ul>
       <li v-for="item in cardInfo.data">
           <div class="loncom_public_card_box loncom_public_shadow">
@@ -36,30 +37,49 @@
           </div>
       </li>
     </ul>
+    <DialogTendency v-bind:dialogTendency="dialogTendency"></DialogTendency>
+    <DialogHistoricalEvents v-bind:dialogHistoricalEvents="dialogHistoricalEvents"></DialogHistoricalEvents>
+    </div>
 </template>
 
 <script>
 
+import DialogTendency from './dialogTendency.vue'
+import DialogHistoricalEvents from './dialogHistoricalEvents.vue'
+
 export default {
    name: 'loncom_card',
     data(){
-      return {}
+      return {
+        dialogTendency:{
+          visible:false,
+          title:"趋势分析",
+          width: "1000px",
+        },
+        dialogHistoricalEvents:{
+          visible:false,
+          title:"历史事件",
+          width: "1000px",
+        },
+      }
     },
     methods:{
       //趋势
-        trend(){
-            windowOpen("#/tendency"); 
+        trend(){ 
+            this.dialogTendency.visible=true;
         },
         //事件
         events(){
-            windowOpen("#/loncom/environment");
+            this.dialogHistoricalEvents.visible=true;
         },
         //详情
         detail(){
 
         },
     },
-    props:["cardInfo"]  //子组件在props中创建一个属性，用以接收父组件传过来的值,和父组件v-bind:parentToChild相同
+    
+    props:["cardInfo"],  //子组件在props中创建一个属性，用以接收父组件传过来的值,和父组件v-bind:parentToChild相同
+   components:{DialogTendency,DialogHistoricalEvents},
 }
 </script>
 
