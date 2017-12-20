@@ -29,6 +29,7 @@ function scrollCon(){
 	//获取要滚动的dom高度
     if($(".loncom_scroll_con").length>0){
     	var docHeight=$(window).height();
+        console.log(docHeight)
         var scrollHieght=$(".loncom_public_top").height();
         var thisHeight=$(".loncom_scroll_con").height();
         if($(".loncom_scroll_con").siblings().hasClass("loncom_public_top")){

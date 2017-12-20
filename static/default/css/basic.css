@@ -165,6 +165,7 @@ em{
   width: -webkit-calc(100% - 200px);
   width: -moz-calc(100% - 200px);
   width: calc(100% - 200px);
+  height: 100%;
   float: left;
 }
 .loncom_public_top{
@@ -210,8 +211,9 @@ em{
 }
 .loncom_public_card{
   padding: 20px 0 0 20px;
-  height: 100%;
+  height: auto;
   width: 100%;
+  overflow: hidden;
 }
 .loncom_public_card li{
   width: 50%;
@@ -331,8 +333,9 @@ em{
 
 .loncom_public_table{
   padding: 20px 20px 0 20px;
-  height: 100%;
+  height: auto;
   width: 100%;
+  overflow: hidden;
 }
 .loncom_search_btn{
     background: #0064aa;
@@ -348,6 +351,14 @@ em{
 .loncom_search_btn i{
   margin-right: 5px;
 }
+/*头部两个的切换*/
+.loncom_right_changecon>div{
+  display: none;
+}
+.loncom_right_changecon>div.loncom_active{
+  display: block;
+}
+
 /*趋势页面*/
 .loncom_tendency_title{
   width: 100%;

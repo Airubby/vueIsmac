@@ -1,11 +1,4 @@
 
-/*环境板块*/
-.loncom_environment>div{
-  display: none;
-}
-.loncom_environment>div.loncom_active{
-  display: block;
-}
 
 
 

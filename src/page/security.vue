@@ -1,13 +1,19 @@
 <template>
-    <div>
-        <h2>安防页</h2>
-        <router-link to="/" class="shouye"><div class="content">返回首页</div></router-link>  
-        <div class="left">
-            <router-link to="/anfang/anfang1"><div class="content">安防一</div></router-link>  
-            <router-link to="/anfang/anfang2"><div class="content">安防二</div></router-link>  
+    <div class="loncom_content">
+        <div class="loncom_public_top">
+            <h2>安防系统</h2>
+            <ul class="loncom_fr">
+                <li v-for="item in top_items" @click="tabs(item)" :class="{'loncom_active':item.loncom_active}">{{item.select}}</li>
+            </ul>
         </div>
-        <div id="app">
-            <router-view></router-view>
+        <div class="loncom_scroll_con loncom_environment">
+            <div :class="{'loncom_active':loncom_active}" class="loncom_public_card loncom_environment_card">
+                
+            </div>
+
+            <div :class="{'loncom_active':!loncom_active}" class="loncom_public_table loncom_environment_table">
+                
+            </div>
         </div>
     </div>
 </template>
