@@ -71,19 +71,21 @@ export default {
       { message: 'Bar' }];
       this.testData1=[{ message: 'Foo' },
       { message: 'Bar' }];
+    this.$api.get('/loncomServlet', {}, r => {
+      console.log(r)
+    })
+   
     // this.$api.get('Dev', {'action':'query','model':{"devtypeid":"1"},'sid':'0424d65992c13f9657cb0fc7a4adcc56'}, r => {
     //   console.log(r)
-    //   this.testData=[{ message: 'Foo' },
-    //   { message: 'Bar' }];
     // })
-   
+
     // this.$api.get('/ISmac/BaseServlet', null, function(r) {
     //   console.log(r)
     // })
     // open_ajax("http://192.168.10.51:8080/Dev",{'action':'query','model':{"devtypeid":"1"},'sid':'0424d65992c13f9657cb0fc7a4adcc56'},function(result){
     //   console.log(result)
     // })
-    // open_ajax("http://192.168.10.51:8080/ISmac/BaseServlet",function(result){
+    // open_ajax("http://192.168.10.47:8080/ISmac/loncomServlet",{},function(result){
     //   console.log(result)
     // })
 

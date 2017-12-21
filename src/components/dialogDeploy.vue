@@ -1,7 +1,7 @@
 <template>
-    <el-dialog :title="dialogDeploy.title" :visible.sync="dialogDeploy.visible" :width="dialogDeploy.width">
+    <el-dialog :title="dialogDeploy.title" :visible.sync="dialogDeploy.visible" :width="dialogDeploy.width" >
         
-        <div class="loncom_public_table">
+        <div class="loncom_public_table loncom_dialog_scroll" style="height:450px;">
             <!--通知方式-->
             <div class="loncom_list_box">
                 <div class="loncom_list_box_left">
@@ -84,7 +84,53 @@
 
                 </div>
             </div>
+            <!--时间范围-->
+            <div class="loncom_list_box">
+                <div class="loncom_list_box_left">
+                    <em>*</em>时间范围：
+                </div>
+                <div class="loncom_list_box_right">
+                    <div class="loncom_mb10">
+                        <el-date-picker
+                            v-model="value1"
+                            type="datetimerange"
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            size="mini"
+                            >
+                        </el-date-picker>
+                    </div>
+                    <div class="loncom_mb10">
+                        <el-date-picker
+                            v-model="value2"
+                            type="datetimerange"
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            size="mini"
+                            >
+                        </el-date-picker>
+                    </div>
+                    <div class="loncom_mb10">
+                        <el-date-picker
+                            v-model="value3"
+                            type="datetimerange"
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            size="mini"
+                            >
+                        </el-date-picker>
+                    </div>
+                </div>
+            </div>
+            <!--结束-->
+        </div>
 
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogDeploy.visible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogSure()">确 定</el-button>
         </div>
     </el-dialog>
 </template>
@@ -108,11 +154,19 @@ export default {
                 {title:"周五",id:"sysweek5"},
                 {title:"周六",id:"sysweek6"},
                 {title:"周天",id:"sysweek7"}
-            ]
+            ],
+            //弹框的显示判断
+            dialogVisible:false,
+            //时间范围
+            value1:"",
+            value2:"",
+            value3:"",
         }
     },
     methods:{
-            
+        dialogSure:function(){
+            dialogDeploy.visible=false;   
+        }
     },
     props:["dialogDeploy"]  //子组件在props中创建一个属性，用以接收父组件传过来的值,和父组件v-bind:dialogDeploy相同
 }

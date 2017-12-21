@@ -74,10 +74,10 @@
                 <!--开始-->
                 <div class="loncom_index_body_cen_left_box" v-for="item in listData">
                     <div class="loncom_index_body_left_box_con">
-                        <div class="loncom_index_change">
-                            <i class="fa fa-th-large"></i>
+                        <div class="loncom_index_change" @click="listChange(item)">
+                            <i class="fa fa-th-large" :class="{'fa-th-list':item.loncom_active}"></i>
                         </div>
-                        <div class="loncom_index_left_box_body loncom_active">
+                        <div class="loncom_index_left_box_body" :class="{'loncom_active':!item.loncom_active}">
                             <router-link :to="{path:item.url}">
                                 <div class="loncom_index_left_box_info">
                                     <em :class="item.imgClass"></em>
@@ -101,7 +101,7 @@
                                 </div>
                             </router-link>
                         </div>
-                        <div class="loncom_index_left_box_body">
+                        <div class="loncom_index_left_box_body" :class="{'loncom_active':item.loncom_active}">
                             <router-link :to="{path:item.url}">
                             234
                             </router-link>
@@ -115,12 +115,12 @@
                 <div class="loncom_index_body_cen_right_box1 loncom_index_right_box">
                     <div class="loncom_index_body_right_title loncom_index_body_right_box1_title">
                         <h2>告警</h2>
-                        <div class="loncom_index_change">
-	                        <i class="fa fa-th-large"></i>
+                        <div class="loncom_index_change"  @click="alarmChange">
+	                        <i class="fa fa-th-large" :class="{'fa-th-list':listAlarm.loncom_active}"></i>
                        </div>
                     </div>
                     <div class="loncom_index_body_right_list loncom_scroll_con">
-                        <div class="loncom_index_wrapper2_con loncom_active">
+                        <div class="loncom_index_wrapper2_con" :class="{'loncom_active':!listAlarm.loncom_active}">
                             <ul id="loncom_alarms">
                                 <li v-for="(item, index) in listAlarm.alarmData">
                                     <div class="loncom_index_list_input">
@@ -139,14 +139,14 @@
                             </ul>
                         </div>
                         <router-link :to="{path:listAlarm.alarmUrl}">
-                            <div class="loncom_index_wrapper2_con">
+                            <div class="loncom_index_wrapper2_con" :class="{'loncom_active':listAlarm.loncom_active}">
                                 <div id="loncom_LevelChart" style="float:left; width:50%; height:100%"></div>
                                 <div id="loncom_TypeChart" style="float:left; width:50%; height:100%"></div>
                                 <div style="clear: both;"></div>
                             </div>
                         </router-link>
                     </div>
-                    <div class="loncom_index_body_right_list_checkall" id="loncom_alerm_check_all">
+                    <div class="loncom_index_body_right_list_checkall" id="loncom_alerm_check_all" :class="{'loncom_active':listAlarm.loncom_active}">
                         <div class="loncom_index_list_input">
                             <input type="checkbox" id="loncom_index_checkbox_all" class="loncom_index_checkbox"><label for="loncom_index_checkbox_all"></label>
                         </div>
@@ -243,6 +243,7 @@
 
 <script>
 
+import Vue from 'vue' 
 
 
 export default {
@@ -271,42 +272,20 @@ export default {
     	});
     }
     
-    $(".loncom_index_change").on("click",function(){
-        if($(this).siblings(".loncom_index_left_box_body").eq(0).hasClass("loncom_active")){
-            $(this).siblings(".loncom_index_left_box_body").eq(0).removeClass("loncom_active");
-            $(this).siblings(".loncom_index_left_box_body").eq(1).addClass("loncom_active");
-            $(this).find(".fa").addClass("fa-th-list");
-        }else if($(this).siblings(".loncom_index_left_box_body").eq(1).hasClass("loncom_active")){
-            $(this).siblings(".loncom_index_left_box_body").eq(0).addClass("loncom_active");
-            $(this).siblings(".loncom_index_left_box_body").eq(1).removeClass("loncom_active");
-            $(this).find(".fa").removeClass("fa-th-list");
-        }else if($(this).parent(".loncom_index_body_right_title").siblings(".loncom_index_body_right_list").find(".loncom_index_wrapper2_con").eq(0).hasClass("loncom_active")){
-            $(this).parent(".loncom_index_body_right_title").siblings(".loncom_index_body_right_list").find(".loncom_index_wrapper2_con").eq(0).removeClass("loncom_active");
-            $(this).parent(".loncom_index_body_right_title").siblings(".loncom_index_body_right_list").find(".loncom_index_wrapper2_con").eq(1).addClass("loncom_active");
-            $(this).find(".fa").addClass("fa-th-list");
-            $("#loncom_alerm_check_all").hide();
-        }else{
-            $(this).parent(".loncom_index_body_right_title").siblings(".loncom_index_body_right_list").find(".loncom_index_wrapper2_con").eq(0).addClass("loncom_active");
-            $(this).parent(".loncom_index_body_right_title").siblings(".loncom_index_body_right_list").find(".loncom_index_wrapper2_con").eq(1).removeClass("loncom_active");
-            $(this).find(".fa").removeClass("fa-th-list");
-            $("#loncom_alerm_check_all").show();
-        }
-    });
-    
-
   },
   data() {
     return {
         dialogVisible: false,
         isShow:true,
         listData:[
-            {url:"/loncom/environment",title:"环境",imgClass:"loncom_index_hj",infoClass:true},
-            {url:"/loncom/power",title:"动力",imgClass:"loncom_index_kt",infoClass:true},
-            {url:"/loncom/equipment",title:"IT设备",imgClass:"loncom_index_pd",infoClass:false},
-            {url:"/loncom/security",title:"安防",imgClass:"loncom_index_af",infoClass:false}
+            {url:"/loncom/environment",title:"环境",imgClass:"loncom_index_hj",infoClass:true,loncom_active:false},
+            {url:"/loncom/power",title:"动力",imgClass:"loncom_index_kt",infoClass:true,loncom_active:false},
+            {url:"/loncom/equipment",title:"IT设备",imgClass:"loncom_index_pd",infoClass:false,loncom_active:false},
+            {url:"/loncom/security",title:"安防",imgClass:"loncom_index_af",infoClass:false,loncom_active:false}
         ],
         listAlarm:{
             alarmUrl:"/loncom/alarm",
+            loncom_active:false,
             alarmData:[
                 {id:"e1",index_alarm_type:"loncom_index_alarm1",index_alarm_sure:"loncom_index_alarm_ok",title:"机房漏水告警",date:"2017/2/13 10:25:00",detail:"漏水主机1，机房漏水状态"},
                 {id:"e2",index_alarm_type:"loncom_index_alarm2",index_alarm_sure:"loncom_index_alarm_no",title:"机房温度过高告警",date:"2017/2/13 10:25:00",detail:"机房1，1号温湿度，温度，值=30.5"},
@@ -327,7 +306,23 @@ export default {
     powerOff:function(){
         this.$router.push({path:'/login'});
     },
-   
+    //切换大小展示
+    listChange:function(item){
+        if(item.loncom_active){
+            Vue.set(item,'loncom_active',false);
+        }else{
+            Vue.set(item,'loncom_active',true);
+        }
+    },
+    //告警切换
+    alarmChange:function(){
+        if(this.listAlarm.loncom_active){
+            this.listAlarm.loncom_active=false;
+        }else{
+            this.listAlarm.loncom_active=true;
+        }
+    }
+    
   }
   
 }

@@ -541,6 +541,9 @@
 .loncom_index_body_right_list_checkall {
   position: relative;
 }
+.loncom_index_body_right_list_checkall.loncom_active{
+  display: none;
+}
 
 .loncom_index_checkall_btn {
   width: 80px;

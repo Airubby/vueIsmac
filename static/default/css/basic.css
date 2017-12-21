@@ -44,6 +44,9 @@ em{
 .loncom_mr10{
   margin-right: 10px !important;
 }
+.loncom_mb10{
+  margin-bottom: 10px !important;
+}
 .loncom_fl{
   float:left;
 }
@@ -96,7 +99,26 @@ em{
     left: -1px;
     color: rgba(255, 255, 255, 0.8);
 }
-
+/*新增的加号*/
+.loncom_public_add{
+  width: 34px;
+  height: 34px;
+  position: relative;
+}
+.loncom_public_add em{
+    position: absolute;
+    background: #a1a1a1;
+}
+.loncom_public_add em:nth-of-type(1){
+    width: 6px;
+    height: 34px;
+    left: 14px;
+}
+.loncom_public_add em:nth-of-type(2){
+    width: 34px;
+    height: 6px;
+    top: 14px;
+}
 /*弹窗*/
 .el-dialog{
   margin-bottom: 0 !important;
@@ -106,7 +128,16 @@ em{
   border-bottom: 1px solid #ccc;
 }
 .el-dialog__body{
-  padding: 0px 0px 20px 0px !important;
+  padding: 0px !important;
+}
+.el-dialog__footer{
+  border-top: 1px solid #ccc;
+}
+.el-button{
+  padding: 10px 18px !important;
+}
+.loncom_dialog_scroll{
+  overflow: auto !important;
 }
 /*列表左标题，右内容展示*/
 .loncom_list_box{
@@ -301,7 +332,7 @@ em{
 }
 .loncom_public_card_box{
     width: 100%;
-    height: 250px;
+    min-height: 250px;
     position: relative;
 }
 .loncom_public_card_box:hover .loncom_public_card_box_bottom{
