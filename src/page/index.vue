@@ -135,7 +135,7 @@
                             <ul id="loncom_alarms">
                                 <li v-for="(item, index) in listAlarm.alarmData">
                                     <div class="loncom_index_list_input">
-                                        <input type="checkbox" :id="item.id" class="loncom_index_checkbox"><label :for="item.id"></label>
+                                        <input type="checkbox" :id="item.id" class="loncom_index_checkbox" :checked="listAlarm.checkbox_select"><label :for="item.id"></label>
                                     </div>
                                     <router-link :to="{path:listAlarm.alarmUrl}">
                                         <div class="loncom_index_list_info">
@@ -159,7 +159,7 @@
                     </div>
                     <div class="loncom_index_body_right_list_checkall" id="loncom_alerm_check_all" :class="{'loncom_active':listAlarm.loncom_active}">
                         <div class="loncom_index_list_input">
-                            <input type="checkbox" id="loncom_index_checkbox_all" class="loncom_index_checkbox"><label for="loncom_index_checkbox_all"></label>
+                            <input type="checkbox" id="loncom_index_checkbox_all" class="loncom_index_checkbox" :checked="listAlarm.checkbox_select"><label for="loncom_index_checkbox_all" @click="checkboxSelect"></label>
                         </div>
                         <a href="javascript:void(0);" class="loncom_index_checkall_btn">批量确认</a>
                     </div>
@@ -259,29 +259,31 @@ import Vue from 'vue'
 
 export default {
   created () {
-    // this.$api.get('/base/subevent', {"Url":"menu","action":"query","model":JSON.stringify({"id":"0"})}, r => {
-    //   console.log(r);
+    this.$api.get('/base/subevent', {"Url":"menu","action":"query","model":JSON.stringify({"id":"0"})}, r => {
+      console.log(r);
 
-    //   if(r.err_code=="0"){
-    //     this.listData=r.data;
-    //     for(var i=0;i<this.listData.length;i++){
-    //         Vue.set(this.listData[i],'loncom_active',false);
-    //         if(this.listData[i].devlist.length>0){
-    //             var devcountall=0;
-    //             var isalarmall=0;
-    //             for(var j=0;j<this.listData[i].devlist.length;j++){
-    //                 devcountall+=this.listData[i].devlist[j].devcount;
-    //                 isalarmall+=this.listData[i].devlist[j].isalarm;
-    //             }
-    //             Vue.set(this.listData[i],'infoClass',true);
-    //             Vue.set(this.listData[i],'devcountall',devcountall);
-    //             Vue.set(this.listData[i],'isalarmall',isalarmall);
-    //         }else{
-    //             Vue.set(this.listData[i],'infoClass',false);
-    //         }
-    //     }
-      
-    // })
+      if(r.err_code=="0"){
+        this.listData=r.data;
+        for(var i=0;i<this.listData.length;i++){
+            Vue.set(this.listData[i],'loncom_active',false);
+            if(this.listData[i].devlist.length>0){
+                var devcountall=0;
+                var isalarmall=0;
+                for(var j=0;j<this.listData[i].devlist.length;j++){
+                    devcountall+=this.listData[i].devlist[j].devcount;
+                    isalarmall+=this.listData[i].devlist[j].isalarm;
+                }
+                Vue.set(this.listData[i],'infoClass',true);
+                Vue.set(this.listData[i],'devcountall',devcountall);
+                Vue.set(this.listData[i],'isalarmall',isalarmall);
+            }else{
+                Vue.set(this.listData[i],'infoClass',false);
+            }
+        }
+      }
+
+
+    })
 
   },
   mounted() {
@@ -311,20 +313,21 @@ export default {
     return {
         //菜单列表
         listData:[
-            {
-                menusrc:"/loncom/environment",menuname:"环境",menuloga:"index_hj.png",infoClass:true,loncom_active:false,devcountall:2,isalarmall:2,
-                devlist:[
-                    {devcount:1,devtypeimgurld:"wenshidu.png",isalarm:1,name:"温湿度"},
-                    {devcount:1,devtypeimgurld:"loushui.png",isalarm:1,name:"漏水"},
-                ],
-            },
-            {menusrc:"/loncom/power",menuname:"动力",menuloga:"index_dl.png",infoClass:false,loncom_active:false,devlist:[]},
-            {menusrc:"/loncom/equipment",menuname:"IT设备",menuloga:"index_it.png",infoClass:false,loncom_active:false,devlist:[]},
-            {menusrc:"/loncom/security",menuname:"安防",menuloga:"index_af.png",infoClass:false,loncom_active:false,devlist:[]}
+            // {
+            //     menusrc:"/loncom/environment",menuname:"环境",menuloga:"index_hj.png",infoClass:true,loncom_active:false,devcountall:2,isalarmall:2,
+            //     devlist:[
+            //         {devcount:1,devtypeimgurld:"wenshidu.png",isalarm:1,name:"温湿度"},
+            //         {devcount:1,devtypeimgurld:"loushui.png",isalarm:1,name:"漏水"},
+            //     ],
+            // },
+            // {menusrc:"/loncom/power",menuname:"动力",menuloga:"index_dl.png",infoClass:false,loncom_active:false,devlist:[]},
+            // {menusrc:"/loncom/equipment",menuname:"IT设备",menuloga:"index_it.png",infoClass:false,loncom_active:false,devlist:[]},
+            // {menusrc:"/loncom/security",menuname:"安防",menuloga:"index_af.png",infoClass:false,loncom_active:false,devlist:[]}
         ],
         listAlarm:{
             alarmUrl:"/loncom/alarm",
             loncom_active:false,
+            checkbox_select:false,
             alarmData:[
                 {id:"e1",index_alarm_type:"loncom_index_alarm1",index_alarm_sure:"loncom_index_alarm_ok",title:"机房漏水告警",date:"2017/2/13 10:25:00",detail:"漏水主机1，机房漏水状态"},
                 {id:"e2",index_alarm_type:"loncom_index_alarm2",index_alarm_sure:"loncom_index_alarm_no",title:"机房温度过高告警",date:"2017/2/13 10:25:00",detail:"机房1，1号温湿度，温度，值=30.5"},
@@ -355,11 +358,12 @@ export default {
     },
     //告警切换
     alarmChange:function(){
-        if(this.listAlarm.loncom_active){
-            this.listAlarm.loncom_active=false;
-        }else{
-            this.listAlarm.loncom_active=true;
-        }
+        this.listAlarm.loncom_active=this.listAlarm.loncom_active?false:true;
+    },
+    //告警全选
+    checkboxSelect:function(){
+        console.log(1)
+        this.listAlarm.checkbox_select=this.listAlarm.checkbox_select?false:true;
     }
     
   }
