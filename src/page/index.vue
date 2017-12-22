@@ -78,32 +78,43 @@
                             <i class="fa fa-th-large" :class="{'fa-th-list':item.loncom_active}"></i>
                         </div>
                         <div class="loncom_index_left_box_body" :class="{'loncom_active':!item.loncom_active}">
-                            <router-link :to="{path:item.url}">
+                            <router-link :to="{path:item.menusrc}">
                                 <div class="loncom_index_left_box_info">
-                                    <em :class="item.imgClass"></em>
+                                    <em><img :src="'static/public/images/'+item.menuloga"></em>
                                 </div>
                                 <div class="loncom_index_left_box_info">
-                                    <h2>{{item.title}}</h2>
+                                    <h2>{{item.menuname}}</h2>
                                     <div class="loncom_index_left_box_info_con" v-show="item.infoClass">
                                         <p>
                                             <span class="loncom_img loncom_index_shebei"></span>
                                             <span class="loncom_text">设备：</span>
-                                            <span class="loncom_num">0</span>
+                                            <span class="loncom_num">{{item.devcountall}}</span>
                                         </p>
                                     </div>
                                     <div class="loncom_index_left_box_info_con" v-show="item.infoClass">
                                         <p>
                                             <span class="loncom_img loncom_index_yichang"></span>
                                             <span class="loncom_text">异常：</span>
-                                            <span class="loncom_num">0</span>
+                                            <span class="loncom_num">{{item.isalarmall}}</span>
                                         </p>
                                     </div>
                                 </div>
                             </router-link>
                         </div>
                         <div class="loncom_index_left_box_body" :class="{'loncom_active':item.loncom_active}">
-                            <router-link :to="{path:item.url}">
-                            234
+                            <router-link :to="{path:item.menusrc}"  v-show="item.infoClass" class="loncom_index_left_smallboxline">
+                                <div class="loncom_index_left_smallbox" v-for="(inItem,index) in item.devlist" v-if="index<4">
+                                    <div class="loncom_index_left_smallbox_img">
+                                        <img :src="'static/public/images/'+inItem.devtypeimgurld">
+                                    </div>
+                                    <div class="loncom_index_left_smallbox_text">
+                                        <p>
+                                            <span>{{inItem.name}}</span><span>{{inItem.devcount}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <em></em>
+                                <em></em>
                             </router-link>
                         </div>
                     </div>
@@ -248,7 +259,30 @@ import Vue from 'vue'
 
 export default {
   created () {
-    
+    // this.$api.get('/base/subevent', {"Url":"menu","action":"query","model":JSON.stringify({"id":"0"})}, r => {
+    //   console.log(r);
+
+    //   if(r.err_code=="0"){
+    //     this.listData=r.data;
+    //     for(var i=0;i<this.listData.length;i++){
+    //         Vue.set(this.listData[i],'loncom_active',false);
+    //         if(this.listData[i].devlist.length>0){
+    //             var devcountall=0;
+    //             var isalarmall=0;
+    //             for(var j=0;j<this.listData[i].devlist.length;j++){
+    //                 devcountall+=this.listData[i].devlist[j].devcount;
+    //                 isalarmall+=this.listData[i].devlist[j].isalarm;
+    //             }
+    //             Vue.set(this.listData[i],'infoClass',true);
+    //             Vue.set(this.listData[i],'devcountall',devcountall);
+    //             Vue.set(this.listData[i],'isalarmall',isalarmall);
+    //         }else{
+    //             Vue.set(this.listData[i],'infoClass',false);
+    //         }
+    //     }
+      
+    // })
+
   },
   mounted() {
     //首页隐藏滚动
@@ -275,13 +309,18 @@ export default {
   },
   data() {
     return {
-        dialogVisible: false,
-        isShow:true,
+        //菜单列表
         listData:[
-            {url:"/loncom/environment",title:"环境",imgClass:"loncom_index_hj",infoClass:true,loncom_active:false},
-            {url:"/loncom/power",title:"动力",imgClass:"loncom_index_kt",infoClass:true,loncom_active:false},
-            {url:"/loncom/equipment",title:"IT设备",imgClass:"loncom_index_pd",infoClass:false,loncom_active:false},
-            {url:"/loncom/security",title:"安防",imgClass:"loncom_index_af",infoClass:false,loncom_active:false}
+            {
+                menusrc:"/loncom/environment",menuname:"环境",menuloga:"index_hj.png",infoClass:true,loncom_active:false,devcountall:2,isalarmall:2,
+                devlist:[
+                    {devcount:1,devtypeimgurld:"wenshidu.png",isalarm:1,name:"温湿度"},
+                    {devcount:1,devtypeimgurld:"loushui.png",isalarm:1,name:"漏水"},
+                ],
+            },
+            {menusrc:"/loncom/power",menuname:"动力",menuloga:"index_dl.png",infoClass:false,loncom_active:false,devlist:[]},
+            {menusrc:"/loncom/equipment",menuname:"IT设备",menuloga:"index_it.png",infoClass:false,loncom_active:false,devlist:[]},
+            {menusrc:"/loncom/security",menuname:"安防",menuloga:"index_af.png",infoClass:false,loncom_active:false,devlist:[]}
         ],
         listAlarm:{
             alarmUrl:"/loncom/alarm",

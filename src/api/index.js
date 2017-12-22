@@ -61,19 +61,24 @@ function apiAxios (method, url, params, success, failure) {
     withCredentials: true
   })
   .then(function (res) {
-    console.log(res);
-    if (res.data.success === true) {
-      //console.log("success:"+ JSON.stringify(res.data))
-      if (success) {
-        success(res.data)
-      }
-    } else {
-      if (failure) {
-        failure(res.data)
-      } else {
-       // console.log('error: ' + JSON.stringify(res.data))
-      }
+    if(success){
+      success(res.data);
     }
+    if(failure){
+      failure(res.data);
+    }
+    // if (res.data.success === true) {
+    //   //console.log("success:"+ JSON.stringify(res.data))
+    //   if (success) {
+    //     success(res.data)
+    //   }
+    // } else {
+    //   if (failure) {
+    //     failure(res.data)
+    //   } else {
+    //    // console.log('error: ' + JSON.stringify(res.data))
+    //   }
+    // }
   })
   .catch(function (err) {
     let res = err.response
