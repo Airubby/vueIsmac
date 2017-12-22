@@ -1,7 +1,7 @@
 
 // 配置API接口地址
 //var root = '/api'  //开发环境
-var root='http://192.168.10.188:8080/ISmac'   //生产环境
+var root='/ISmac'   //生产环境
 // var root=(function(){
 //     //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp  
 //     var curWwwPath=window.document.location.href;  

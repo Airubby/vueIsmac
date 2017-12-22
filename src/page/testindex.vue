@@ -72,6 +72,7 @@ export default {
       this.testData1=[{ message: 'Foo' },
       { message: 'Bar' }];
     this.$api.get('/loncomServlet', {}, r => {
+      console.log(1)
       console.log(r)
     })
    

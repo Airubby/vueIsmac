@@ -28,7 +28,7 @@ import TestTable1 from '@/page/testTable1'
 Vue.use(Router)
 
 export default new Router({
-  mode:'history',  //hash,history，history打包静态无法展示，不知道要怎么设置才行
+  mode:'hash',  //hash,history，history打包静态无法展示，不知道要怎么设置才行
   routes: [
     {
       path: '',
