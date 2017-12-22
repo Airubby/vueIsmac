@@ -9,6 +9,7 @@
                 <button @click="loginIn">登录</button>
             </div>
         </div>
+        
     </div>
 </template>
 
@@ -17,7 +18,16 @@ export default {
   methods:{
       loginIn:function(){
           if(true){  //登录成功
+            this.$message({
+                message: '恭喜你，登录成功！',
+                type: 'success'
+            });
             this.$router.push({path:'/'});
+          }else{
+              this.$message({
+                message: '错误',
+                type: 'warning'
+            });
           }
       }
   }
