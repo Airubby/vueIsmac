@@ -35,8 +35,14 @@ a{
 em{
   font-style: normal;
 }
+.loncom_family_yahei{
+  font-family: "Microsoft Yahei";
+}
 .loncom_color{
   color: #0064aa;
+}
+.loncom_font_size12{
+  font-size: 12px;
 }
 .loncom_ml10{
   margin-left: 10px !important;
@@ -50,11 +56,20 @@ em{
 .loncom_mt10{
   margin-top: 10px !important;
 }
+.loncom_pr20{
+  padding-right: 20px !important;
+}
+.loncom_mb50{
+  margin-bottom: 50px !important;
+}
 .loncom_fl{
   float:left;
 }
 .loncom_fr{
   float: right;
+}
+.loncom_overflow_hidden{
+  overflow: hidden;
 }
 .loncom_public_shadow {
     -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.35);
@@ -75,6 +90,84 @@ em{
 .loncom_content{
   width: 100%;
   height: 100%;
+}
+
+/*新增的加号*/
+.loncom_public_add{
+  width: 34px;
+  height: 34px;
+  position: relative;
+}
+.loncom_public_add em{
+    position: absolute;
+    background: #a1a1a1;
+}
+.loncom_public_add em:nth-of-type(1){
+    width: 6px;
+    height: 34px;
+    left: 14px;
+}
+.loncom_public_add em:nth-of-type(2){
+    width: 34px;
+    height: 6px;
+    top: 14px;
+}
+.loncom_public_card_box .loncom_public_add{
+    left: 50%;
+    margin-left: -17px;
+    top: 50%;
+    margin-top: -17px;
+    position: absolute;
+} 
+/*弹窗*/
+.el-dialog{
+  margin-bottom: 0 !important;
+  border-radius: 10px !important;
+}
+.el-dialog__header{
+  border-bottom: 1px solid #ccc;
+}
+.el-dialog__body{
+  padding: 0px !important;
+}
+.el-dialog__footer{
+  border-top: 1px solid #ccc;
+}
+.el-button{
+  padding: 10px 18px !important;
+}
+.loncom_dialog_scroll{
+  overflow: auto !important;
+}
+/*列表左标题，右内容展示*/
+.loncom_list_box{
+  width: 100%;
+  min-height: 26px;
+  line-height: 26px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+.loncom_list_box_left{
+    width: 18%;
+    margin-right: 2%;
+    float: left;
+    color: #666;
+    text-align: right;
+}
+.loncom_list_box_left em {
+    color: #fb0101;
+    margin-right: 5px;
+}
+.loncom_list_box_right {
+    width: 80%;
+    float: left;
+}
+.loncom_list_box_info{
+  color: #999;
+}
+.loncom_list_box_right .loncom_public_check,.loncom_list_box_right .loncom_public_radio{
+  margin: 6px 5px 0 0;
 }
 /*勾选框*/
 .loncom_public_check_input, .loncom_public_radio_input{
@@ -126,75 +219,48 @@ em{
     left: 50%;
     margin-left: -4px;
 }
-
-/*新增的加号*/
-.loncom_public_add{
-  width: 34px;
-  height: 34px;
-  position: relative;
+/*页面级的tab切换的box*/
+.loncom_public_tab{
+    width: 100%;
+    border: 1px solid #E4E4E4;
+    height: -webkit-calc(100% - 60px);
+    height: -moz-calc(100% - 60px);
+    height: calc(100% - 60px);
+    /*底部60px放编辑提交*/
 }
-.loncom_public_add em{
-    position: absolute;
-    background: #a1a1a1;
+.loncom_public_tab .el-tabs,.loncom_public_tab .el-tab-pane{
+    height: 100%;
 }
-.loncom_public_add em:nth-of-type(1){
-    width: 6px;
-    height: 34px;
-    left: 14px;
+ .loncom_public_tab .el-tabs__content{
+     height: -webkit-calc(100% - 65px);
+    height: -moz-calc(100% - 65px);
+    height: calc(100% - 65px);
+ }
+.loncom_public_tab .el-tabs__header{
+    background: #F3F3F3;
+    padding-left: 20px;
+    border-bottom: 2px solid #dfe4ed;
 }
-.loncom_public_add em:nth-of-type(2){
-    width: 34px;
-    height: 6px;
-    top: 14px;
+.loncom_public_tab .el-tabs__item{
+    height: 50px;
+    line-height: 50px;
 }
-/*弹窗*/
-.el-dialog{
-  margin-bottom: 0 !important;
-  border-radius: 10px !important;
+.loncom_public_tab .el-tabs__nav-wrap::after{
+  background: none;
 }
-.el-dialog__header{
-  border-bottom: 1px solid #ccc;
-}
-.el-dialog__body{
-  padding: 0px !important;
-}
-.el-dialog__footer{
-  border-top: 1px solid #ccc;
-}
-.el-button{
-  padding: 10px 18px !important;
-}
-.loncom_dialog_scroll{
-  overflow: auto !important;
-}
-/*列表左标题，右内容展示*/
-.loncom_list_box{
+.loncom_public_tabbox{
   width: 100%;
-  min-height: 26px;
-  line-height: 26px;
-  overflow: hidden;
-  margin-bottom: 15px;
-  font-size: 12px;
+  height: 100%;
 }
-.loncom_list_box_left{
-    width: 18%;
-    margin-right: 2%;
-    float: left;
-    color: #666;
-    text-align: right;
+.loncom_public_tabboxcon{
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px 0;
 }
-.loncom_list_box_left em {
-    color: #fb0101;
-    margin-right: 5px;
+.loncom_public_tabbtn{
+  text-align: right;
+  padding: 12px 0;
 }
-.loncom_list_box_right {
-    width: 80%;
-    float: left;
-}
-.loncom_list_box_right .loncom_public_check,.loncom_list_box_right .loncom_public_radio{
-  margin: 6px 5px 0 0;
-}
-
 
 /*告警图标*/
 .loncom_index_alarm1 {
@@ -351,7 +417,6 @@ em{
   padding: 20px 0 0 20px;
   height: auto;
   width: 100%;
-  overflow: hidden;
 }
 .loncom_public_card li{
   width: 50%;
@@ -360,14 +425,14 @@ em{
 }
 .loncom_public_card_box{
     width: 100%;
-    min-height: 250px;
+    min-height: 150px;
     position: relative;
 }
 .loncom_public_card_box:hover .loncom_public_card_box_bottom{
   display: block;
 }
 .loncom_public_card_box_top{
-  height: 35px;
+  min-height: 35px;
   font-size: 12px;
   padding: 12px 0 0 20px;
   cursor: auto;
@@ -416,6 +481,10 @@ em{
 .loncom_public_card_box_toprcon a:hover {
     color: #fff;
     background: #0064aa;
+}
+.loncom_public_card_box_center{
+  overflow: hidden;
+  padding-bottom: 38px;
 }
 .loncom_public_card_box_cimg{
   width: 45%;
@@ -473,7 +542,6 @@ em{
   padding: 20px 20px 0 20px;
   height: auto;
   width: 100%;
-  overflow: hidden;
 }
 .loncom_search_btn{
     background: #0064aa;
@@ -489,7 +557,7 @@ em{
 .loncom_search_btn i{
   margin-right: 5px;
 }
-/*头部有切换的要用这个class*/
+/*头部有切换的要用这个class和loncom_scroll_con平级*/
 .loncom_right_changecon>div{
   display: none;
 }
