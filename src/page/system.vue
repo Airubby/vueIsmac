@@ -10,7 +10,7 @@
                 <!--事件通知-->
                 <div class="loncom_pr20 loncom_mb50">
                     <div class="loncom_system_inform_top">
-                        <div class="loncom_system_inform_top_left"><h2>事件通知</h2></div>
+                        <div class="loncom_sysinfo_box_left"><h2>事件通知</h2></div>
                         <div class="loncom_sysinfo_box loncom_system_inform_top_right">
                             提示：您可以为每类事件设置接收人，对于设备故障等重要事件，建议您务必设置接收，防止事件遗漏造成损失。
                         </div>
@@ -33,13 +33,13 @@
                                     <span style="margin-left: 10px" v-else>不启用</span>
                                 </template>
                             </el-table-column>
-                            <el-table-column label="电话">
+                            <el-table-column label="声光">
                                 <template slot-scope="scope">
                                     <span class="loncom_public_check">
-                                        <input type="checkbox" class="loncom_public_check_input" :id="'dh'+scope.$index" :checked="scope.row.system_dh">
-                                        <label :for="'dh'+scope.$index" @click="informChange(scope.row,scope.row.system_dx)"></label>
+                                        <input type="checkbox" class="loncom_public_check_input" :id="'dh'+scope.$index" :checked="scope.row.system_sg">
+                                        <label :for="'dh'+scope.$index" @click="informChange(scope.row,scope.row.system_sg)"></label>
                                     </span>
-                                    <span style="margin-left: 10px" v-if="scope.row.system_dh">启用</span>
+                                    <span style="margin-left: 10px" v-if="scope.row.system_sg">启用</span>
                                     <span style="margin-left: 10px" v-else>不启用</span>
                                 </template>
                             </el-table-column>
@@ -50,6 +50,16 @@
                                         <label :for="'yj'+scope.$index" @click="informChange(scope.row,scope.row.system_dx)"></label>
                                     </span>
                                     <span style="margin-left: 10px" v-if="scope.row.system_yj">启用</span>
+                                    <span style="margin-left: 10px" v-else>不启用</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="电话">
+                                <template slot-scope="scope">
+                                    <span class="loncom_public_check">
+                                        <input type="checkbox" class="loncom_public_check_input" :id="'dh'+scope.$index" :checked="scope.row.system_dh">
+                                        <label :for="'dh'+scope.$index" @click="informChange(scope.row,scope.row.system_dx)"></label>
+                                    </span>
+                                    <span style="margin-left: 10px" v-if="scope.row.system_dh">启用</span>
                                     <span style="margin-left: 10px" v-else>不启用</span>
                                 </template>
                             </el-table-column>
@@ -76,7 +86,7 @@
                 </div>
                 <!--通知装置-->
                 <div class="loncom_system_inform_top loncom_pr20">
-                    <div class="loncom_system_inform_top_left"><h2>通知装置</h2></div>
+                    <div class="loncom_sysinfo_box_left"><h2>通知装置</h2></div>
                     <div class="loncom_sysinfo_box loncom_system_inform_top_right">
                          提示：设置事件通知前请配置告警装置，告警装置工作异常将会影响告警通知正常发送。
                     </div>
@@ -200,7 +210,7 @@
 
             </div>
             <!--后台-->
-            <div :class="{'loncom_active':top_items[2].loncom_active}" class="loncom_public_table loncom_system_sys">
+            <div :class="{'loncom_active':top_items[2].loncom_active}" class="loncom_public_table loncom_content">
                 <div class="loncom_public_tab">
                     <el-tabs v-model="activeName" @tab-click="handleClick">
                         <el-tab-pane label="平台信息" name="first">
@@ -455,19 +465,19 @@ export default {
             //*******通知的页面展示信息
              inform_table: [
                  {
-                     imgClass:'loncom_index_alarm4',Title:'紧急',system_dx:true,system_dh:false,system_yj:true,
+                     imgClass:'loncom_index_alarm4',Title:'紧急',system_dx:true,system_sg:false,system_yj:true,system_dh:false,
                      system_time:'7*24小时',system_user:"李莫愁，杨过，小龙女"
                  },
                  {
-                     imgClass:'loncom_index_alarm3',Title:'重要',system_dx:false,system_dh:true,system_yj:true,
+                     imgClass:'loncom_index_alarm3',Title:'重要',system_dx:false,system_sg:true,system_yj:true,system_dh:true,
                      system_time:'7*24小时',system_user:"李莫愁，杨过，小龙女"
                  },
                  {
-                     imgClass:'loncom_index_alarm2',Title:'一般',system_dx:false,system_dh:false,system_yj:false,
+                     imgClass:'loncom_index_alarm2',Title:'一般',system_dx:false,system_sg:false,system_yj:false,system_dh:false,
                      system_time:'7*24小时',system_user:"李莫愁，杨过，小龙女"
                  },
                  {
-                     imgClass:'loncom_index_alarm1',Title:'提示',system_dx:false,system_dh:false,system_yj:true,
+                     imgClass:'loncom_index_alarm1',Title:'提示',system_dx:false,system_sg:false,system_yj:true,system_dh:false,
                      system_time:'7*24小时',system_user:"李莫愁，杨过，小龙女"
                  }
              ],
