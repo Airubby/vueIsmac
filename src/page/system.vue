@@ -184,7 +184,7 @@
                                 <p>备注：</p>
                             </div>
                             <div class="loncom_system_user_bottom">
-                                <a href="javascript:;" @click="editUser"><i class="fa fa-edit"></i></a>
+                                <a href="javascript:;" @click="editUser(item)"><i class="fa fa-edit"></i></a>
                                 <a href="javascript:;" @mouseenter="enter(item)" @mouseleave="leave(item)">
                                     <i class="fa fa-ellipsis-h"></i>
                                     <div class="loncom_system_user_bottombox loncom_public_shadow" v-show="item.bottomShow">
@@ -283,9 +283,9 @@
                                                 multiple
                                                 :limit="3">
                                                 <el-button size="small" type="primary" class="loncom_public_fl">选择授权文件<i class="el-icon-upload el-icon--right"></i></el-button>
-                                                <a href="javascript:;" class="loncom_system_syslicense">获取机器码</a>
+                                                
                                             </el-upload>
-                                            
+                                            <a href="javascript:;" class="loncom_system_syslicense">获取机器码</a>
                                         </div>
                                     </div>
                                     <div class="loncom_list_box">
@@ -413,8 +413,13 @@
                     </el-tabs>
                 </div>
                 <div class="loncom_public_tabbtn">
-                    <el-button type="info" plain>放弃修改</el-button>
-                    <el-button type="primary">提交</el-button>
+                    <span v-show="!activeBtn">
+                        <el-button type="info" plain @click="giveUp">放弃修改</el-button>
+                        <el-button type="primary" @click="submitInfo">提交</el-button>
+                    </span>
+                    <span v-show="activeBtn">
+                        <el-button type="primary" @click="editInfo">修改</el-button>
+                    </span>
                 </div>
             </div>
             <!--结束-->
@@ -508,7 +513,8 @@ export default {
                 ]
             },
             //**********后台信息
-            activeName: 'first',  //切换信息
+            activeName: 'first',  //头部切换信息
+            activeBtn:true, //底部按钮切换
             platform_info:{
                 name:'iSmartSite',
                 itroom:'1号机房',
@@ -553,9 +559,11 @@ export default {
          //*******新增用户
         addUser(){
             console.log("新增用户")
+            this.$router.push({path:'/loncom/system/userAdd'});
         },
         //编辑用户
         editUser(item){
+            this.$router.push({path:'/loncom/system/userAdd',query:item});
             console.log("修改用户")
         },
         //enter移入显示
@@ -570,7 +578,18 @@ export default {
         //********后台信息
         handleClick(tab) {  //超出滚动用
             tabScroll(tab.index);
+        },
+        //按钮信息
+        editInfo:function(){  //编辑
+            this.activeBtn=false;
+        },
+        submitInfo:function(){ //提交
+            this.activeBtn=true;
+        },
+        giveUp:function(){ //取消
+            this.activeBtn=true;
         }
+
    },
    components:{TopChangeInfo,DialogSystemInformTime,DialogSystemInformUser},
 }

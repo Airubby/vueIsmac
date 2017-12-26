@@ -28,6 +28,12 @@ button{
   border: none;
   cursor: pointer;
 }
+textarea{
+  resize: none;
+  border-radius: 5px;
+  color: #5a5e66;
+  border-color: #D8DCE5;
+}
 a{
   text-decoration: none;
   cursor: pointer;

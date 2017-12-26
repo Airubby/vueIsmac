@@ -14,7 +14,7 @@ import Alarm from '@/page/alarm' //动环事件
 import Statement from '@/page/statement'  //监控报表
 import Equipment from '@/page/equipment'  //设备管理
 import System from '@/page/system'  //系统管理
-
+import SystemUserAdd from '@/page/system_user_add'  //系统管理用户新增
 
 import Testindex from '@/page/testindex'
 
@@ -54,7 +54,9 @@ export default new Router({
         {path:'/loncom/alarm',component:Alarm}, //动环事件
         {path:'/loncom/statement',component:Statement}, //监控报表
         {path:'/loncom/equipment',component:Equipment},  //设备管理
-        {path:'/loncom/system',component:System},  //系统管理
+        
+        {path:'/loncom/system',component:System},    //系统管理
+        {path:'/loncom/system/userAdd',component:SystemUserAdd},  //系统管理用户新增
       ]
     },
      //公共页面
