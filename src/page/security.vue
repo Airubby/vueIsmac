@@ -95,6 +95,17 @@
                                     <div class="loncom_public_tabboxcon1">
                                         <el-search-table-pagination type="local" class="loncom_position_relative" :show-pagination="true" border :data="card_info" :page-sizes="[10,20,50]" :columns="card_info_columns" :form-options="card_info_formOptions" >                                           
                                             <el-table-column slot="prepend" type="selection"></el-table-column>
+                                            <template slot-scope="scope" slot="preview-handle">
+                                                <span>
+                                                    <p><a href="javascript:;" class="loncom_color">同步到控制器</a> </p>
+                                                    <p>
+                                                        <a href="javascript:;" class="loncom_color">开门</a> 
+                                                        <em>|</em> 
+                                                        <a href="javascript:;" class="loncom_color">关门</a>
+                                                    </p>
+                                                </span>
+                                            </template>
+
                                             <el-button type="primary" size="mini" class="loncom_security_cardinfoadd" @click="cardInfoAdd">新增</el-button>
                                             <div class="loncom_table_btn">
                                                 <el-button @click="cardInfoExport()" size="mini">导出</el-button>
@@ -106,7 +117,53 @@
                             </el-tab-pane>
                             <!--门禁配置-->
                             <el-tab-pane label="门禁配置" name="third">
-                                23
+                                <div class="loncom_public_tabbox loncom_public_tabbox2">
+                                    <div class="loncom_public_tabboxcon2">
+                                        <!--门禁时间组-->
+                                        <div class="loncom_mb10 loncom_overflow_hidden">
+                                            <div class="loncom_sysinfo_box_left"><h2>门禁时间组</h2></div>
+                                            <div class="loncom_fr">
+                                                <el-button type="primary" size="mini">新增</el-button>
+                                            </div>
+                                        </div>
+                                        <el-search-table-pagination type="local" class="loncom_position_relative loncom_mb50" :show-pagination="true" border :data="time_info" :page-sizes="[10,20,50]" :columns="time_info_columns" >                                           
+                                            <el-table-column slot="prepend" type="selection"></el-table-column>
+                                            <template slot-scope="scope" slot="preview-handle">
+                                                <span>
+                                                    <a href="javascript:;" class="loncom_color">编辑</a> 
+                                                    <em>|</em> 
+                                                    <a href="javascript:;" class="loncom_color">删除</a>
+                                                </span>
+                                            </template>
+                                            <div class="loncom_table_btn">
+                                                <el-button @click="timeInfoExport()" size="mini">导出</el-button>
+                                            </div>
+                                        </el-search-table-pagination>
+                                         <!--门禁权限组-->
+                                        <div class="loncom_mb10 loncom_overflow_hidden">
+                                            <div class="loncom_sysinfo_box_left"><h2>门禁权限组</h2></div>
+                                            <div class="loncom_fr">
+                                                <el-button type="primary" size="mini">新增</el-button>
+                                            </div>
+                                        </div>
+                                        <el-search-table-pagination type="local" class="loncom_position_relative" :show-pagination="true" border :data="access_info" :page-sizes="[10,20,50]" :columns="access_info_columns" >                                           
+                                            <el-table-column slot="prepend" type="selection"></el-table-column>
+                                            <template slot-scope="scope" slot="preview-handle">
+                                                <span>
+                                                    <a href="javascript:;" class="loncom_color">添加门</a> 
+                                                    <em>|</em> 
+                                                     <a href="javascript:;" class="loncom_color">编辑</a> 
+                                                    <em>|</em> 
+                                                    <a href="javascript:;" class="loncom_color">删除</a>
+                                                </span>
+                                            </template>
+                                            <div class="loncom_table_btn">
+                                                <el-button @click="accessInfoExport()" size="mini">导出</el-button>
+                                            </div>
+                                        </el-search-table-pagination>
+                                        
+                                    </div>
+                               </div>
                             </el-tab-pane>
                         </el-tabs>
                     </div>
@@ -269,7 +326,29 @@ export default {
                     { prop: 'usename', label: '姓名检索' },
                 ]
             },
-
+            //门禁时间组
+            time_info:[
+                {name:'24小时通行',remark:'24小时通行'},
+                {name:'24小时通行',remark:'24小时通行'},
+                {name:'24小时通行',remark:'24小时通行'},
+            ],
+            time_info_columns:[
+                { prop: 'name', label: '时间组名称'},
+                { prop: 'remark', label: '备注',minWidth:100},
+                { prop: 'handel', label: '操作',slotName:'preview-handle'},
+            ],
+             //门禁权限组
+            access_info:[
+                {name:'24小时通行',timename:'24小时通行',obj:'机房前门，机房后门，机房侧门'},
+                {name:'24小时通行',timename:'24小时通行',obj:'机房前门，机房后门，机房侧门'},
+                {name:'24小时通行',timename:'24小时通行',obj:'机房前门，机房后门，机房侧门'},
+            ],
+            access_info_columns:[
+                { prop: 'name', label: '权限组名称'},
+                { prop: 'timename', label: '门禁时间组'},
+                { prop: 'obj', label: '应用对象',minWidth:100},
+                { prop: 'handel', label: '操作',slotName:'preview-handle',width:150},
+            ],
 
        }
    },
