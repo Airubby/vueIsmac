@@ -62,6 +62,9 @@ em{
 .loncom_mb10{
   margin-bottom: 10px !important;
 }
+.loncom_mb15{
+  margin-bottom: 15px !important;
+}
 .loncom_mt10{
   margin-top: 10px !important;
 }
@@ -103,7 +106,22 @@ em{
   width: 100% !important;
   height: 100% !important;
 }
-
+/*重置element*/
+.el-table{
+  font-size: 12px !important;
+  margin: 0 !important;
+}
+.el-tabs__header{
+  margin: 0 !important;
+}
+/*圆心*/
+.loncom_circle{
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  background: #ccc;
+  border-radius: 50%;
+}
 /*新增的加号*/
 .loncom_public_add{
   width: 34px;
@@ -266,11 +284,11 @@ em{
 .loncom_public_tabbox{
   width: 100%;
   height: 100%;
-  padding: 20px;
+  padding: 15px 20px;
 }
 .loncom_public_tabboxcon{
   width: 50%;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 .loncom_public_tabbtn{
   text-align: right;
@@ -340,12 +358,16 @@ em{
   width: -webkit-calc(100% - 24px);
   width: -moz-calc(100% - 24px);
   width: calc(100% - 24px);
+  font-size: 12px;
 }
 .loncom_tree_listbtn{
   display: none;
 }
 .loncom_tree_list:hover .loncom_tree_listbtn{
   display: block;
+}
+.loncom_tree_listbtn i:hover{
+  color: #108EE9;
 }
 .loncom_public_treeright{
   width: -webkit-calc(100% - 250px);

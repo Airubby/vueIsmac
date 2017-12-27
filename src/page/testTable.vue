@@ -6,8 +6,12 @@
       </el-search-table-pagination> 
 -->
       <div style="width: 1000px;margin:0 auto; position:relative;">
-       <el-search-table-pagination type="local" :show-selection="true" :show-pagination="true" height="192" fit border stripe select :data="tableData" :page-sizes="[2, 10]" :columns="columns" :form-options="formOptions"  >
-          
+       <el-search-table-pagination type="local" :show-selection="true" :show-pagination="true"  fit border stripe select selection :data="tableData" :page-sizes="[2, 10]" :columns="columns" :form-options="formOptions"  >
+          <el-table-column slot="prepend" type="selection"></el-table-column>
+          <template slot="preview-column" 
+          slot-scope="scope">
+          <input type="checkbox">
+        </template>
         <!--  
           <template slot="preview-column" slot-scope="scope" type="selection"></template>
           <div style="margin-top: 20px;position:absolute;bottom:0;z-index:99" >
@@ -81,7 +85,7 @@ export default {
         },
         
         columns: [
-          {label: '预览',width: 50, slotName: 'preview-column',},
+          {label: '',width: 50, slotName: 'preview-column',},
           { prop: 'name', label: 'Name'},
           { prop: 'mobile', label: 'Mobile' },
           { prop: 'sex', label: 'Sex',

@@ -1,0 +1,20 @@
+ 
+ .loncom_security_doorevent_title span{
+     font-size: 12px;
+     color: #999;
+ }
+.loncom_security_doorevent_title .el-date-editor--daterange.el-input, 
+.loncom_security_doorevent_title .el-date-editor--daterange.el-input__inner, 
+.loncom_security_doorevent_title .el-date-editor--timerange.el-input, 
+.loncom_security_doorevent_title .el-date-editor--timerange.el-input__inner{
+     width: 250px;
+ }
+.loncom_security_doorevent_title .el-date-editor .el-range-input{
+    width: 32%;
+}
+.loncom_security_doorevent_title .el-date-editor .el-range-separator{
+    width: 10%;
+}
+@media (min-width: 1200px) {
+  
+}
