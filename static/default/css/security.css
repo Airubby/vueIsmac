@@ -15,6 +15,13 @@
 .loncom_security_doorevent_title .el-date-editor .el-range-separator{
     width: 10%;
 }
+.loncom_security_cardinfoadd{
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+
+
 @media (min-width: 1200px) {
   
 }

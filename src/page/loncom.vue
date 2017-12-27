@@ -1,9 +1,9 @@
 <template>
     <div class="loncom_content">
-        <div class="loncom_sidebar">
+        <div class="loncom_sidebar" ref="sidebar">
             <div class="loncom_sidebar_top">
                 <span class="loncom_fl">iSmartSite</span>
-                <span class="loncom_fr"><i class="fa fa-navicon"></i></span>
+                <span class="loncom_fr" @click="navclick"><i class="fa fa-navicon"></i></span>
             </div>
             <div class="loncom_sidebar_list">
                 <ul>
@@ -63,7 +63,7 @@
                 </router-link>  
             </div>
         </div>
-        <div class="loncom_sidebar_right">
+        <div class="loncom_sidebar_right" ref="content">
             <router-view></router-view>
         </div>
         
@@ -72,5 +72,17 @@
 
 
 <script>
-
+export default {
+    created () {
+    
+    },
+    mounted() {
+        
+    },
+    methods:{
+        navclick(){
+            // $(this.$refs.sidebar).css("left","-200px");
+        }
+    }
+}
 </script>

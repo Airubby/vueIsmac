@@ -114,6 +114,18 @@ em{
 .el-tabs__header{
   margin: 0 !important;
 }
+.el-form-item__label{
+  font-size: 12px !important; 
+}
+/*table的底部btn按钮*/
+.loncom_position_relative{
+  position: relative;
+}
+.loncom_table_btn{ 
+  position: absolute;
+  left: 48px;
+  bottom: 0;
+}
 /*圆心*/
 .loncom_circle{
   width: 6px;
@@ -404,6 +416,7 @@ em{
   float: left;
   color: #fff;
   position: relative;
+  transition: all 2s ease-in
 }
 .loncom_sidebar_top{
   width: 100%;
@@ -485,8 +498,8 @@ em{
   width: -webkit-calc(100% - 200px);
   width: -moz-calc(100% - 200px);
   width: calc(100% - 200px);
+  width: 100%;
   height: 100%;
-  float: left;
 }
 .loncom_public_top{
   width: 100%;

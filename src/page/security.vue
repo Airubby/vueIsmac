@@ -91,8 +91,15 @@
                             </el-tab-pane>
                             <!--发卡授权-->
                             <el-tab-pane label="发卡授权" name="second">
-                                <div class="loncom_public_tabbox">
-                                    <div class="">
+                                <div class="loncom_public_tabbox loncom_public_tabbox1">
+                                    <div class="loncom_public_tabboxcon1">
+                                        <el-search-table-pagination type="local" class="loncom_position_relative" :show-pagination="true" border :data="card_info" :page-sizes="[10,20,50]" :columns="card_info_columns" :form-options="card_info_formOptions" >                                           
+                                            <el-table-column slot="prepend" type="selection"></el-table-column>
+                                            <el-button type="primary" size="mini" class="loncom_security_cardinfoadd" @click="cardInfoAdd">新增</el-button>
+                                            <div class="loncom_table_btn">
+                                                <el-button @click="cardInfoExport()" size="mini">导出</el-button>
+                                            </div>
+                                        </el-search-table-pagination>
                                         
                                     </div>
                                </div>
@@ -216,8 +223,8 @@ export default {
                 { prop: 'handle', label: '操作',slotName:'preview-handle' },
             ],
             //门事件
-            event_radio:'1',
-            doorvenet_datevalue:'',
+            event_radio:'1', //全部，自定义切换
+            doorvenet_datevalue:'',  //自定义的时间
             door_event: [
                  {
                      time:'2017-03-21 10:00:00',detail:'刷卡开门',card:'0332346466',personnel:'李莫愁',address:'1号机房,机房前门',belongto:'1号门禁控制器',methods:'刷卡开门'
@@ -238,6 +245,31 @@ export default {
                 { prop: 'belongto', label: '设备'},
                 { prop: 'methods', label: '验证方式'},
             ],
+            //发卡授权
+            card_info:[
+                {cardcode:'0332346466',usename:'李莫愁',authority:'通用权限组',time:'24小时通行'},
+                {cardcode:'0332346467',usename:'小龙女',authority:'通用权限组',time:'24小时通行'},
+                {cardcode:'0332346468',usename:'李莫愁',authority:'通用权限组',time:'24小时通行'},
+            ],
+            card_info_columns:[
+                { prop: 'cardcode', label: '卡号'},
+                { prop: 'usename', label: '领用者(姓名)'},
+                { prop: 'authority', label: '关联权限组'},
+                { prop: 'time', label: '时间组'},
+                { prop: 'handel', label: '操作',slotName:'preview-handle',minWidth:100},
+            ],
+            card_info_formOptions:{
+                inline: true,
+                size:'mini',
+                resetBtnText:'重置',
+                submitBtnText: '搜索',
+                submitLoading:'true',
+                forms: [
+                    { prop: 'cardcode', label: '卡号检索' },
+                    { prop: 'usename', label: '姓名检索' },
+                ]
+            },
+
 
        }
    },
