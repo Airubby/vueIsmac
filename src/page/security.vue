@@ -12,7 +12,7 @@
                     </div>
                     <div class="loncom_public_lefttree_con loncom_public_tabbox10">
                         <div class="loncom_public_tabboxcon10">
-                            <div class="loncom_public_lefttree_add">+ 添加控制器</div>
+                            <div class="loncom_public_lefttree_add" @click="addController">+ 添加控制器</div>
                             <div class="loncom_family_yahei loncom_mt10">
                                 <el-tree
                                     :data="access_data"
@@ -356,6 +356,10 @@ export default {
         handleClick(tab) {  //超出滚动用
             tabScroll(tab.index);
         },
+        //添加控制器
+        addController(){
+            this.$router.push({path:'/loncom/security/addController'});
+        },
         //树形
         handleNodeClick(data) {
             console.log(data);
@@ -365,7 +369,7 @@ export default {
             console.log(node)
             console.log(data)
             console.log(store)
-            this.$router.push({path:'/loncom/security/accessAdd',query:{id:node.id}});
+            this.$router.push({path:'/loncom/security/addController',query:{id:node.id}});
         },
         //点击树形删除
         removeTree(node, data) {

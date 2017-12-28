@@ -9,6 +9,8 @@ import Environment_detail from '@/page/environment_detail'
 
 import Power from '@/page/power' //动力系统
 import Security from '@/page/security' //安防系统
+import SecurityAddController from '@/page/security_add_controller' //安防系统新增控制器
+
 import Energy from '@/page/energy' //能效管理
 import Alarm from '@/page/alarm' //动环事件
 import Statement from '@/page/statement'  //监控报表
@@ -49,7 +51,10 @@ export default new Router({
         {path:'/loncom/environment_detail',component:Environment_detail}, //环境系统详情
 
         {path:'/loncom/power',component:Power}, //动力系统
+
         {path:'/loncom/security',component:Security},  //安防系统
+        {path:'/loncom/security/addController',component:SecurityAddController},  //安防系统新控制器
+
         {path:'/loncom/energy',component:Energy}, //能效管理
         {path:'/loncom/alarm',component:Alarm}, //动环事件
         {path:'/loncom/statement',component:Statement}, //监控报表

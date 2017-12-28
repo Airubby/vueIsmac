@@ -47,11 +47,17 @@ em{
 .loncom_color{
   color: #0064aa;
 }
+.loncom_color1ABC9C{
+  color: #1ABC9C;
+}
 .loncom_font_size12{
   font-size: 12px;
 }
 .loncom_ml10{
   margin-left: 10px !important;
+}
+.loncom_ml15{
+  margin-left: 15px !important;
 }
 .loncom_mr5{
   margin-right: 5px !important;
@@ -116,6 +122,12 @@ em{
 }
 .el-form-item__label{
   font-size: 12px !important; 
+}
+.upload-demo{
+  float: left !important;
+}
+.el-select{
+  width: 100%;
 }
 /*table的底部btn按钮*/
 .loncom_position_relative{
@@ -270,8 +282,8 @@ em{
     height: calc(100% - 60px);
     /*底部60px放编辑提交*/
 }
-.loncom_public_tab100{
-  height: 100%;
+.loncom_public_onetab .el-tabs__active-bar{ /*没有切换的用*/
+  background: none;
 }
 .loncom_public_tab .el-tabs,.loncom_public_tab .el-tab-pane{
     height: 100%;
