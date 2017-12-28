@@ -123,14 +123,14 @@
                                         <div class="loncom_mb10 loncom_overflow_hidden">
                                             <div class="loncom_sysinfo_box_left"><h2>门禁时间组</h2></div>
                                             <div class="loncom_fr">
-                                                <el-button type="primary" size="mini">新增</el-button>
+                                                <el-button type="primary" size="mini" @click="addTimeGroup">新增</el-button>
                                             </div>
                                         </div>
                                         <el-search-table-pagination type="local" class="loncom_position_relative loncom_mb50" :show-pagination="true" border :data="time_info" :page-sizes="[10,20,50]" :columns="time_info_columns" >                                           
                                             <el-table-column slot="prepend" type="selection"></el-table-column>
                                             <template slot-scope="scope" slot="preview-handle">
                                                 <span>
-                                                    <a href="javascript:;" class="loncom_color">编辑</a> 
+                                                    <a href="javascript:;" class="loncom_color" @click="editTimeGroup(scope.row)">编辑</a> 
                                                     <em>|</em> 
                                                     <a href="javascript:;" class="loncom_color">删除</a>
                                                 </span>
@@ -188,6 +188,7 @@ export default {
   mounted() {
     scrollCon();
     tabScroll("10"); //左侧树形
+    //切换选项卡的超出滚动
     tabScroll("0");
     tabScroll("1");
     tabScroll("2");
@@ -328,9 +329,9 @@ export default {
             },
             //门禁时间组
             time_info:[
-                {name:'24小时通行',remark:'24小时通行'},
-                {name:'24小时通行',remark:'24小时通行'},
-                {name:'24小时通行',remark:'24小时通行'},
+                {id:'1',name:'24小时通行',remark:'24小时通行'},
+                {id:'1',name:'24小时通行',remark:'24小时通行'},
+                {id:'1',name:'24小时通行',remark:'24小时通行'},
             ],
             time_info_columns:[
                 { prop: 'name', label: '时间组名称'},
@@ -339,9 +340,9 @@ export default {
             ],
              //门禁权限组
             access_info:[
-                {name:'24小时通行',timename:'24小时通行',obj:'机房前门，机房后门，机房侧门'},
-                {name:'24小时通行',timename:'24小时通行',obj:'机房前门，机房后门，机房侧门'},
-                {name:'24小时通行',timename:'24小时通行',obj:'机房前门，机房后门，机房侧门'},
+                {id:'1',name:'24小时通行',timename:'24小时通行',obj:'机房前门，机房后门，机房侧门'},
+                {id:'1',name:'24小时通行',timename:'24小时通行',obj:'机房前门，机房后门，机房侧门'},
+                {id:'1',name:'24小时通行',timename:'24小时通行',obj:'机房前门，机房后门，机房侧门'},
             ],
             access_info_columns:[
                 { prop: 'name', label: '权限组名称'},
@@ -407,7 +408,15 @@ export default {
             </span>
             );
         },
-        
+        //新增时间组
+        addTimeGroup:function(){
+            this.$router.push({path:'/loncom/security/addTimeGroup'});
+        },
+        //编辑时间组
+        editTimeGroup:function(row){
+            console.log(row)
+            this.$router.push({path:'/loncom/security/addTimeGroup',query:{id:row.id}});
+        }
    },
    components:{TopChangeInfo},
 }

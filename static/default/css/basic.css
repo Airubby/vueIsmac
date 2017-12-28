@@ -33,6 +33,9 @@ textarea{
   border-radius: 5px;
   color: #5a5e66;
   border-color: #D8DCE5;
+  width: 100%;
+  padding: 10px;
+  min-height: 70px;
 }
 a{
   text-decoration: none;

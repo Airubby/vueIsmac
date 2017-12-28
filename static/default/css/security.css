@@ -19,7 +19,9 @@
     position: absolute;
     right: 0;
 }
-
+.security_timegroup_textarea{
+    height: 150px;
+}
 
 @media (min-width: 1200px) {
   
