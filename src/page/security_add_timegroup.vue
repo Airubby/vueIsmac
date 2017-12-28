@@ -129,7 +129,7 @@ export default {
        return {
            //新增编辑控制器头部显示
            topInfo:'',
-           time_info:[],
+           time_info:{},
            //新增设备编辑设备显示不同的按钮信息
            activeBtn:true,
            //周范围

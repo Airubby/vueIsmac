@@ -5,6 +5,7 @@
             <TopChangeInfo v-bind:topChangeInfo="top_items"></TopChangeInfo>
         </div>
         <div class="loncom_scroll_con loncom_right_changecon">
+            <!--门禁-->
             <div :class="{'loncom_active':top_items[0].loncom_active}" class="loncom_public_table loncom_content">
                 <div class="loncom_public_lefttree">
                     <div class="loncom_public_lefttree_title">
@@ -29,7 +30,7 @@
                     </div>
                 </div>
                 <div class="loncom_public_treeright">
-                    <div class="loncom_public_tab loncom_public_tab100">
+                    <div class="loncom_public_tab loncom_content">
                         <el-tabs v-model="activeName" @tab-click="handleClick">
                             <!--门禁监控-->
                             <el-tab-pane label="门禁监控" name="first">
@@ -99,14 +100,14 @@
                                                 <span>
                                                     <p><a href="javascript:;" class="loncom_color">同步到控制器</a> </p>
                                                     <p>
-                                                        <a href="javascript:;" class="loncom_color">开门</a> 
+                                                        <a href="javascript:;" class="loncom_color" @click="editCardInfo(scope.row)">编辑</a> 
                                                         <em>|</em> 
-                                                        <a href="javascript:;" class="loncom_color">关门</a>
+                                                        <a href="javascript:;" class="loncom_color">删除</a>
                                                     </p>
                                                 </span>
                                             </template>
 
-                                            <el-button type="primary" size="mini" class="loncom_security_cardinfoadd" @click="cardInfoAdd">新增</el-button>
+                                            <el-button type="primary" size="mini" class="loncom_security_addcardinfo" @click="addCardInfo">新增</el-button>
                                             <div class="loncom_table_btn">
                                                 <el-button @click="cardInfoExport()" size="mini">导出</el-button>
                                             </div>
@@ -143,16 +144,14 @@
                                         <div class="loncom_mb10 loncom_overflow_hidden">
                                             <div class="loncom_sysinfo_box_left"><h2>门禁权限组</h2></div>
                                             <div class="loncom_fr">
-                                                <el-button type="primary" size="mini">新增</el-button>
+                                                <el-button type="primary" size="mini" @click="addAccessGroup">新增</el-button>
                                             </div>
                                         </div>
                                         <el-search-table-pagination type="local" class="loncom_position_relative" :show-pagination="true" border :data="access_info" :page-sizes="[10,20,50]" :columns="access_info_columns" >                                           
                                             <el-table-column slot="prepend" type="selection"></el-table-column>
                                             <template slot-scope="scope" slot="preview-handle">
                                                 <span>
-                                                    <a href="javascript:;" class="loncom_color">添加门</a> 
-                                                    <em>|</em> 
-                                                     <a href="javascript:;" class="loncom_color">编辑</a> 
+                                                     <a href="javascript:;" class="loncom_color" @click="editAccessGroup(scope.row)">编辑</a> 
                                                     <em>|</em> 
                                                     <a href="javascript:;" class="loncom_color">删除</a>
                                                 </span>
@@ -169,10 +168,11 @@
                     </div>
                 </div>
             </div>
-
+            <!--视频-->
             <div :class="{'loncom_active':top_items[1].loncom_active}" class="loncom_public_table loncom_environment_table">
                 23
             </div>
+            <!--结束-->
         </div>
     </div>
 </template>
@@ -305,9 +305,9 @@ export default {
             ],
             //发卡授权
             card_info:[
-                {cardcode:'0332346466',usename:'李莫愁',authority:'通用权限组',time:'24小时通行'},
-                {cardcode:'0332346467',usename:'小龙女',authority:'通用权限组',time:'24小时通行'},
-                {cardcode:'0332346468',usename:'李莫愁',authority:'通用权限组',time:'24小时通行'},
+                {id:'1',cardcode:'0332346466',usename:'李莫愁',authority:'通用权限组',time:'24小时通行'},
+                {id:'1',cardcode:'0332346467',usename:'小龙女',authority:'通用权限组',time:'24小时通行'},
+                {id:'1',cardcode:'0332346468',usename:'李莫愁',authority:'通用权限组',time:'24小时通行'},
             ],
             card_info_columns:[
                 { prop: 'cardcode', label: '卡号'},
@@ -408,6 +408,14 @@ export default {
             </span>
             );
         },
+        //新增卡信息
+        addCardInfo:function(){
+            this.$router.push({path:'/loncom/security/addCardInfo'});
+        },
+        //编辑卡信息
+        editCardInfo:function(row){
+            this.$router.push({path:'/loncom/security/addCardInfo',query:row});
+        },
         //新增时间组
         addTimeGroup:function(){
             this.$router.push({path:'/loncom/security/addTimeGroup'});
@@ -416,7 +424,15 @@ export default {
         editTimeGroup:function(row){
             console.log(row)
             this.$router.push({path:'/loncom/security/addTimeGroup',query:{id:row.id}});
-        }
+        },
+        //新增权限组
+        addAccessGroup:function(){
+            this.$router.push({path:'/loncom/security/addAccessGroup'});
+        },
+        //编辑权限组
+        editAccessGroup:function(row){
+            this.$router.push({path:'/loncom/security/addAccessGroup',query:{id:row.id}});
+        },
    },
    components:{TopChangeInfo},
 }

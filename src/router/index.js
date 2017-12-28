@@ -8,9 +8,12 @@ import Environment from '@/page/environment'  //环境页面
 import Environment_detail from '@/page/environment_detail'
 
 import Power from '@/page/power' //动力系统
+
 import Security from '@/page/security' //安防系统
 import SecurityAddController from '@/page/security_add_controller' //安防系统新增控制器
+import SecurityAddCardInfo from '@/page/security_add_cardinfo'  //安防系统新增时间组
 import SecurityAddTimeGroup from '@/page/security_add_timegroup'  //安防系统新增时间组
+import SecurityAddAccessGroup from '@/page/security_add_accessgroup'  //安防系统新增权限组
 
 import Energy from '@/page/energy' //能效管理
 import Alarm from '@/page/alarm' //动环事件
@@ -55,7 +58,9 @@ export default new Router({
 
         {path:'/loncom/security',component:Security},  //安防系统
         {path:'/loncom/security/addController',component:SecurityAddController},  //安防系统新控制器
+        {path:'/loncom/security/addCardInfo',component:SecurityAddCardInfo},  //安防系统新增卡信息
         {path:'/loncom/security/addTimeGroup',component:SecurityAddTimeGroup},  //安防系统新时间组
+        {path:'/loncom/security/addAccessGroup',component:SecurityAddAccessGroup},  //安防系统新增权限组
 
         {path:'/loncom/energy',component:Energy}, //能效管理
         {path:'/loncom/alarm',component:Alarm}, //动环事件
