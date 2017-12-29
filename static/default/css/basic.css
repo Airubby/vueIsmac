@@ -12,6 +12,7 @@ body{
     background: #fff;
     height: 100%;
     overflow: hidden;
+    color: #666;
 }
 html,body,#app{
   width: 100%;
@@ -52,6 +53,12 @@ em{
 }
 .loncom_color1ABC9C{
   color: #1ABC9C;
+}
+.loncom_color108EE9{
+  color: #108EE9;
+}
+.loncom_color999{
+  color: #999;
 }
 .loncom_font_size12{
   font-size: 12px;
@@ -219,6 +226,7 @@ em{
 .loncom_list_box_right {
     width: 80%;
     float: left;
+    color: #666;
 }
 .loncom_list_box_info{
   color: #999;
@@ -342,6 +350,10 @@ em{
   color: #666;
   font-size: 12px;
   font-family: "微软雅黑";
+}
+.loncom_sysinfo_box_right{
+  height: 30px;
+  line-height: 30px;
 }
 /*带左侧树形用到的*/
 .loncom_public_lefttree{

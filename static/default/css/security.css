@@ -15,9 +15,10 @@
 .loncom_security_doorevent_title .el-date-editor .el-range-separator{
     width: 10%;
 }
-.loncom_security_cardinfoadd{
+.loncom_security_addcardinfo{
     position: absolute;
     right: 0;
+    top: 0;
 }
 .security_timegroup_textarea{
     height: 150px;

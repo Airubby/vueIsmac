@@ -7,7 +7,7 @@
             <div class="loncom_public_table loncom_content">
                 <div class="loncom_public_tab loncom_public_onetab">
                     <el-tabs>
-                        <el-tab-pane label="门禁设备配置">
+                        <el-tab-pane label="视频设备配置">
                             <div class="loncom_public_tabbox loncom_public_tabbox0">
                                 <div class="loncom_public_tabboxcon loncom_public_tabboxcon0">
                                     <div class="loncom_list_box">
@@ -15,7 +15,7 @@
                                             设备型号
                                         </div>
                                         <div class="loncom_list_box_right">
-                                            中控K系列门禁控制器
+                                            海康DS8****
                                         </div>
                                     </div>
                                     <div class="loncom_list_box">
@@ -23,12 +23,12 @@
                                             <em>*</em>设备名称
                                         </div>
                                         <div class="loncom_list_box_right">
-                                            <el-input v-model="controller_info.name" size="small"></el-input>
+                                            <el-input v-model="video_info.name" size="small"></el-input>
                                         </div>
                                     </div>
                                     <div class="loncom_list_box">
                                         <div class="loncom_list_box_left">
-                                            <em>*</em>通讯方式
+                                            <em>*</em>接入点类型
                                         </div>
                                         <div class="loncom_list_box_right">
                                             <div class="loncom_dis_inlineblock loncom_mr10">
@@ -36,14 +36,14 @@
                                                     <input type="radio" name="radioType" id="radioType1" checked="checked" class="loncom_public_radio_input"> 
                                                     <label for="radioType1"></label>
                                                 </span> 
-                                                <span>TCP/IP</span>
+                                                <span>NVR</span>
                                             </div>
                                             <div class="loncom_dis_inlineblock">
                                                 <span class="loncom_public_radio loncom_fl">
                                                     <input type="radio" name="radioType" id="radioType2" class="loncom_public_radio_input"> 
                                                     <label for="radioType2"></label>
                                                 </span> 
-                                                <span>RS485</span>
+                                                <span>网络摄像头</span>
                                             </div>
                                         </div>
                                     </div>
@@ -53,30 +53,36 @@
                                         </div>
                                         <div class="loncom_list_box_right">
                                             <div class="loncom_fl" style="width: 60%;margin-right:5%;">
-                                                <el-input v-model="controller_info.ip" size="small"></el-input>
+                                                <el-input v-model="video_info.ip" size="small"></el-input>
                                             </div>
                                             <div class="loncom_fl" style="width: 35%;">
-                                                <el-input v-model="controller_info.port" size="small"></el-input>
+                                                <el-input v-model="video_info.port" size="small"></el-input>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="loncom_list_box">
                                         <div class="loncom_list_box_left">
-                                            通讯密码
+                                            用户名
                                         </div>
                                         <div class="loncom_list_box_right">
-                                            <el-input v-model="controller_info.password" type="password" size="small"></el-input>
+                                            <el-input v-model="video_info.username" size="small"></el-input>
                                         </div>
                                     </div>
                                     <div class="loncom_list_box">
                                         <div class="loncom_list_box_left">
-                                            控制器类型
+                                            密码
                                         </div>
                                         <div class="loncom_list_box_right">
-                                            <el-select v-model="controller_info.type" size="small" placeholder="请选择">
-                                                <el-option value="单门" ></el-option>
-                                                <el-option value="双门" ></el-option>
-                                                <el-option value="四门" ></el-option>
+                                            <el-input v-model="video_info.password" type="password" size="small"></el-input>
+                                        </div>
+                                    </div>
+                                    <div class="loncom_list_box">
+                                        <div class="loncom_list_box_left">
+                                            通道数量
+                                        </div>
+                                        <div class="loncom_list_box_right">
+                                            <el-select v-model="video_info.type" size="small" placeholder="请选择">
+                                                <el-option value="4通道" ></el-option>
                                             </el-select>
                                         </div>
                                     </div>
@@ -93,30 +99,6 @@
                                             </div>
                                             <div class="loncom_list_box_info">
                                                 当系统存在多个机房时选择设备所在的机房
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="loncom_list_box">
-                                        <div class="loncom_list_box_left">
-                                            初始化设置
-                                        </div>
-                                        <div class="loncom_list_box_right">
-                                            <div>
-                                                <span class="loncom_public_check loncom_fl">
-                                                    <input type="checkbox" id="checkType1" checked="true" class="loncom_public_check_input"> 
-                                                    <label for="checkType1"></label>
-                                                </span> 
-                                                <span>添加到默认权限组</span>
-                                            </div>
-                                            <div>
-                                                <span class="loncom_public_check loncom_fl">
-                                                    <input type="checkbox" id="checkType2" class="loncom_public_check_input"> 
-                                                    <label for="checkType2"></label>
-                                                </span> 
-                                                <span>清空设备中的数据</span>
-                                            </div>
-                                            <div class="loncom_list_box_info">
-                                                【新增时删除设备中数据】功能将会删除设备中除事件记录之外的数据，请谨慎使用！
                                             </div>
                                         </div>
                                     </div>
@@ -149,12 +131,12 @@ export default {
   created () {
    var obj = this.$route.query;
     if(JSON.stringify(obj) == "{}"){
-        this.topInfo="新增设备";
+        this.topInfo="新增视频设备";
     }else{
-        this.topInfo="编辑设备";
+        this.topInfo="编辑视频设备";
         this.activeBtn=false;
         console.log(obj);
-        //获取到的赋给 controller_info  字段根据后台需求匹配正确
+        //获取到的赋给 video_info  字段根据后台需求匹配正确
     }
   },
   mounted() {
@@ -166,7 +148,7 @@ export default {
        return {
            //新增编辑控制器头部显示
            topInfo:'',
-           controller_info:{},
+           video_info:{},
            //新增设备编辑设备显示不同的按钮信息
            activeBtn:true,
        }
@@ -179,7 +161,7 @@ export default {
                     message: '新增成功',
                     type: 'success'
                 });
-                this.$router.push({path:'/loncom/security',query:{accessActiveName:'first'}});
+                this.$router.push({path:'/loncom/security',query:{videoItem:'true'}});
             }
         },
         //编辑提交
@@ -189,12 +171,12 @@ export default {
                     message: '编辑成功',
                     type: 'success'
                 });
-                this.$router.push({path:'/loncom/security',query:{accessActiveName:'first'}});
+                this.$router.push({path:'/loncom/security',query:{videoItem:'true'}});
             }
         },
         //放弃编辑
         giveUp:function(){
-            this.$router.push({path:'/loncom/security',query:{accessActiveName:'first'}});
+            this.$router.push({path:'/loncom/security',query:{videoItem:'false'}});
         },
         
    },

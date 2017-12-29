@@ -160,29 +160,29 @@ export default {
        }
    },
    methods:{
-       //新增
+       //新增提交
         addSubmitInfo:function(){
             if(true){
                 this.$message({
                     message: '新增成功',
                     type: 'success'
                 });
-                this.$router.push({path:'/loncom/security'});
+                this.$router.push({path:'/loncom/security',query:{accessActiveName:'third'}});
             }
         },
-        //编辑
+        //编辑提交
         editSubmitInfo:function(){
             if(true){
                 this.$message({
                     message: '编辑成功',
                     type: 'success'
                 });
-                this.$router.push({path:'/loncom/security'});
+                this.$router.push({path:'/loncom/security',query:{accessActiveName:'third'}});
             }
         },
         //放弃编辑
         giveUp:function(){
-            this.$router.back();
+            this.$router.push({path:'/loncom/security',query:{accessActiveName:'third'}});
         },
         
    },
