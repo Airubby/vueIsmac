@@ -63,6 +63,9 @@ em{
 .loncom_font_size12{
   font-size: 12px;
 }
+.loncom_ml5{
+  margin-left: 5px !important;
+}
 .loncom_ml10{
   margin-left: 10px !important;
 }
@@ -183,18 +186,18 @@ em{
     margin-top: -17px;
     position: absolute;
 } 
-/*弹窗*/
-.el-dialog{
+/*弹窗确认*/
+.el-dialog,.el-message-box{
   margin-bottom: 0 !important;
   border-radius: 10px !important;
 }
-.el-dialog__header{
+.el-dialog__header,.el-message-box__header{
   border-bottom: 1px solid #ccc;
 }
 .el-dialog__body{
   padding: 0px !important;
 }
-.el-dialog__footer{
+.el-dialog__footer,.el-message-box__btns{
   border-top: 1px solid #ccc;
 }
 .el-button{
@@ -202,6 +205,9 @@ em{
 }
 .loncom_dialog_scroll{
   overflow: auto !important;
+}
+.el-message-box__content{
+  padding: 50px 15px !important;
 }
 /*列表左标题，右内容展示*/
 .loncom_list_box{
@@ -525,8 +531,8 @@ em{
   width: -webkit-calc(100% - 200px);
   width: -moz-calc(100% - 200px);
   width: calc(100% - 200px);
-  width: 100%;
   height: 100%;
+  float: left;
 }
 .loncom_public_top{
   width: 100%;

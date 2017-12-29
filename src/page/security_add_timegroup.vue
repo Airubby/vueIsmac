@@ -80,7 +80,7 @@
                                             说明
                                         </div>
                                         <div class="loncom_list_box_right">
-                                            <textarea class="security_timegroup_textarea"></textarea>
+                                            <textarea class="loncom_security_timegroup_textarea"></textarea>
                                         </div>
                                     </div>
 
