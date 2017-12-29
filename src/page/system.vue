@@ -447,7 +447,13 @@ import DialogSystemInformUser from '../components/dialogSystemInformUser.vue'
 export default {
     
   created () {
-    
+    var obj = this.$route.query;
+    if(JSON.stringify(obj) != "{}"&&obj.userAdd!=undefined){
+        for(var i=0;i<this.top_items.length;i++){
+            this.top_items[i].loncom_active=false;
+        }
+        this.top_items[1].loncom_active=true;
+    }
   },
   mounted() {
       //超出滚动
@@ -501,6 +507,7 @@ export default {
             users_info:{
                 err_code:"0",
                 err_msg:"",
+                //如果数组是中接口中获取的，而数组中每个对象要Vue.set()新增新的属性，得用push()函数，不然Vue检测不到。
                 data:[
                     {
                         userid:"admin",

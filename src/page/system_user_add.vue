@@ -210,11 +210,17 @@ export default {
    methods:{
        //确定提交
        submitInfo:function(){
-
+            if(true){
+                this.$message({
+                    message: '新增成功',
+                    type: 'success'
+                });
+                this.$router.push({path:'/loncom/system',query:{userAdd:'true'}});
+            }
        },
        //取消
        giveUp:function(){
-
+            this.$router.push({path:'/loncom/system',query:{userAdd:'false'}});
        }
    },
    components:{},
