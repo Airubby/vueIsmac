@@ -1,4 +1,4 @@
-
+//趋势分析
 function lineZoom(ID){
     var xData=["09:00", "09:03", "09:13", "09:14", "09:24","09:34","09:44","09:54","10:04","10:14","10:24"];
     
@@ -96,4 +96,80 @@ function lineZoom(ID){
     
     return myChart; 
 }
-
+//能效pue趋势
+function areaChar(ID,xData,yData){
+    var myChart = echarts.init(document.getElementById(ID));
+    var option = {
+        color:["#49A9EE"],
+        tooltip: {
+            trigger: 'axis',
+            formatter:'{b}<br>{c}',
+        },
+        grid: {
+            left: '15px',
+            right: '45px',
+            top:'15px',
+            bottom: '20px',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                axisLine:{
+                    lineStyle:{
+                        color:"#e4e4e4",
+                        width:1,
+                    }
+                },
+                axisTick:{
+                    show:false
+                },  
+                axisLabel:{
+                    color:"#666",
+					formatter: '{value}'
+                },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                data :xData
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value',
+                axisLine:{
+                    lineStyle:{
+                        color:"#e4e4e4",
+                        width:1,
+                    }
+                },
+                 splitLine:{
+                    show:false,
+                    lineStyle:{
+                        color:"#1c3042",
+                        width:1,
+                        type:"dashed",
+                    }
+                },
+                axisTick:{
+                    show:false
+                },
+                axisLabel:{
+                    color:"#666",
+					formatter: '{value}'
+                }
+            }
+        ],
+        series : [
+        {
+            name:'pue趋势',
+            type:'line',
+            areaStyle: {normal: {color:"#DBEEFC"}},
+            smooth:"true", //平滑
+            symbol:"line", //不要圆圈
+            symbolSize:0,
+            data:yData,
+        },
+    ]
+    };
+    myChart.setOption(option, true);
+    return myChart; 
+}

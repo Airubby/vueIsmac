@@ -93,6 +93,9 @@
 .dialog_alarm_input{
     width: 60px !important;
 }
+.loncom_dialog_aosilence .loncom_public_radio{
+    margin-top: 9px;
+}
 @media (min-width: 1200px) {
   
 }

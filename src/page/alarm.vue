@@ -5,6 +5,7 @@
             <TopChangeInfo v-bind:topChangeInfo="top_items"></TopChangeInfo>
         </div>
         <div class="loncom_scroll_con loncom_right_changecon">
+            <!--当前事件-->
             <div :class="{'loncom_active':top_items[0].loncom_active}" class="loncom_public_table loncom_content">
                 <div class="loncom_alarm_top">
                     <span>总计：<em class="loncom_mr5">{{all_alarm}}</em>条</span>
@@ -45,9 +46,47 @@
                     <DialogAlarmAoSilence v-bind:dialogAlarmAoSilence="alarm_aosilence"></DialogAlarmAoSilence>
                 </div>
             </div>
-
+            <!--历史事件-->
             <div :class="{'loncom_active':top_items[1].loncom_active}" class="loncom_public_table loncom_content">
-                
+                <div class="loncom_alarm_top">
+                    <span>时段：</span>
+                    <div class="loncom_dis_inline">
+                        <el-date-picker
+                            v-model="datevalue"
+                            type="datetimerange"
+                            :picker-options="pickerOptions"
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            size="mini">
+                        </el-date-picker>
+                    </div>
+                    <div class="loncom_dis_inline">
+                        <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
+                    </div>
+                </div>
+                <div class="loncom_alarm_con loncom_public_tabbox1">
+                    <div class="loncom_alarm_conbox loncom_public_tabboxcon1">
+                        <em class="loncom_alarm_line"></em>
+                        <ul class="loncom_alarm_list loncom_family_yahei">
+                            <li v-for="item in history_alarm_list">
+                                <div class="loncom_alarm_list_time" :class="'loncom_alarm_list_time'+item.alarmType">
+                                    <p>{{item.alarmTime}}</p>
+                                    <p>{{item.alarmDate}}</p>
+                                </div>
+                                <div class="loncom_alarm_list_con">
+                                    <div class="loncom_alarm_list_contop">
+                                        <div class="loncom_fl">{{item.alarmTitle}}</div>
+                                        <div class="loncom_fr">
+                                            <a href="javascript:;" class="loncom_color108EE9">查看通知日志</a>
+                                        </div>
+                                    </div>
+                                    <div class="loncom_color999">{{item.alarmDetail}}</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -98,13 +137,59 @@ export default {
                 width: "600px",
                 data:{}
             },
-
+            //历史告警列表
+            history_alarm_list:[
+                {alarmType:'4',alarmTime:'14:42:30',alarmDate:'2017-12-28',alarmTitle:'温度过高告警',alarmDetail:'**机房，1号温湿度，温度，值=30.6'},
+                {alarmType:'4',alarmTime:'14:42:30',alarmDate:'2017-12-28',alarmTitle:'温度过高告警',alarmDetail:'**机房，1号温湿度，温度，值=30.6'},
+                {alarmType:'3',alarmTime:'14:42:30',alarmDate:'2017-12-28',alarmTitle:'温度过高告警',alarmDetail:'**机房，1号温湿度，温度，值=30.6'},
+                {alarmType:'1',alarmTime:'14:42:30',alarmDate:'2017-12-28',alarmTitle:'温度过高告警',alarmDetail:'**机房，1号温湿度，温度，值=30.6'},
+                {alarmType:'2',alarmTime:'14:42:30',alarmDate:'2017-12-28',alarmTitle:'温度过高告警',alarmDetail:'**机房，1号温湿度，温度，值=30.6'},
+                {alarmType:'4',alarmTime:'14:42:30',alarmDate:'2017-12-28',alarmTitle:'温度过高告警',alarmDetail:'**机房，1号温湿度，温度，值=30.6'},
+                
+            ],
+            //时间范围
+            pickerOptions: {
+                shortcuts: [{
+                    text: '近一天',
+                    onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24);
+                    picker.$emit('pick', [start, end]);
+                    }
+                }, {
+                    text: '近一周',
+                    onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                    picker.$emit('pick', [start, end]);
+                    }
+                },{
+                    text: '近两周',
+                    onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 14);
+                    picker.$emit('pick', [start, end]);
+                    }
+                }, {
+                    text: '近一个月',
+                    onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                    picker.$emit('pick', [start, end]);
+                    }
+                }]
+            },
+            datevalue:"",
        }
    },
    methods:{
        //点击切换告警列表
        changeAlarm:function(item){
-
+            
        },
        //确认事件
        sureAlarm:function(item){

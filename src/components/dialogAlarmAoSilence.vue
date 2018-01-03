@@ -12,7 +12,7 @@
                         </span> 
                         <div class="loncom_dis_inline">一直静默直至事件解除</div>
                     </div>
-                    <div>
+                    <div class="loncom_dialog_aosilence">
                         <span class="loncom_public_radio loncom_fl">
                             <input type="radio" name="systemtime" id="systemtime2" class="loncom_public_radio_input"> 
                             <label for="systemtime2"></label>
