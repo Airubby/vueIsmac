@@ -137,27 +137,28 @@
     width: 100%;
     height: 45px;
     line-height: 45px;
+    padding: 0 20px;
     border-bottom: 1px solid #E4E4E4;
 }
 .loncom_energy_state_borderbox_title h2{
     font-weight: bold;
     font-size: 16px;
-    text-indent: 20px;
+    float: left;
+}
+.loncom_energy_state_boxcon{
+    width:100%;
+    height: -webkit-calc(100% - 45px);
+    height: -moz-calc(100% - 45px);
+    height: calc(100% - 45px); 
 }
 .loncom_energy_state_center_text{
     width: 20%;
-    height: -webkit-calc(100% - 45px);
-    height: -moz-calc(100% - 45px);
-    height: calc(100% - 45px);
     float: left;
     border-right: 1px solid #E4E4E4;
     padding: 20px;
 }
 .loncom_energy_state_center_char{
     width: 80%;
-    height: -webkit-calc(100% - 45px);
-    height: -moz-calc(100% - 45px);
-    height: calc(100% - 45px);
     float: left;
 }
 .loncom_energy_state_center_chartop{
@@ -171,6 +172,25 @@
     height: -webkit-calc(100% - 80px);
     height: -moz-calc(100% - 80px);
     height: calc(100% - 80px);
+}
+.loncom_energy_state_bottom{
+    height: 415px;
+    overflow: hidden;
+}
+.loncom_energy_state_bottombox{
+    height: 395px;
+    float: left;
+    padding-right: 20px;
+}
+.loncom_energy_state_bottombox:nth-of-type(1){
+    width: 30%;
+}
+.loncom_energy_state_bottombox:nth-of-type(2){
+    width: 70%;
+}
+.loncom_energy_state_table{
+    padding: 0 15px;
+    overflow: hidden;
 }
 
 @media (min-width: 1200px) {

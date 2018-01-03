@@ -46,11 +46,11 @@
                 <div class="loncom_energy_state_center">
                     <div class="loncom_energy_state_borderbox">
                         <div class="loncom_energy_state_borderbox_title"><h2>能效状态</h2></div>
-                        <div class="loncom_energy_state_center_text">
+                        <div class="loncom_energy_state_center_text loncom_energy_state_boxcon">
                             <EnergyText v-bind:energyText="center_pue" class="loncom_mb50"></EnergyText>
                             <EnergyText v-bind:energyText="center_power"></EnergyText>
                         </div>
-                        <div class="loncom_energy_state_center_char">
+                        <div class="loncom_energy_state_center_char loncom_energy_state_boxcon">
                             <div class="loncom_energy_state_center_chartop">
                                 <h2 class="loncom_fl">{{date_text}}</h2>
                                 <div class="loncom_dis_inlineblock loncom_fr">
@@ -66,15 +66,37 @@
                                     </el-date-picker>
                                 </div>
                             </div>
-                            <div class="loncom_energy_state_center_charcon" id="loncom_energy_state_center_charcon">
-
-                            </div>
+                            <div class="loncom_energy_state_center_charcon" id="loncom_energy_state_center_charcon"></div>
                         </div>
                     </div>
                 </div>
                 <!--bottom-->
                 <div class="loncom_energy_state_bottom">
-                    
+                    <div class="loncom_energy_state_bottombox">
+                        <div class="loncom_energy_state_borderbox">
+                            <div class="loncom_energy_state_borderbox_title"><h2>能耗分布</h2></div>
+                            <div class="loncom_energy_state_boxcon" id="loncom_energy_state_pie"></div>
+                        </div>
+                    </div>
+                    <div class="loncom_energy_state_bottombox">
+                        <div class="loncom_energy_state_borderbox">
+                            <div class="loncom_energy_state_borderbox_title"><h2>用电排行</h2><router-link :to="{path:'/'}" class="loncom_fr loncom_color108EE9">更多</router-link></div>
+                            <div class="loncom_energy_state_table loncom_energy_state_boxcon">
+                                <el-search-table-pagination type="local" class="loncom_position_relative" :show-pagination="false" :data="power_info" :columns="power_info_columns" >                                           
+                                    
+                                    <template slot-scope="scope" slot="preview-chain">
+                                        <span v-if="scope.row.chainType=='1'">
+                                            <em style="color:#00A950">{{ scope.row.chain }}↑</em>
+                                        </span>
+                                        <span v-else-if="scope.row.chainType=='0'">
+                                            <em style="color:#F04133">{{ scope.row.chain }}↓</em>
+                                        </span>
+                                    </template>
+
+                                </el-search-table-pagination>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -96,12 +118,21 @@ export default {
   },
   mounted() {
     scrollCon();
+    //中间pue趋势
     var xData=["09:00", "09:03", "09:13", "09:14", "09:24","09:34","09:44","09:54","10:04","10:14","10:24"];
     var yData=[220, 18, 391, 234, 290, 343, 310, 301, 234, 390, 230, 310,18];
     areaChar("loncom_energy_state_center_charcon",xData,yData);
+    //能效分布
+    var dataJson=[
+                    {value:30, name:'照明'},
+                    {value:40, name:'IT设备'},
+                    {value:10, name:'空调'},
+                    {value:10, name:'配电量'},
+                    {value:10, name:'其它'}
+                ];
+    pieChar("loncom_energy_state_pie",dataJson);
   },
    data() {
-       var _this=this;
        return {
            //头部切换
           　top_items: [
@@ -182,29 +213,58 @@ export default {
             datevalue:[new Date().Format("yyyy-MM-dd 00:00:00"),new Date()], //默认今天
             //中间pue的text
             date_text:'今日PUE趋势',
+            //用电排行
+            power_info:[
+                {id:'1',ranking:'1',moon:'6月份',power:'120',cost:'120',chain:'10%',chainType:'1'}, //chainType1表示升高，0表示下降，不用1,0表示，根据后台给的去判断也可以
+                {id:'1',ranking:'2',moon:'7月份',power:'120',cost:'120',chain:'20%',chainType:'1'},
+                {id:'1',ranking:'3',moon:'8月份',power:'120',cost:'120',chain:'20%',chainType:'0'},
+                {id:'1',ranking:'4',moon:'9月份',power:'120',cost:'120',chain:'20%',chainType:'1'},
+                {id:'1',ranking:'5',moon:'5月份',power:'120',cost:'120',chain:'10%',chainType:'0'},
+                {id:'1',ranking:'6',moon:'10月份',power:'120',cost:'120',chain:'10%',chainType:'0'},
+            ],
+            power_info_columns:[
+                { prop: 'ranking', label: '排名',width:60},
+                { prop: 'moon', label: '月份'},
+                { prop: 'power', label: '用电量'},
+                { prop: 'cost', label: '电费',minWidth:100},
+                { prop: 'chain', label: '周环比',slotName:'preview-chain',width:80},
+            ],
 
        }
    },
    methods:{
        //中间pue趋势
-       dateChange:function(dataArr,theText){
+       dateChange:function(dataArr){
            console.log(dataArr)
-           console.log(theText)
            //console.log(dataArr[1].Format("yyyy-MM-dd hh:mm:ss"))
+           var nowDate=new Date();
+           var dayStart=nowDate.Format("yyyy-MM-dd 00:00:00");
+           var weekStart=null;
+           var nowDay=nowDate.getDay();
+           if(nowDay!=0){
+                weekStart=new Date(nowDate.getTime()-3600*1000*24*(nowDay-1)).Format("yyyy-MM-dd 00:00:00");
+            }else{
+                weekStart=new Date(nowDate.getTime()-3600*1000*24*6).Format("yyyy-MM-dd 00:00:00");
+            }
+            var moonStart=new Date(nowDate.getFullYear(),nowDate.getMonth(),1).Format("yyyy-MM-dd 00:00:00");
+            console.log(moonStart)
+            //显示文本
+            if(dataArr[0]==dayStart){
+                this.date_text="今日PUE趋势";
+            }else if(dataArr[0]==weekStart){
+                this.date_text="本周PUE趋势";
+            }else if(dataArr[0]==moonStart){
+                this.date_text="本月PUE趋势";
+            }else{
+                this.date_text="自定义时段PUE趋势";
+            }
+
+
+
            var xData=["09:00", "09:03", "09:13", "09:14", "09:24","09:34","09:44","09:54","10:04","10:14","10:24"];
-            var yData=[220, 18, 391, 234, 290, 343, 310, 301, 234, 390, 230, 310,18];
+            var yData=[220, 180, 391, 234, 290, 343, 310, 301, 234, 390, 230, 310,180];
             areaChar("loncom_energy_state_center_charcon",xData,yData);
        },
-       dateChangeText:function(dataArr,theText){
-            if(theText=="day"){
-                this.date_text="今日PUE趋势";
-            }else if(theText=="week"){
-                this.date_text="本周PUE趋势";
-            }else if(theText=="moon"){
-                this.date_text="本月PUE趋势";
-            }
-            this.dateChange(dataArr,theText);
-       }
 
 
    },

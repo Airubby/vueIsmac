@@ -106,7 +106,7 @@ function areaChar(ID,xData,yData){
             formatter:'{b}<br>{c}',
         },
         grid: {
-            left: '15px',
+            left: '20px',
             right: '45px',
             top:'15px',
             bottom: '20px',
@@ -173,3 +173,61 @@ function areaChar(ID,xData,yData){
     myChart.setOption(option, true);
     return myChart; 
 }
+//能效分布饼图
+function pieChar(ID,dataJson){
+    var myChart = echarts.init(document.getElementById(ID));
+    var option = {
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+    
+        series : [
+            {
+                name:'能效分布',
+                type: 'pie',
+                radius : '50%',
+                center: ['50%', '50%'],
+                data:dataJson,
+                label:{            //饼图图形上的文本标签
+                    normal:{
+                        show:true,
+                        textStyle : {
+                            fontSize : 12    //文字的字体大小
+                        },
+                        formatter:'{b} {d}%'
+
+                        
+                    }
+                },
+            }
+        ]
+    };
+    myChart.setOption(option, true);
+    return myChart; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
