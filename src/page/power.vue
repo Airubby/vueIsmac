@@ -10,7 +10,7 @@
             </div>
 
             <div :class="{'loncom_active':top_items[1].loncom_active}" class="loncom_public_table">
-                
+                <TableInfo v-bind:tableInfo="tableInfo"></TableInfo>
             </div>
         </div>
     </div>
@@ -20,6 +20,7 @@
 <script>
 
 import CardInfo from '../components/cardInfo.vue'
+import TableInfo from '../components/tableInfo.vue'
 import TopChangeInfo from '../components/topChangeInfo.vue'
 
 export default {
@@ -99,13 +100,19 @@ export default {
                         ]
                     }
                 ]
-            }
+            },
+            //table信息
+            tableInfo:[
+                {name:'1号温湿度',type:'环境系统 > 温湿度',addr:'1分行，机房1',ip:'127.0.0.1',controlState:'1',alarmState:'1'},
+                {name:'2号温湿度',type:',环境系统 > 温湿度',addr:'1分行，机房1',ip:'127.0.0.1',controlState:'1',alarmState:'0'},
+                {name:'3号温湿度',type:',环境系统 > 温湿度',addr:'1分行，机房1',ip:'127.0.0.1',controlState:'0',alarmState:'1'},
+            ],
        }
    },
    methods:{
        
    },
-   components:{CardInfo,TopChangeInfo},
+   components:{CardInfo,TableInfo,TopChangeInfo},
 }
 </script>
 
