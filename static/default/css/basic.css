@@ -705,20 +705,6 @@ em{
   height: auto;
   width: 100%;
 }
-.loncom_search_btn{
-    background: #0064aa;
-    color: #fff;
-    display: block;
-    width: 60px;
-    text-align: center;
-    height: 26px;
-    line-height: 26px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.loncom_search_btn i{
-  margin-right: 5px;
-}
 /*头部有切换的要用这个class和loncom_scroll_con平级*/
 .loncom_right_changecon>div{
   display: none;
@@ -730,7 +716,7 @@ em{
 /*趋势页面*/
 .loncom_tendency_title{
   width: 100%;
-  height: 36px;
+  height: 42px;
   border-bottom: 1px solid #D2D2D2;
 }
 .loncom_tendency_title h2,.loncom_tendency_titleselect{

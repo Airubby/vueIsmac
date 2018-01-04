@@ -2,8 +2,8 @@
     <el-dialog :title="dialogTendency.title" :visible.sync="dialogTendency.visible" :width="dialogTendency.width">
         <div class="loncom_public_table">
             <div class="loncom_tendency_title">
-                <h2 class="loncom_fl">时段：</h2>
-                <div class="loncom_fl">
+                <h2 class="loncom_dis_inline">时段：</h2>
+                <div class="loncom_dis_inline">
                     <el-date-picker
                     v-model="dateValue"
                     type="datetimerange"
@@ -16,12 +16,12 @@
                     >
                     </el-date-picker>
                 </div>
-                <div class="loncom_fl loncom_ml10">
-                    <h2 class="loncom_fl">指标：</h2>
-                    <div class="loncom_fl loncom_tendency_titleselect">
+                <div class="loncom_dis_inline loncom_ml10">
+                    <h2 class="loncom_dis_inline">指标：</h2>
+                    <div class="loncom_dis_inline loncom_tendency_titleselect">
                         <span id="tendency_device"></span><a href="javascript:;" class="loncom_color" @click="tendency_select">[选择]</a>
                     </div>
-                    <div class="loncom_search_btn loncom_fl loncom_ml10" @click="tendencySearch"><i class="fa fa-search"></i>搜索</div>
+                    <el-button type="primary" size="mini" icon="el-icon-search" class="loncom_ml10" @click="tendencySearch">搜索</el-button>
                 </div>
             </div>
             <div class="loncom_tendency_con" id="tendency_lineZoom">
@@ -83,7 +83,22 @@ export default {
     },
     methods:{
             tendencySearch:function(){
-                var tendencyChar=lineZoom("tendency_lineZoom");
+                var xData=["09:00", "09:03", "09:13", "09:14", "09:24","09:34","09:44","09:54","10:04","10:14","10:24"];
+                var lineData=[
+                            {
+                                name:'实时IT设备电能',
+                                type:'line',
+                                symbolSize:8,
+                                data:[320, 232, 301, 234, 390, 230, 310,18, 391, 234, 290, 343, 310]
+                            },
+                            {
+                                name:'机房实时总电能',
+                                type:'line',
+                                symbolSize:8,
+                                data:[220, 18, 391, 234, 290, 343, 310, 301, 234, 390, 230, 310,18]
+                            },
+                        ];
+                var tendencyChar=lineZoom("tendency_lineZoom",xData,lineData);
                 $(window).resize(function () {
                     tendencyChar.resize();
                 });

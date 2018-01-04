@@ -1,7 +1,20 @@
 //趋势分析
-function lineZoom(ID){
-    var xData=["09:00", "09:03", "09:13", "09:14", "09:24","09:34","09:44","09:54","10:04","10:14","10:24"];
-    
+function lineZoom(ID,xData,lineData){
+    // var xData=["09:00", "09:03", "09:13", "09:14", "09:24","09:34","09:44","09:54","10:04","10:14","10:24"];
+    // var lineData=[
+    //                 {
+    //                     name:'实时IT设备电能',
+    //                     type:'line',
+    //                     symbolSize:8,
+    //                     data:[320, 232, 301, 234, 390, 230, 310,18, 391, 234, 290, 343, 310]
+    //                 },
+    //                 {
+    //                     name:'机房实时总电能',
+    //                     type:'line',
+    //                     symbolSize:8,
+    //                     data:[220, 18, 391, 234, 290, 343, 310, 301, 234, 390, 230, 310,18]
+    //                 },
+    //             ];
     var myChart = echarts.init(document.getElementById(ID));
     var option = {
         color:["#2F4554","#C23531"],
@@ -77,20 +90,7 @@ function lineZoom(ID){
                 }
             }
         ],
-        series : [
-                    {
-                        name:'实时IT设备电能',
-                        type:'line',
-                        symbolSize:8,
-                        data:[320, 232, 301, 234, 390, 230, 310,18, 391, 234, 290, 343, 310]
-                    },
-                    {
-                        name:'机房实时总电能',
-                        type:'line',
-                        symbolSize:8,
-                        data:[220, 18, 391, 234, 290, 343, 310, 301, 234, 390, 230, 310,18]
-                    },
-                ]
+        series : lineData
     };
     myChart.setOption(option, true);
     
