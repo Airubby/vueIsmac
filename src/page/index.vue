@@ -149,11 +149,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <router-link :to="{path:listAlarm.alarmUrl}">
+                        <router-link :to="{path:listAlarm.alarmUrl}" style="width: 100%;height:100%;display:block;">
                             <div class="loncom_index_wrapper2_con" :class="{'loncom_active':listAlarm.loncom_active}">
-                                <div id="loncom_LevelChart" style="float:left; width:50%; height:100%"></div>
-                                <div id="loncom_TypeChart" style="float:left; width:50%; height:100%"></div>
-                                <div style="clear: both;"></div>
+                                <div id="loncom_LevelChart" class="loncom_index_wrapper2_chart loncom_fl"></div>
+                                <div id="loncom_TypeChart" class="loncom_index_wrapper2_chart loncom_fl"></div>
                             </div>
                         </router-link>
                     </div>
@@ -259,31 +258,31 @@ import Vue from 'vue'
 
 export default {
   created () {
-    this.$api.get('/base/subevent', {"Url":"menu","action":"query","model":JSON.stringify({"id":"0"})}, r => {
-      console.log(r);
+    // this.$api.get('/base/subevent', {"Url":"menu","action":"query","model":JSON.stringify({"id":"0"})}, r => {
+    //   console.log(r);
 
-      if(r.err_code=="0"){
-        this.listData=r.data;
-        for(var i=0;i<this.listData.length;i++){
-            Vue.set(this.listData[i],'loncom_active',false);
-            if(this.listData[i].devlist.length>0){
-                var devcountall=0;
-                var isalarmall=0;
-                for(var j=0;j<this.listData[i].devlist.length;j++){
-                    devcountall+=this.listData[i].devlist[j].devcount;
-                    isalarmall+=this.listData[i].devlist[j].isalarm;
-                }
-                Vue.set(this.listData[i],'infoClass',true);
-                Vue.set(this.listData[i],'devcountall',devcountall);
-                Vue.set(this.listData[i],'isalarmall',isalarmall);
-            }else{
-                Vue.set(this.listData[i],'infoClass',false);
-            }
-        }
-      }
+    //   if(r.err_code=="0"){
+    //     this.listData=r.data;
+    //     for(var i=0;i<this.listData.length;i++){
+    //         Vue.set(this.listData[i],'loncom_active',false);
+    //         if(this.listData[i].devlist.length>0){
+    //             var devcountall=0;
+    //             var isalarmall=0;
+    //             for(var j=0;j<this.listData[i].devlist.length;j++){
+    //                 devcountall+=this.listData[i].devlist[j].devcount;
+    //                 isalarmall+=this.listData[i].devlist[j].isalarm;
+    //             }
+    //             Vue.set(this.listData[i],'infoClass',true);
+    //             Vue.set(this.listData[i],'devcountall',devcountall);
+    //             Vue.set(this.listData[i],'isalarmall',isalarmall);
+    //         }else{
+    //             Vue.set(this.listData[i],'infoClass',false);
+    //         }
+    //     }
+    //   }
 
 
-    })
+    // })
 
   },
   mounted() {
@@ -308,21 +307,33 @@ export default {
     	});
     }
     
+    
+    $(".loncom_index_wrapper2_chart").width(($(".loncom_index_wrapper2_con").width()-2)/2);
+    var title="级别";
+    var color=['#e2181b','#ec7f19','#dfc027',"#23abe1"];
+    var data=[{"name":"紧急","value":"10"},{"name":"重要","value":"10"},{"name":"一般","value":"20"},{"name":"提示","value":"20"}];
+    annulus("loncom_LevelChart",title,color,data);
+
+    var title1="处理状态";
+    var color1=['#e24758','#145fa0'];
+    var data1=[{"name":"未确认","value":"10"},{"name":"已确认","value":"15"}];
+    annulus("loncom_TypeChart",title1,color1,data1);
+
   },
   data() {
     return {
         //菜单列表
         listData:[
-            // {
-            //     menusrc:"/loncom/environment",menuname:"环境",menuloga:"index_hj.png",infoClass:true,loncom_active:false,devcountall:2,isalarmall:2,
-            //     devlist:[
-            //         {devcount:1,devtypeimgurld:"wenshidu.png",isalarm:1,name:"温湿度"},
-            //         {devcount:1,devtypeimgurld:"loushui.png",isalarm:1,name:"漏水"},
-            //     ],
-            // },
-            // {menusrc:"/loncom/power",menuname:"动力",menuloga:"index_dl.png",infoClass:false,loncom_active:false,devlist:[]},
-            // {menusrc:"/loncom/equipment",menuname:"IT设备",menuloga:"index_it.png",infoClass:false,loncom_active:false,devlist:[]},
-            // {menusrc:"/loncom/security",menuname:"安防",menuloga:"index_af.png",infoClass:false,loncom_active:false,devlist:[]}
+            {
+                menusrc:"/loncom/environment",menuname:"环境",menuloga:"index_hj.png",infoClass:true,loncom_active:false,devcountall:2,isalarmall:2,
+                devlist:[
+                    {devcount:1,devtypeimgurld:"wenshidu.png",isalarm:1,name:"温湿度"},
+                    {devcount:1,devtypeimgurld:"loushui.png",isalarm:1,name:"漏水"},
+                ],
+            },
+            {menusrc:"/loncom/power",menuname:"动力",menuloga:"index_dl.png",infoClass:false,loncom_active:false,devlist:[]},
+            {menusrc:"/loncom/equipment",menuname:"IT设备",menuloga:"index_it.png",infoClass:false,loncom_active:false,devlist:[]},
+            {menusrc:"/loncom/security",menuname:"安防",menuloga:"index_af.png",infoClass:false,loncom_active:false,devlist:[]}
         ],
         listAlarm:{
             alarmUrl:"/loncom/alarm",

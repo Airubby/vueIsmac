@@ -29,7 +29,11 @@
                 <el-tab-pane label="瞬时能效" name="first">
                     <div class="loncom_public_tabbox loncom_public_tabbox0">
                         <div class="loncom_public_tabboxcon0">
-                           1
+                           <!--总输入-->
+                           <EnergyConfigTable v-bind:energyConfigTable="[addInfo,now_totalconfig]"></EnergyConfigTable>
+                           <!--IT设备-->
+                           <EnergyConfigTable v-bind:energyConfigTable="[addInfo,now_itconfig]"></EnergyConfigTable>
+                            <!--结束-->
                         </div>
                     </div>
                 </el-tab-pane>
@@ -37,7 +41,11 @@
                 <el-tab-pane label="累计能效" name="second">
                     <div class="loncom_public_tabbox loncom_public_tabbox1">
                         <div class="loncom_public_tabboxcon1">
-                            2
+                            <!--总输入-->
+                           <EnergyConfigTable v-bind:energyConfigTable="[addInfo,all_totalconfig]"></EnergyConfigTable>
+                           <!--IT设备-->
+                           <EnergyConfigTable v-bind:energyConfigTable="[addInfo,all_itconfig]"></EnergyConfigTable>
+                           <!--结束-->
                         </div>
                     </div>
                 </el-tab-pane>
@@ -52,10 +60,12 @@
             </el-tabs>
         </div>
     </div>
+    <DialogEnergyConfigAdd v-bind:dialogEnergyConfigAdd="addInfo"></DialogEnergyConfigAdd>
   </div>
 </template>
 <script>
-
+import EnergyConfigTable from './energyConfigTable.vue'
+import DialogEnergyConfigAdd from '../components/dialogEnergyConfigAdd.vue'
 export default {
   created () {
     //判断新进来还是编辑新增后来这个页面的
@@ -69,7 +79,10 @@ export default {
     }
   },
   mounted() {
-    
+    //切换选项卡的超出滚动
+    tabScroll("0");
+    tabScroll("1");
+    tabScroll("2");
   },
    data() {
        return {
@@ -102,6 +115,55 @@ export default {
             },
             //选项卡切换
             ActiveName: 'first', 
+            
+            //瞬时总输入
+            now_totalconfig:{
+                title:'总输入',
+                type:'now_totalconfig',
+                data:[
+                    { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                    { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'2.0' },
+                    { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'3.0' },
+                ]
+            },
+            //瞬时IT设备
+            now_itconfig:{
+                title:'IT设备',
+                type:'now_itconfig',
+                data:[
+                    { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                    { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                    { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                ]
+            },
+            //累计总输入
+            all_totalconfig:{
+                title:'总输入',
+                type:'all_totalconfig',
+                data:[
+                    { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                    { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                    { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                ]
+            },
+            //累计IT设备
+            all_itconfig:{
+                title:'IT设备',
+                type:'all_itconfig',
+                data:[
+                    { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                    { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                    { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                ]
+            },
+            //新增
+            addInfo:{
+                visible:false,
+                title:"新增配置",
+                width: "600px",
+                type:'',
+                data:{operator:'1',station:'',factor:''},
+            },
 
        }
    },
@@ -161,8 +223,10 @@ export default {
             
         },
 
+
    },
   props:["energyConfig"],
+  components:{EnergyConfigTable,DialogEnergyConfigAdd},
 
 }
 </script>

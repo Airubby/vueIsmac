@@ -7,60 +7,44 @@
             <div class="loncom_public_table loncom_content">
                 <div class="loncom_public_tab loncom_public_onetab">
                     <el-tabs>
-                        <el-tab-pane label="能效对象配置">
+                        <el-tab-pane label="新增配置">
                             <div class="loncom_public_tabbox loncom_public_tabbox0">
                                 <div class="loncom_public_tabboxcon loncom_public_tabboxcon0">
                                     <div class="loncom_list_box">
                                         <div class="loncom_list_box_left">
-                                            <em>*</em>对象名称
+                                            <em>*</em>换算因子：
                                         </div>
                                         <div class="loncom_list_box_right">
-                                            <el-input v-model="energy_info.name" size="small"></el-input>
+                                            <el-input v-model="dialogEnergyConfigAdd.data.factor" size="small" style="width:300px;"></el-input>
                                         </div>
                                     </div>
                                     <div class="loncom_list_box">
                                         <div class="loncom_list_box_left">
-                                            <em>*</em>设计容量
+                                            <em>*</em>操作符：
                                         </div>
                                         <div class="loncom_list_box_right">
-                                            <el-input v-model="energy_info.capacity" size="small"></el-input>
+                                            <el-radio-group v-model="radio_value" size="small">
+                                                <el-radio label="1" border>+ 累加</el-radio>
+                                                <el-radio label="0" border>- 减去</el-radio>
+                                            </el-radio-group>
                                         </div>
                                     </div>
                                     <div class="loncom_list_box">
                                         <div class="loncom_list_box_left">
-                                            <em>*</em>设置PUE
+                                            <em>*</em>引用测点：
                                         </div>
-                                        <div class="loncom_list_box_right">
-                                            <el-input v-model="energy_info.pue" size="small"></el-input>
-                                        </div>
-                                    </div>
-                                    <div class="loncom_list_box">
-                                        <div class="loncom_list_box_left">
-                                            <em>*</em>采集周期
-                                        </div>
-                                        <div class="loncom_list_box_right">
-                                            <span v-for="item in pue_info" class="loncom_mr10">
-                                                <el-button :type="item.type" size="mini" @click="changePue(item)">{{item.valueShow}}</el-button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="loncom_list_box">
-                                        <div class="loncom_list_box_left">
-                                            <em>*</em>管理域
-                                        </div>
-                                        <div class="loncom_list_box_right">
-                                            <div class="loncom_dis_inlineblock">
-                                                1号分行 &gt; 机房1
-                                            </div> 
-                                            <a href="javascript:;" class="loncom_color1ABC9C loncom_dis_inlineblock loncom_ml15">选择</a>
-                                        </div>
-                                    </div>
-                                    <div class="loncom_list_box">
-                                        <div class="loncom_list_box_left">
-                                            说明
-                                        </div>
-                                        <div class="loncom_list_box_right">
-                                            <textarea style="height:150px;"></textarea>
+                                        <div class="loncom_list_box_right loncom_font_size12">
+                                            <el-tree
+                                                :data="tree_data"
+                                                node-key="id"
+                                                ref="tree"
+                                                :props="defaultProps"
+                                                accordion
+                                                show-checkbox
+                                                :expand-on-click-node="false"
+                                                @getCheckedNodes
+                                                >
+                                            </el-tree>
                                         </div>
                                     </div>
                                     
@@ -113,12 +97,38 @@ export default {
            energy_info:{},
            //新增设备编辑设备显示不同的按钮信息
            activeBtn:true,
-           //pue采集周期
-           pue_info:[
-               {type:'primary',value:'5',valueShow:'5分钟'},
-               {type:'',value:'10',valueShow:'10分钟'},
-               {type:'',value:'30',valueShow:'30分钟'}
-           ]
+           radio_value:this.dialogEnergyConfigAdd.data.operator?this.dialogEnergyConfigAdd.data.operator:'1',
+            //树形
+            tree_data: [{
+                label: '成都一号机房',
+                id:'e1',
+                children: [{
+                    label: '输入电量仪A',
+                    id:'e1_1',
+                    children: [{
+                        label: 'A相有功功率',
+                        id:'e1_1_1',
+                    },{
+                        label: 'B相有功功率',
+                        id:'e1_1_2',
+                    }]
+                },{
+                    label: '输入电量仪B',
+                    id:'e1_2',
+                    children: [{
+                        label: 'A相有功功率',
+                        id:'e1_2_1',
+                    },{
+                        label: 'B相有功功率',
+                        id:'e1_2_2',
+                    }]
+                }]
+            }],
+            defaultProps: { //树形公用
+                children: 'children',
+                label: 'label'
+            },
+
        }
    },
    methods:{
@@ -146,13 +156,7 @@ export default {
         giveUp:function(){
             this.$router.push({path:'/loncom/energy',query:{configItem:'false'}});
         },
-        //切换pue周期
-        changePue:function(item){
-            for(var i=0;i<this.pue_info.length;i++){
-                this.pue_info[i].type='';
-            }
-            item.type='primary';
-        }
+        
         
    },
    

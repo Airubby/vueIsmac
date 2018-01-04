@@ -206,7 +206,68 @@ function pieChar(ID,dataJson){
     myChart.setOption(option, true);
     return myChart; 
 }
+//首页圆环
+function annulus(ID,title,color,data){
+    // var title="级别";
+    // var color=['#e2181b','#ec7f19','#dfc027',"#23abe1"];
+    // var data=[{"name":"紧急","value":"10"},{"name":"重要","value":"10"},{"name":"一般","value":"20"},{"name":"提示","value":"20"}];
+    var myChart = echarts.init(document.getElementById(ID));
+    var option = {
+        title: {
+            show: true,
+            text: title,
+            x:'center',
+            textStyle: {
+                fontSize: 14,
+                color: '#fff'
+            }
+        },
+        backgroundColor: {
+            color: '#fff'
+        },
+        color:color,
+        legend: {
+                orient : 'vertical',
+                x : 'left',
+                y:'bottom',
+                itemWidth:15,
+                itemHeight:10,
+                textStyle: {
+                    fontSize: 10,
+                    color: '#fff'
+                },
+            data:data                   
+        },                
+        tooltip : {
+            trigger: 'item',
+            show:true,
+            formatter: "{a} <br/>{b}:{c}({d}%)"
+        },
+        series: [{
+            name: title,
+            type: 'pie',
+            radius : [45, 75],
+            // for funnel
+            width: '30%',
+            funnelAlign: 'left',
+            max: 1048,
+            data: data,
+            itemStyle:{ 
+                normal:{ 
+                    label:{ 
+                        show: false, 
+                        formatter: '{b}:{c}({d}%)' 
+                    }, 
+                    labelLine :{show:true} 
+                } 
+            } 
+        
+        }]
 
+    };
+    myChart.setOption(option, true);
+    return myChart; 
+}
 
 
 

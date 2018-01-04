@@ -459,6 +459,7 @@
 }
 
 .loncom_index_body_right_list {
+  width: 100%;
   height: 379px !important;
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -670,7 +671,10 @@
 .loncom_index_body_foot li.loncom_foot_act a{
   color:#000519;
 }
-
+.loncom_index_wrapper2_chart{
+  height: 380px;
+  padding: 20px 0;
+}
 
 
 @media (min-width: 1000px) {
