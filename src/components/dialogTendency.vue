@@ -18,8 +18,21 @@
                 </div>
                 <div class="loncom_dis_inline loncom_ml10">
                     <h2 class="loncom_dis_inline">指标：</h2>
-                    <div class="loncom_dis_inline loncom_tendency_titleselect">
-                        <span id="tendency_device"></span><a href="javascript:;" class="loncom_color" @click="tendency_select">[选择]</a>
+                    <div class="loncom_dis_inline">
+                        <el-select
+                            v-model="oValue"
+                            multiple
+                            collapse-tags
+                            size="mini"
+                            style="width:120px;"
+                            placeholder="请选择">
+                            <el-option
+                            v-for="item in options"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                            </el-option>
+                        </el-select>
                     </div>
                     <el-button type="primary" size="mini" icon="el-icon-search" class="loncom_ml10" @click="tendencySearch">搜索</el-button>
                 </div>
@@ -78,7 +91,17 @@ export default {
                 }
             }]
             },
-            dateValue: ''
+            dateValue: '',
+            //指标
+            options: [{
+                value: 'id1',
+                label: '温度'
+                }, {
+                value: 'id2',
+                label: '湿度'
+                }],
+            oValue:[],
+                
         }
     },
     methods:{
