@@ -99,6 +99,11 @@ export default {
         dialogSure:function(){
             
             if(true){
+                // var _operator=this.add_info.data.operator;
+                // var _station=this.add_info.data.station;
+                // var _factor=this.add_info.data.factor;
+                // this.$parent.now_config[this.add_info.index].data.push({operator:_operator,station:_station,factor:_factor});
+
                 this.$parent.now_config[this.add_info.index].data.push(this.add_info.data);
 
                 //操作以后要清空data

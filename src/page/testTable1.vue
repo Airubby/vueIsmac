@@ -26,7 +26,7 @@
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <span v-if="scope.row.role!='系统账户'">
-                                <a href="javascript:;" @click="edit(scope.row)" ref="editbtn" class="loncom_color">编辑</a>
+                                <a href="javascript:;" @click="edit(scope)" ref="editbtn" class="loncom_color">编辑</a>
                                 <em>|</em>
                                 <a href="javascript:;" @click="remove(scope.$index)" class="loncom_color">删除</a>
                             </span>
@@ -249,9 +249,10 @@ export default {
         console.log(index, row);
       },
       //编辑
-        edit:function(row){
-            row.loncom_active=row.loncom_active?false:true;
-            row.loncom_active?$(this.$refs.editbtn).html('编辑'):$(this.$refs.editbtn).html('保存');
+        edit:function(scope){
+          console.log(scope)
+            // row.loncom_active=row.loncom_active?false:true;
+            // row.loncom_active?$(this.$refs.editbtn).html('编辑'):$(this.$refs.editbtn).html('保存');
             
         },
         //删除

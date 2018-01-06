@@ -17,7 +17,7 @@
                 <span>
                     <a href="javascript:;" class="loncom_color" @click="editConfig(scope.row)">编辑</a> 
                     <em>|</em> 
-                    <a href="javascript:;" class="loncom_color" @click="removeConfig(scope.row)">删除</a>
+                    <a href="javascript:;" class="loncom_color" @click="removeConfig(scope.$index)">删除</a>
                 </span>
             </template>
         </el-search-table-pagination>
@@ -57,14 +57,8 @@ export default {
             this.table_info[0].data=row;
       },
       //删除
-      removeConfig:function(row){
-          console.log(row)
-          for(var i=0;i<this.table_info[1].data.length;i++){
-              if(this.table_info[1].data[i]==row){
-                  this.table_info[1].data.splice(i);
-              }
-          }
-         this.table_info[1].data.remove(row);
+      removeConfig:function(index){
+          this.table_info[1].data.splice(index,1);
       },
       //保存
       saveConfig:function(){

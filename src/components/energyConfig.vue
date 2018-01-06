@@ -55,7 +55,7 @@
                                     <span>
                                         <a href="javascript:;" class="loncom_color" @click="editTableInfo(scope.row)">编辑</a> 
                                         <em>|</em> 
-                                        <a href="javascript:;" class="loncom_color" @click="removeTableInfo(scope.row)">删除</a>
+                                        <a href="javascript:;" class="loncom_color" @click="removeTableInfo(scope.$index)">删除</a>
                                     </span>
                                 </template>
                                 <div class="loncom_tableform_btn">
@@ -265,8 +265,8 @@ export default {
             this.$router.push({path:'/loncom/energy/addEnergyEleprice',query:row});
         },
         //删除电价策略
-        removeTableInfo:function(row){
-
+        removeTableInfo:function(index){
+            this.table_info.splice(index,1);
         }
 
 
