@@ -3,6 +3,7 @@
         <div class="loncom_mb10 loncom_overflow_hidden">
             <div class="loncom_sysinfo_box_left"><h2>{{table_info[1].title}}</h2></div>
             <div class="loncom_fr">
+                <el-button type="primary" size="mini" @click="saveConfig">保存</el-button>
                 <el-button type="primary" size="mini" @click="addConfig">新增</el-button>
             </div>    
         </div>
@@ -16,7 +17,7 @@
                 <span>
                     <a href="javascript:;" class="loncom_color" @click="editConfig(scope.row)">编辑</a> 
                     <em>|</em> 
-                    <a href="javascript:;" class="loncom_color" @click="removeConfig(scope.$index)">删除</a>
+                    <a href="javascript:;" class="loncom_color" @click="removeConfig(scope.row)">删除</a>
                 </span>
             </template>
         </el-search-table-pagination>
@@ -44,20 +45,32 @@ export default {
       }
     },
     methods:{
+        //增加
       addConfig:function(){
             this.table_info[0].visible=true;
-            this.table_info[0].type=this.table_info[1].type;
+            this.table_info[0].index=this.table_info[2];
       },
+      //编辑
       editConfig:function(row){
            this.table_info[0].visible=true;
             this.table_info[0].type=this.table_info[1].type;
             this.table_info[0].data=row;
       },
-      removeConfig:function(index){
-          console.log(index)
-          //这样删除有问题，只有自己获取判断index索引去删除才行
-          this.table_info[1].data.splice(index,1)
+      //删除
+      removeConfig:function(row){
+          console.log(row)
+          for(var i=0;i<this.table_info[1].data.length;i++){
+              if(this.table_info[1].data[i]==row){
+                  this.table_info[1].data.splice(i);
+              }
+          }
+         this.table_info[1].data.remove(row);
       },
+      //保存
+      saveConfig:function(){
+
+      }
+      
     },
     watch:{
         energyConfigTable(val){

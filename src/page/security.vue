@@ -107,8 +107,9 @@
                                                     </p>
                                                 </span>
                                             </template>
-
-                                            <el-button type="primary" size="mini" class="loncom_security_addcardinfo" @click="addCardInfo">新增</el-button>
+                                            <div class="loncom_tableform_btn">
+                                                <el-button type="primary" size="mini" @click="addCardInfo">新增</el-button>
+                                            </div>
                                             <div class="loncom_table_btn">
                                                 <el-button @click="cardInfoExport()" size="mini">导出</el-button>
                                             </div>

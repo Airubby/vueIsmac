@@ -93,15 +93,7 @@
     float: left;
     font-size: 12px;
 }
-.loncom_system_informdialog_table input{
-    border-color: #d8dce5;
-}
-.loncom_system_informdialog_table .loncom_active input{
-    border-color: #fff !important; 
-    background-color: #fff !important;
-    color: #5a5e66 !important;
-    cursor: auto !important;
-}
+
 
 /*用户信息*/
 .loncom_system_user{

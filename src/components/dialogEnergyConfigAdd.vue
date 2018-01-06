@@ -11,10 +11,10 @@
             </div>
             <div class="loncom_list_box">
                 <div class="loncom_list_box_left">
-                    <em>*</em>操作符：{{dialogEnergyConfigAdd.data.operator}}
+                    <em>*</em>操作符：
                 </div>
                 <div class="loncom_list_box_right">
-                    <el-radio-group v-model="value" size="small">
+                    <el-radio-group v-model="add_info.data.operator" size="small">
                         <el-radio label="1" border>+ 累加</el-radio>
                         <el-radio label="0" border>- 减去</el-radio>
                     </el-radio-group>
@@ -40,8 +40,8 @@
             </div>
         </div>
         <div slot="footer" class="dialog-footer">
-            <el-button @click="dialogEnergyConfigAdd.visible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogSure()">保 存</el-button>
+            <el-button @click="dialogCancel">取 消</el-button>
+            <el-button type="primary" @click="dialogSure">保 存</el-button>
         </div>
     </el-dialog>
 </template>
@@ -91,7 +91,6 @@ export default {
             
             //备份数据
             add_info:this.dialogEnergyConfigAdd,
-            value:this.dialogEnergyConfigAdd.data.operator?this.dialogEnergyConfigAdd.data.operator:'1',
             
         }
     },
@@ -100,24 +99,18 @@ export default {
         dialogSure:function(){
             
             if(true){
-                //操作数据库这里
-                this.dialogEnergyConfigAdd.data.operator=this.radio_value;
-                //判断哪个组件新增的
-                if(this.dialogEnergyConfigAdd.type=='now_totalconfig'){
-                   this.$parent.now_totalconfig.data.push(this.dialogEnergyConfigAdd.data);
-                }else if(this.dialogEnergyConfigAdd.type=='now_itconfig'){
-                   this.$parent.now_itconfig.data.push(this.dialogEnergyConfigAdd.data);
-                }else if(this.dialogEnergyConfigAdd.type=='all_totalconfig'){
-                   this.$parent.all_totalconfig.data.push(this.dialogEnergyConfigAdd.data);
-                }else if(this.dialogEnergyConfigAdd.type=='all_itconfig'){
-                   this.$parent.all_itconfig.data.push(this.dialogEnergyConfigAdd.data);
-                }
-                //新增以后要清空data
-                console.log(this.value)
+                this.$parent.now_config[this.add_info.index].data.push(this.add_info.data);
+
+                //操作以后要清空data
                 this.add_info.data={};
-                console.log(this.value)
                 this.dialogEnergyConfigAdd.visible=false;   
             }
+        },
+        //取消操作
+        dialogCancel:function(){
+            //操作以后要清空data
+            this.add_info.data={};
+            this.dialogEnergyConfigAdd.visible=false;   
         },
          //树形
         handleNodeClick(data) {

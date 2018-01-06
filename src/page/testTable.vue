@@ -1,6 +1,15 @@
 <template>
     <div class="header">
       <h2>测试table</h2>
+      <el-search-table-pagination type="local" :show-pagination="false" border :data="tableData1" :page-sizes="[2, 10]" :columns="columns1" >
+      <template slot="preview-column" slot-scope="scope">
+      {{scope.$index}}
+        </template> 
+</el-search-table-pagination>
+
+
+******************************************
+
       <!--
       <el-search-table-pagination url="https://api.github.com/repos/zollero/el-search-table-pagination/branches" :list-field="data"  :columns="columns1" :formOptions="formOptions1">
       </el-search-table-pagination> 
@@ -46,8 +55,16 @@ export default {
   },
   data() {
     return {
+      columns1: [
+          { prop: 'name', label: 'Name'},
+          { prop: 'mobile', label: 'Mobile' ,slotName: 'preview-column' },
+        ],
+        tableData1: [
+          { name: 'Sam', mobile: '15299xxxx152' },
+          { name: 'Jean', mobile: '13452xxxx'},
+        ],
 
-      formOptions1: {
+      formOptions2: {
           inline: true,
           submitBtnText: 'Search',
           submitLoading:'...',
@@ -57,7 +74,7 @@ export default {
             
           ]
         },
-        columns1: [
+        columns2: [
           { prop: 'name', label: 'Branch', width: 100 },
           { prop: 'commit', label: 'Last Commit', minWidth: 140, render: row => row.commit.sha },
           { prop: 'commit', label: 'Last Commit Url', minWidth: 180, render: row => row.commit.url }

@@ -18,6 +18,7 @@ import SecurityAddVideo from '@/page/security_add_video' //安防系统新增视
 
 import Energy from '@/page/energy' //能效管理
 import EnergyAddEnergyobj from '@/page/energy_add_energyobj'  //能效新增能效对象
+import EnergyAddEleprice from '@/page/energy_add_eleprice'  //能效新增电价策略
 
 import Alarm from '@/page/alarm' //动环事件
 import Statement from '@/page/statement'  //监控报表
@@ -68,6 +69,7 @@ export default new Router({
 
         {path:'/loncom/energy',component:Energy}, //能效管理
         {path:'/loncom/energy/addEnergyobj',component:EnergyAddEnergyobj}, //能效管理新增能效对象
+        {path:'/loncom/energy/addEnergyEleprice',component:EnergyAddEleprice}, //能效管理新增电价策略
 
         {path:'/loncom/alarm',component:Alarm}, //动环事件
         {path:'/loncom/statement',component:Statement}, //监控报表

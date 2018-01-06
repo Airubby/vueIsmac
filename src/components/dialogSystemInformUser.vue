@@ -6,7 +6,7 @@
                 提醒：如果以下消息接收人的信息有变更，请到“消息接收人管理”中进行修改。
             </div>
             <!--用户信息-->
-            <div class="loncom_system_inform_table loncom_system_informdialog_table">
+            <div class="loncom_system_inform_table loncom_table_inputnoborder">
                 <el-table :data="inform_table" border size="mini" style="width: 100%">
                     <el-table-column type="selection" width="36"></el-table-column>
                     <el-table-column label="姓名">
@@ -114,6 +114,7 @@ export default {
         },
         //删除
         remove:function(index){
+            console.log(index)
             this.inform_table.splice(index, 1);
         },
         //新增用户

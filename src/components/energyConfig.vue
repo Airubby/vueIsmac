@@ -29,11 +29,9 @@
                 <el-tab-pane label="瞬时能效" name="first">
                     <div class="loncom_public_tabbox loncom_public_tabbox0">
                         <div class="loncom_public_tabboxcon0">
-                           <!--总输入-->
-                           <EnergyConfigTable v-bind:energyConfigTable="[addInfo,now_totalconfig]"></EnergyConfigTable>
-                           <!--IT设备-->
-                           <EnergyConfigTable v-bind:energyConfigTable="[addInfo,now_itconfig]"></EnergyConfigTable>
-                            <!--结束-->
+                            <div v-for="(item,index) in now_config">
+                                <EnergyConfigTable v-bind:energyConfigTable="[addInfo,item,index]"></EnergyConfigTable>
+                            </div>
                         </div>
                     </div>
                 </el-tab-pane>
@@ -41,11 +39,9 @@
                 <el-tab-pane label="累计能效" name="second">
                     <div class="loncom_public_tabbox loncom_public_tabbox1">
                         <div class="loncom_public_tabboxcon1">
-                            <!--总输入-->
-                           <EnergyConfigTable v-bind:energyConfigTable="[addInfo,all_totalconfig]"></EnergyConfigTable>
-                           <!--IT设备-->
-                           <EnergyConfigTable v-bind:energyConfigTable="[addInfo,all_itconfig]"></EnergyConfigTable>
-                           <!--结束-->
+                           <div v-for="(item,index) in now_config">
+                                <EnergyConfigTable v-bind:energyConfigTable="[addInfo,item,index]"></EnergyConfigTable>
+                            </div>
                         </div>
                     </div>
                 </el-tab-pane>
@@ -53,7 +49,19 @@
                 <el-tab-pane label="电价策略" name="third">
                     <div class="loncom_public_tabbox loncom_public_tabbox2">
                         <div class="loncom_public_tabboxcon2">
-                            3
+                            <el-search-table-pagination type="local" class="loncom_mb50" :show-pagination="false" border :data="table_info" :page-sizes="[10,20,50]" :columns="table_info_columns" :form-options="table_info_formOptions">                                            
+                                
+                                <template slot-scope="scope" slot="preview-handle">
+                                    <span>
+                                        <a href="javascript:;" class="loncom_color" @click="editTableInfo(scope.row)">编辑</a> 
+                                        <em>|</em> 
+                                        <a href="javascript:;" class="loncom_color" @click="removeTableInfo(scope.row)">删除</a>
+                                    </span>
+                                </template>
+                                <div class="loncom_tableform_btn">
+                                    <el-button type="primary" size="mini" @click="addTableInfo">新增</el-button>
+                                </div>
+                            </el-search-table-pagination>
                         </div>
                     </div>
                 </el-tab-pane>
@@ -74,7 +82,9 @@ export default {
         if(obj.configItem!=undefined){
             this.$parent.top_items[0].loncom_active=false;
             this.$parent.top_items[1].loncom_active=true;
-            return;
+        }
+        if(obj.configName!=undefined){
+            this.ActiveName=obj.configName;
         }
     }
   },
@@ -115,54 +125,78 @@ export default {
             },
             //选项卡切换
             ActiveName: 'first', 
+            now_config:[
+                {
+                    title:'总输入',
+                    type:'now_totalconfig',
+                    data:[
+                        {operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                        {operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'2.0' },
+                        { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'3.0' },
+                    ]
+                },{
+                    title:'IT设备',
+                    type:'now_itconfig',
+                    data:[
+                        { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                        { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                        { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                    ]
+                },{
+                    title:'照明',
+                    data:[
+                        { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                        { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                        { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                    ]
+                },{
+                    title:'配电',
+                    data:[
+                        { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                        { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                        { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                    ]
+                },{
+                    title:'空调',
+                    data:[
+                        { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                        { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                        { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
+                    ]
+                },
+                
+            ],
             
-            //瞬时总输入
-            now_totalconfig:{
-                title:'总输入',
-                type:'now_totalconfig',
-                data:[
-                    { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
-                    { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'2.0' },
-                    { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'3.0' },
-                ]
-            },
-            //瞬时IT设备
-            now_itconfig:{
-                title:'IT设备',
-                type:'now_itconfig',
-                data:[
-                    { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
-                    { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
-                    { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
-                ]
-            },
-            //累计总输入
-            all_totalconfig:{
-                title:'总输入',
-                type:'all_totalconfig',
-                data:[
-                    { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
-                    { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
-                    { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
-                ]
-            },
-            //累计IT设备
-            all_itconfig:{
-                title:'IT设备',
-                type:'all_itconfig',
-                data:[
-                    { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
-                    { operator:'0',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
-                    { operator:'1',station:'输入电量仪 ^ A相有功功率',factor:'1.0' },
-                ]
-            },
-            //新增
+            //公共新增配置
             addInfo:{
                 visible:false,
                 title:"新增配置",
                 width: "600px",
-                type:'',
-                data:{operator:'1',station:'',factor:''},
+                index:'',
+                data:{},
+            },
+
+            //电价策略
+            table_info:[
+                {name:'电价1',price:'1.5',detail:'描述描述描述描述'},
+                {name:'电价2',price:'1.5',detail:'描述描述描述描述'},
+                {name:'电价3',price:'1.5',detail:'描述描述描述描述'},
+            ],
+            table_info_columns: [
+                { prop: 'name', label: '名称'},
+                { prop: 'price', label: '基础电价'},
+                { prop: 'detail', label: '描述' ,minWidth:100 },
+                { prop: 'handle', label: '操作',slotName:'preview-handle' },
+            ],
+            table_info_formOptions:{
+                inline: true,
+                size:'mini',
+                resetBtnText:'重置',
+                submitBtnText: '搜索',
+                submitLoading:'true',
+                forms: [
+                    { prop: 'name', label: '检索：' },
+                ]
             },
 
        }
@@ -222,6 +256,18 @@ export default {
             });
             
         },
+        //新增电价策略
+        addTableInfo:function(){
+            this.$router.push({path:'/loncom/energy/addEnergyEleprice'});
+        },
+        //编辑电价策略
+        editTableInfo:function(row){
+            this.$router.push({path:'/loncom/energy/addEnergyEleprice',query:row});
+        },
+        //删除电价策略
+        removeTableInfo:function(row){
+
+        }
 
 
    },
