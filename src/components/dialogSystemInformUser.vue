@@ -32,7 +32,7 @@
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <span v-if="scope.row.role!='系统账户'">
-                                <a href="javascript:;" @click="edit(scope.row)" ref="editbtn" class="loncom_color">编辑</a>
+                                <a href="javascript:;" @click="edit(scope.row,scope.$index)" :id="'editbtn'+scope.$index" class="loncom_color">编辑</a>
                                 <em>|</em>
                                 <a href="javascript:;" @click="remove(scope.$index)" class="loncom_color">删除</a>
                             </span>
@@ -51,7 +51,7 @@
                         <li><el-input v-model="add_user_info.email" placeholder="邮箱" size="mini"></el-input></li>
                         <li>
                             <el-select v-model="add_user_info.role" size="mini">
-                                <el-option value="非系统账户" size="mini"></el-option>
+                                <el-option value="非系统账户"></el-option>
                             </el-select>
                         </li>
                         <li>
@@ -107,9 +107,9 @@ export default {
             dialogSystemInformUser.visible=false;   
         },
         //编辑
-        edit:function(row){
+        edit:function(row,index){
             row.loncom_active=row.loncom_active?false:true;
-            row.loncom_active?$(this.$refs.editbtn).html('编辑'):$(this.$refs.editbtn).html('保存');
+            row.loncom_active?$("#editbtn"+index).html('编辑'):$("#editbtn"+index).html('保存');
             
         },
         //删除
@@ -120,6 +120,10 @@ export default {
         //新增用户
         addUser:function(){
             this.add_user_show=false;
+            this.add_user_info.name="";
+            this.add_user_info.phone="";
+            this.add_user_info.email="";
+            this.add_user_info.role="";
         },
         //确定新增用户
         sure:function(){
@@ -144,7 +148,12 @@ export default {
                     type: 'warning'
                 });
             }else{
-                this.inform_table.push(this.add_user_info);
+                var _name=this.add_user_info.name;
+                var _phone=this.add_user_info.phone;
+                var _email=this.add_user_info.email;
+                var _role=this.add_user_info.role;
+                var _loncom_active=this.add_user_info.loncom_active;
+                this.inform_table.push({name:_name,phone:_phone,email:_email,role:_role,loncom_active:_loncom_active});
                 this.add_user_show=true;
             }
             
