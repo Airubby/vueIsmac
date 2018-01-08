@@ -162,28 +162,35 @@ export default {
                 shortcuts: [{
                     text: '今日',
                     onClick(picker) {
-                        const end = new Date();
-                        const start=end.Format("yyyy-MM-dd 00:00:00")
+                        const theDate = new Date();
+                        const start=theDate.Format("yyyy-MM-dd 00:00:00");
+                        const end=theDate.Format("yyyy-MM-dd 23:59:59");
                         picker.$emit('pick', [start, end]);
                     }
                 }, {
                     text: '本周',
                     onClick(picker) {
-                        const end = new Date();
-                        const nowDay=end.getDay();
+                        const theDate = new Date();
+                        const nowDay=theDate.getDay();
                         let start=null;
+                        let end=null;
                         if(nowDay!=0){
-                            start=new Date(end.getTime()-3600*1000*24*(nowDay-1)).Format("yyyy-MM-dd 00:00:00");
+                            start=new Date(theDate.getTime()-3600*1000*24*(nowDay-1)).Format("yyyy-MM-dd 00:00:00");
+                            end=new Date(theDate.getTime()+3600*1000*24*(7-nowDay)).Format("yyyy-MM-dd 23:59:59"); 
                         }else{
-                            start=new Date(end.getTime()-3600*1000*24*6).Format("yyyy-MM-dd 00:00:00");
+                            start=new Date(theDate.getTime()-3600*1000*24*6).Format("yyyy-MM-dd 00:00:00");
+                            end=theDate.Format("yyyy-MM-dd 23:59:59");
                         }
                         picker.$emit('pick', [start, end]);
                     }
                 },{
                     text: '本月',
                     onClick(picker) {
-                        const end = new Date();
-                        const start = new Date(end.getFullYear(),end.getMonth(),1).Format("yyyy-MM-dd 00:00:00");
+                        const theDate = new Date();
+                        let theMonth=theDate.getMonth();
+                        const start = new Date(theDate.getFullYear(),theMonth,1).Format("yyyy-MM-dd 00:00:00");
+                        let nextMonth=theMonth+1;
+                        const end=new Date(new Date(theDate.getFullYear(),nextMonth,1)-1000*60*60*24).Format("yyyy-MM-dd 23:59:59");
                         picker.$emit('pick', [start, end]);
                     }
                 }]
@@ -191,6 +198,8 @@ export default {
             datevalue:[new Date().Format("yyyy-MM-dd 00:00:00"),new Date()], //默认今天
             //中间pue的text
             date_text:'今日PUE趋势',
+            //中间pue的选择的今日本周本月标识
+            date_identity:'0',
             //用电排行
             power_info:[
                 {id:'1',ranking:'1',moon:'6月份',power:'120',cost:'120',chain:'10%',chainType:'1'}, //chainType1表示升高，0表示下降，不用1,0表示，根据后台给的去判断也可以
@@ -216,27 +225,40 @@ export default {
            //console.log(dataArr[1].Format("yyyy-MM-dd hh:mm:ss"))
            var nowDate=new Date();
            var dayStart=nowDate.Format("yyyy-MM-dd 00:00:00");
-           var weekStart=null;
+           var dayEnd=nowDate.Format("yyyy-MM-dd 23:59:59");
+           var weekStart=""; 
+           var weekEnd="";
            var nowDay=nowDate.getDay();
            if(nowDay!=0){
                 weekStart=new Date(nowDate.getTime()-3600*1000*24*(nowDay-1)).Format("yyyy-MM-dd 00:00:00");
+                weekEnd=new Date(nowDate.getTime()+3600*1000*24*(7-nowDay)).Format("yyyy-MM-dd 23:59:59"); 
             }else{
                 weekStart=new Date(nowDate.getTime()-3600*1000*24*6).Format("yyyy-MM-dd 00:00:00");
+                weekEnd=nowDate.Format("yyyy-MM-dd 23:59:59");
             }
-            var moonStart=new Date(nowDate.getFullYear(),nowDate.getMonth(),1).Format("yyyy-MM-dd 00:00:00");
-            console.log(moonStart)
+            var theMonth=nowDate.getMonth();
+            var nextMonth=theMonth+1;
+            var moonStart=new Date(nowDate.getFullYear(),theMonth,1).Format("yyyy-MM-dd 00:00:00");
+            var moonEnd=new Date(new Date(nowDate.getFullYear(),nextMonth,1)-1000*60*60*24).Format("yyyy-MM-dd 23:59:59");
+            
             //显示文本
-            if(dataArr[0]==dayStart){
+            console.log(weekStart);
+            console.log(weekEnd);
+            console.log(moonStart);
+            console.log(moonEnd);
+            if(dataArr[0]==dayStart&&dataArr[1]==dayEnd){
                 this.date_text="今日PUE趋势";
-            }else if(dataArr[0]==weekStart){
+                this.date_identity="0";
+            }else if(dataArr[0]==weekStart&&dataArr[1]==weekEnd){
                 this.date_text="本周PUE趋势";
-            }else if(dataArr[0]==moonStart){
+                this.date_identity="1";
+            }else if(dataArr[0]==moonStart&&dataArr[1]==moonEnd){
                 this.date_text="本月PUE趋势";
+                this.date_identity="2";
             }else{
                 this.date_text="自定义时段PUE趋势";
+                this.date_identity="3";
             }
-
-
 
            var xData=["09:00", "09:03", "09:13", "09:14", "09:24","09:34","09:44","09:54","10:04","10:14","10:24"];
             var yData=[220, 180, 391, 234, 290, 343, 310, 301, 234, 390, 230, 310,180];
