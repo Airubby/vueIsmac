@@ -1,31 +1,18 @@
 <template>
-    <div class="header" style="width:1000px;margin: 30px auto;">
+    <div class="header">
 
 
-
-
-
-      <el-search-table-pagination type="local" :show-selection="true" :show-pagination="true"  fit border stripe select selection :data="tableData" :page-sizes="[2, 10]" :columns="columns" >
+      <div style="width: 1000px;margin:0 auto; position:relative;">
+       <el-search-table-pagination type="local" :show-pagination="true"  fit border stripe select selection :data="tableData" :page-sizes="[2, 10]" :columns="columns" :form-options="formOptions"  >
           <el-table-column slot="prepend" type="selection"></el-table-column>
           <template slot="preview-column" 
           slot-scope="scope">
           <input type="checkbox">
         </template>
-        <!--  
-          <template slot="preview-column" slot-scope="scope" type="selection"></template>
-          <div style="margin-top: 20px;position:absolute;bottom:0;z-index:99" >
-            <el-button @click="setCurrent(tableData[1])">选中第二行</el-button>
-            <el-button @click="setCurrent()">取消选择</el-button>
-          </div>
-
-          -->
+      
       </el-search-table-pagination>
-
-
-
-
-
-
+      </div>
+     
 
 
     </div>
@@ -47,7 +34,14 @@ export default {
   },
   data() {
     return {
-     columns: [
+      
+
+
+
+
+      formOptions: { forms: []},
+        
+        columns: [
           {label: '',width: 50, slotName: 'preview-column',},
           { prop: 'name', label: 'Name'},
           { prop: 'mobile', label: 'Mobile' },
@@ -76,7 +70,7 @@ export default {
     }
   },
   methods:{
-  
+   
   },
   components:{},
 }

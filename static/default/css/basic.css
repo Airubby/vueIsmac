@@ -356,7 +356,7 @@ em{
 /*box框信息及左边3px border的title*/
 .loncom_sysinfo_box_left{
     color: #108EE9;
-    width: 90px;
+    min-width: 90px;
     padding: 6px 0;
     float: left;
 }

@@ -36,6 +36,7 @@ import Anfang1 from '@/page/anfang1'
 import Anfang2 from '@/page/anfang2'
 import TestTable from '@/page/testTable'
 import TestTable1 from '@/page/testTable1'
+import TestTable0 from '@/page/testTable0'
 
 
 Vue.use(Router)
@@ -113,6 +114,9 @@ export default new Router({
     },{
       path:'/testtable1',
       component:TestTable1
+    },{
+      path:'/testtable0',
+      component:TestTable0
     },
 
   ]
