@@ -39,26 +39,12 @@
                                             <em>*</em>报表周期
                                         </div>
                                         <div class="loncom_list_box_right">
-                                            <div>
+                                            <div v-for="(item,index) in cycle">
                                                 <span class="loncom_public_radio loncom_fl">
-                                                    <input type="radio" name="radioType" id="radioType1" checked="checked" class="loncom_public_radio_input"> 
-                                                    <label for="radioType1"></label>
+                                                    <input type="radio" name="radioType" :id="'radio'+index" :checked="item.value==show_cycle" class="loncom_public_radio_input"> 
+                                                    <label :for="'radio'+index" @click="changeCycle(item)"></label>
                                                 </span> 
-                                                <span>日报</span>
-                                            </div>
-                                            <div>
-                                                <span class="loncom_public_radio loncom_fl">
-                                                    <input type="radio" name="radioType" id="radioType2" class="loncom_public_radio_input"> 
-                                                    <label for="radioType2"></label>
-                                                </span> 
-                                                <span>周报</span>
-                                            </div>
-                                            <div>
-                                                <span class="loncom_public_radio loncom_fl">
-                                                    <input type="radio" name="radioType" id="radioType3" class="loncom_public_radio_input"> 
-                                                    <label for="radioType3"></label>
-                                                </span> 
-                                                <span>月报</span>
+                                                <span>{{item.name}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +53,8 @@
                                             <em>*</em>时间范围
                                         </div>
                                         <div class="loncom_list_box_right">
-                                            <div class="loncom_statement_add_daytime">
+                                            <!--日报显示-->
+                                            <div class="loncom_statement_add_daytime" v-show="show_cycle=='day'">
                                                 <span>每天</span>
                                                 <span class="loncom_dis_inlineblock" style="width:90px;">
                                                     <el-select v-model="day_time_range.start" disabled size="small">
@@ -81,11 +68,25 @@
                                                     </el-select>
                                                 </span>
                                             </div>
-                                            <div class="loncom_statement_add_weektime">
-
+                                            <!--周报显示-->
+                                            <div class="loncom_statement_add_weektime" v-show="show_cycle=='week'">
+                                                <div class="loncom_dis_inlineblock loncom_mr10" v-for="(item,index) in week_time_range">
+                                                    <span class="loncom_public_check loncom_fl">
+                                                        <input type="checkbox" :id="'checkWeek'+index" :checked="item.check" class="loncom_public_check_input"> 
+                                                        <label :for="'checkWeek'+index"></label>
+                                                    </span> 
+                                                    <span>{{item.name}}</span>
+                                                </div>
                                             </div>
-                                            <div class="loncom_statement_add_moontime">
-
+                                            <!--月报显示-->
+                                            <div class="loncom_statement_add_moontime" v-show="show_cycle=='moon'">
+                                                <div class="loncom_dis_inlineblock loncom_mr10" style="width: 55px;" v-for="(item,index) in moon_time_range">
+                                                    <span class="loncom_public_check loncom_fl">
+                                                        <input type="checkbox" :id="'checkMoon'+index" :checked="item.check" class="loncom_public_check_input"> 
+                                                        <label :for="'checkMoon'+index"></label>
+                                                    </span> 
+                                                    <span>{{item.name}}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +95,8 @@
                                             <em>*</em>生成时间
                                         </div>
                                         <div class="loncom_list_box_right">
-                                            <div class="loncom_statement_add_daytime">
+                                            <!--日报显示-->
+                                            <div class="loncom_statement_add_daytime" v-show="show_cycle=='day'">
                                                 <span>每天</span>
                                                 <span class="loncom_dis_inlineblock" style="width:90px;">
                                                     <el-select v-model="day_time_create.day" size="small">
@@ -109,11 +111,45 @@
                                                     </el-select>
                                                 </span>
                                             </div>
-                                            <div class="loncom_statement_add_weektime">
-
+                                            <!--周报显示-->
+                                            <div class="loncom_statement_add_weektime" v-show="show_cycle=='week'">
+                                                <span class="loncom_dis_inlineblock" style="width:90px;">
+                                                    <el-select v-model="week_time_create.week" size="small">
+                                                        <el-option value="本周"></el-option>
+                                                        <el-option value="下周"></el-option>
+                                                    </el-select>
+                                                </span>
+                                                <span class="loncom_dis_inlineblock" style="width:90px;">
+                                                    <el-select v-model="week_time_create.theweek" size="small">
+                                                        <el-option value="周一"></el-option>
+                                                        <el-option value="周二"></el-option>
+                                                    </el-select>
+                                                </span>
+                                                <span class="loncom_dis_inlineblock" style="width:90px;">
+                                                    <el-select v-model="week_time_create.time" size="small">
+                                                        <el-option value="8:00"></el-option>
+                                                    </el-select>
+                                                </span>
                                             </div>
-                                            <div class="loncom_statement_add_moontime">
-
+                                            <!--月报显示-->
+                                            <div class="loncom_statement_add_moontime" v-show="show_cycle=='moon'">
+                                                <span class="loncom_dis_inlineblock" style="width:90px;">
+                                                    <el-select v-model="moon_time_create.moon" size="small">
+                                                        <el-option value="本月"></el-option>
+                                                        <el-option value="下月"></el-option>
+                                                    </el-select>
+                                                </span>
+                                                <span class="loncom_dis_inlineblock" style="width:90px;">
+                                                    <el-select v-model="moon_time_create.themoon" size="small">
+                                                        <el-option value="第一天"></el-option>
+                                                        <el-option value="最后一天"></el-option>
+                                                    </el-select>
+                                                </span>
+                                                <span class="loncom_dis_inlineblock" style="width:90px;">
+                                                    <el-select v-model="moon_time_create.time" size="small">
+                                                        <el-option value="8:00"></el-option>
+                                                    </el-select>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -228,6 +264,17 @@ export default {
     tabScroll("1");
   },
    data() {
+       //月报时间范围
+       const moonTimeRange = _ => {
+        const data = [];
+        for (let i = 1; i <= 31; i++) {
+          data.push({
+            name: `${i}号`,
+            check: false,
+          });
+        }
+        return data;
+      };
        return {
            //新增编辑控制器头部显示
            topInfo:'',
@@ -237,6 +284,14 @@ export default {
 
            ActiveName: 'first',  //选项卡头部切换信息
 
+           //报表周期
+           cycle:[
+               {name:'日报',value:'day'},
+               {name:'周报',value:'week'},
+               {name:'月报',value:'moon'},
+           ],
+           //点击什么显示什么
+           show_cycle:'day',
            //日报表时间范围,生成时间
            day_time_range:{
                start:'00:00',
@@ -247,6 +302,27 @@ export default {
                time:'8:00'
            },
            //周报表时间范围,生成时间
+           week_time_range:[
+                {name:'周一',check:true},
+                {name:'周二',check:true},
+                {name:'周三',check:true},
+                {name:'周四',check:true},
+                {name:'周五',check:true},
+                {name:'周六',check:false},
+                {name:'周日',check:false},
+           ],
+           week_time_create:{
+                week:'本周',
+                theweek:'周一',
+                time:'8:00'
+           },
+           //月报表时间范围,生成时间
+           moon_time_range:moonTimeRange(),
+           moon_time_create:{
+                moon:'本月',
+                themoon:'第一天',
+                time:'8:00'
+           },
 
 
            //配置内容数据处理
@@ -272,6 +348,12 @@ export default {
        }
    },
    methods:{
+
+        //切换周期
+        changeCycle:function(item){
+            this.show_cycle=item.value;
+        },
+
        //新增提交
         addSubmitInfo:function(){
             if(true){

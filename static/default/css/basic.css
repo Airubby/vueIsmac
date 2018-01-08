@@ -290,13 +290,13 @@ em{
     margin: 0;
 }
 .loncom_public_radio_input:checked+label{
-  border-color: #267daa;
+  border-color: #409eff;
 }
 .loncom_public_radio_input:checked+label:after{
   content: "";
     width: 8px;
     height: 8px;
-    background: #267daa;
+    background: #409eff;
     position: absolute;
     border-radius: 50%;
     top: 50%;
