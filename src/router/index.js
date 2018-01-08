@@ -21,7 +21,10 @@ import EnergyAddEnergyobj from '@/page/energy_add_energyobj'  //能效新增能�
 import EnergyAddEleprice from '@/page/energy_add_eleprice'  //能效新增电价策略
 
 import Alarm from '@/page/alarm' //动环事件
+
 import Statement from '@/page/statement'  //监控报表
+import StatementAddOrder from '@/page/statement_add_order' //监控系统新增定制
+
 import Equipment from '@/page/equipment'  //设备管理
 import System from '@/page/system'  //系统管理
 import SystemUserAdd from '@/page/system_user_add'  //系统管理用户新增
@@ -72,7 +75,10 @@ export default new Router({
         {path:'/loncom/energy/addEnergyEleprice',component:EnergyAddEleprice}, //能效管理新增电价策略
 
         {path:'/loncom/alarm',component:Alarm}, //动环事件
+
         {path:'/loncom/statement',component:Statement}, //监控报表
+        {path:'/loncom/statement/addOrder',component:StatementAddOrder},  //监控报表新增定制
+
         {path:'/loncom/equipment',component:Equipment},  //设备管理
         
         {path:'/loncom/system',component:System},    //系统管理

@@ -126,7 +126,7 @@ em{
   height: 100% !important;
 }
 /*重置element*/
-.el-table{
+.el-table,.el-checkbox__label{
   font-size: 12px !important;
   margin: 0 !important;
 }
@@ -141,6 +141,9 @@ em{
 }
 .el-select{
   width: 100%;
+}
+.el-transfer-panel .el-transfer-panel__header .el-checkbox .el-checkbox__label{
+  font-size: 14px !important;
 }
 /*table的底部btn按钮*/
 .loncom_position_relative{
@@ -249,7 +252,7 @@ em{
   color: #999;
 }
 .loncom_list_box_right .loncom_public_check,.loncom_list_box_right .loncom_public_radio{
-  margin: 6px 5px 0 0;
+  margin: 9px 5px 0 0;
 }
 /*勾选框*/
 .loncom_public_check_input, .loncom_public_radio_input{
@@ -271,7 +274,7 @@ em{
     font-size: 12px;
     width: 14px;
     height: 14px;
-    background: #267daa;
+    background: #409eff;
     position: absolute;
     top: -1px;
     left: -1px;
@@ -313,13 +316,16 @@ em{
 .loncom_public_onetab .el-tabs__active-bar{ /*没有切换的用*/
   background: none;
 }
+.loncom_public_onetab .el-tabs__item.is-active{
+  color: #666 !important;
+}
 .loncom_public_tab .el-tabs,.loncom_public_tab .el-tab-pane{
     height: 100%;
 }
  .loncom_public_tab .el-tabs__content{
-     height: -webkit-calc(100% - 65px);
-    height: -moz-calc(100% - 65px);
-    height: calc(100% - 65px);
+     height: -webkit-calc(100% - 50px);
+    height: -moz-calc(100% - 50px);
+    height: calc(100% - 50px);
  }
 .loncom_public_tab .el-tabs__header{
     background: #F3F3F3;
@@ -340,7 +346,8 @@ em{
 }
 .loncom_public_tabboxcon{
   width: 50%;
-  margin: 20px auto;
+  margin: 0px auto;
+  padding: 20px 0 10px 0;
 }
 .loncom_public_tabbtn{
   text-align: right;
