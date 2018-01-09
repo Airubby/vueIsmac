@@ -26,6 +26,9 @@ import Statement from '@/page/statement'  //监控报表
 import StatementAddOrder from '@/page/statement_add_order' //监控系统新增定制
 
 import Equipment from '@/page/equipment'  //设备管理
+import EquipmentAddElibrary from '@/page/equipment_add_elibrary'  //设备管理新增设备库
+import EquipmentAddHlibrary from '@/page/equipment_add_hlibrary'  //设备管理新增界面库
+
 import System from '@/page/system'  //系统管理
 import SystemUserAdd from '@/page/system_user_add'  //系统管理用户新增
 
@@ -81,6 +84,8 @@ export default new Router({
         {path:'/loncom/statement/addOrder',component:StatementAddOrder},  //监控报表新增定制
 
         {path:'/loncom/equipment',component:Equipment},  //设备管理
+        {path:'/loncom/equipment/addElibrary',component:EquipmentAddElibrary}, //设备管理新增设备库
+        {path:'/loncom/equipment/addHlibrary',component:EquipmentAddHlibrary}, //设备管理新增界面库
         
         {path:'/loncom/system',component:System},    //系统管理
         {path:'/loncom/system/userAdd',component:SystemUserAdd},  //系统管理用户新增

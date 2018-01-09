@@ -26,7 +26,14 @@ import EquipmentLibrary from '../components/equipmentLibrary.vue'
 export default {
     
   created () {
-    
+    //判断新进来还是界面库编辑新增后来这个页面的
+    var obj = this.$route.query;
+    if(JSON.stringify(obj) != "{}"){
+        if(obj.configItem!=undefined){
+            this.top_items[0].loncom_active=false;
+            this.top_items[1].loncom_active=true;
+        }
+    }
   },
   mounted() {
     scrollCon();
@@ -40,10 +47,10 @@ export default {
 　　　　　　　　　　{select:'界面库',loncom_active:false},
 　　　　　　　],
             eLibrary:{
-
+                type:'eLib',
             },
             hLibrary:{
-
+                type:'hLib',
             },
        }
    },

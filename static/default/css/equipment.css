@@ -94,6 +94,11 @@
 .loncom_equipment_classify_list_handlecon a:hover {
     color: #0064aa;
 }
+.loncom_equipment_addelibrary{
+    padding: 0;
+}
+
+
 
 @media (min-width: 1000px) {
   

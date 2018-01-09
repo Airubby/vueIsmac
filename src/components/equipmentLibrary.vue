@@ -40,12 +40,12 @@
         <div class="loncom_public_card loncom_equipment_classify_list">
             <ul>
                 <li>
-                    <div class="loncom_public_card_box loncom_public_shadow">
+                    <div class="loncom_public_card_box loncom_public_shadow" @click="addTemplate">
                         <div class="loncom_public_add"><em></em><em></em></div>
                     </div>
                 </li>
                 <li v-for="item in equipment_info">
-                    <div class="loncom_public_card_box loncom_public_shadow">
+                    <div class="loncom_public_card_box loncom_public_shadow" @click="editTemplate(item)">
                         <div class="loncom_equipment_classify_list_top loncom_overflow_hidden">
                             <div class="loncom_equipment_list_img">
                                 <img :src="'static/public/images/'+item.img">
@@ -140,6 +140,25 @@ export default {
         leave:function(item){
             item.handle_show=false;
         },
+        //新增模板
+        addTemplate:function(){
+            if(this.equipmentLibrary.type=='eLib'){ //设备库
+                this.$router.push({path:'/loncom/equipment/addElibrary'});
+            }else{  //界面库
+                this.$router.push({path:'/loncom/equipment/addHlibrary'});
+            }
+        },
+        //编辑模板
+        editTemplate:function(item){
+            if(this.equipmentLibrary.type=='eLib'){ //设备库
+                this.$router.push({path:'/loncom/equipment/addElibrary',query:item});
+            }else{  //界面库
+                this.$router.push({path:'/loncom/equipment/addHlibrary',query:item});
+            }
+        },
+
+
+
    },
   props:["equipmentLibrary"],
   components:{},

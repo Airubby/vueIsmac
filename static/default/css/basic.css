@@ -145,6 +145,9 @@ em{
 .el-transfer-panel .el-transfer-panel__header .el-checkbox .el-checkbox__label{
   font-size: 14px !important;
 }
+.el-switch{
+  height: 22px !important;
+}
 /*table的底部btn按钮*/
 .loncom_position_relative{
   position: relative;
