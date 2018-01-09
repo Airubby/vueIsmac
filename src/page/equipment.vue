@@ -1,21 +1,54 @@
 <template>
-    <div>
-        <h2>安防页</h2>
-        <router-link to="/" class="shouye"><div class="content">返回首页</div></router-link>  
-        <div class="left">
-            <router-link to="/anfang/anfang1"><div class="content">安防一</div></router-link>  
-            <router-link to="/anfang/anfang2"><div class="content">安防二</div></router-link>  
+    <div class="loncom_content">
+        <div class="loncom_public_top">
+            <h2>能效管理</h2>
+            <TopChangeInfo v-bind:topChangeInfo="top_items"></TopChangeInfo>
         </div>
-        <div id="app">
-            <router-view></router-view>
+        <div class="loncom_scroll_con loncom_right_changecon loncom_family_yahei">
+            <!--设备库-->
+            <div :class="{'loncom_active':　top_items[0].loncom_active}" class="loncom_public_card">
+                <EquipmentLibrary v-bind:equipmentLibrary="eLibrary"></EquipmentLibrary>
+            </div>
+            <!--界面库-->
+            <div :class="{'loncom_active':　top_items[1].loncom_active}" class="loncom_public_card">
+                <EquipmentLibrary v-bind:equipmentLibrary="hLibrary"></EquipmentLibrary>
+            </div>
+           
         </div>
     </div>
 </template>
 
-<style>
-    
-    
-</style>
-<script>
 
+<script>
+import TopChangeInfo from '../components/topChangeInfo.vue'
+import EquipmentLibrary from '../components/equipmentLibrary.vue'
+
+export default {
+    
+  created () {
+    
+  },
+  mounted() {
+    scrollCon();
+   
+  },
+   data() {
+       return {
+           //头部切换
+          　top_items: [
+　　　　　　　　　　{select:'设备库',loncom_active:true},
+　　　　　　　　　　{select:'界面库',loncom_active:false},
+　　　　　　　],
+            eLibrary:{
+
+            },
+            hLibrary:{
+
+            },
+       }
+   },
+   methods:{
+   },
+   components:{TopChangeInfo,EquipmentLibrary},
+}
 </script>

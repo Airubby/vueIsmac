@@ -1,0 +1,104 @@
+.equipment_search{
+    width: 300px;
+    margin: 0 auto 20px auto;
+}
+.equipment_classify{
+    width: 100%;
+    padding-right: 20px;
+}
+.equipment_classify_con{
+    width: 100%;
+    min-height: 100px;
+    padding-top: 15px;
+    border: 1px solid #e4e4e4;
+}
+.loncom_equipment_list_box_left{
+    width: 120px;
+    float: left;
+    color: #666;
+    text-align: right;
+}
+.loncom_equipment_list_box_right{
+    width: -webkit-calc(100% - 120px);
+    width: -moz-calc(100% - 120px);
+    width: calc(100% - 120px);
+}
+.loncom_equipment_list_box_right span{
+    margin-left: 35px;
+}
+.loncom_equipment_classify_center{
+    padding-right: 20px;
+    height: 40px;
+    line-height: 40px;
+}
+.loncom_equipment_classify_list{
+    padding: 0 !important;
+}
+.loncom_equipment_classify_list .loncom_public_card_box{
+    padding: 20px !important;
+}
+
+.loncom_equipment_list_img, .loncom_equipment_list_img img{
+    width: 56px;
+    height: 56px;
+    float: left;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+.loncom_equipment_list_text{
+    float: left;
+    line-height: 18px;
+}
+.loncom_equipment_list_text h2{
+    height: 18px;
+    margin-bottom: 2px;
+    color: #666;
+}
+.loncom_equipment_list_text p{
+    height: 18px;
+}
+.loncom_equipment_list_bottom{
+    height: 52px;
+    padding-top: 15px;
+    line-height: 20px;
+    overflow: hidden;
+}
+.loncom_equipment_classify_list_handle{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+.loncom_equipment_classify_list_handle span{
+    line-height: 28px;
+    margin-right: 5px;
+}
+.loncom_equipment_classify_list_handlecon{
+    width: 55px;
+    padding: 12px;
+    height: auto;
+    position: absolute;
+    right: -20px;
+    top: 27px;
+    background: #fff;
+    font-size: 12px;
+    text-align: center;
+}
+.loncom_equipment_classify_list_handlecon a{
+    height: 26px;
+    line-height: 26px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    color: #666;
+}
+.loncom_equipment_classify_list_handlecon a:hover {
+    color: #0064aa;
+}
+
+@media (min-width: 1000px) {
+  
+}
+
+@media (min-width: 1200px) {
+  
+}
