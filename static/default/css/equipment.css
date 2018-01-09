@@ -97,7 +97,9 @@
 .loncom_equipment_addelibrary{
     padding: 0;
 }
-
+.loncom_equipment_classify_list .loncom_public_card_box{
+    cursor: pointer;
+}
 
 
 @media (min-width: 1000px) {

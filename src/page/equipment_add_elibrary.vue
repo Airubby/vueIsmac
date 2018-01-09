@@ -164,7 +164,7 @@ export default {
         this.topInfo="编辑设备库";
         this.activeBtn=false;
         console.log(obj);
-        elibrary_info=obj;
+        this.elibrary_info=obj;
         //获取到的赋给 elibrary_info  字段根据后台需求匹配正确
     }
   },
