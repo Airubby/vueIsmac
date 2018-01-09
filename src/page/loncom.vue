@@ -3,7 +3,7 @@
         <div class="loncom_sidebar" ref="sidebar">
             <div class="loncom_sidebar_top">
                 <span class="loncom_fl">iSmartSite</span>
-                <span class="loncom_fr" @click="navclick"><i class="fa fa-navicon"></i></span>
+                <span class="loncom_fr loncom_navbtn" @click="navclick" ref="navbtn"><i class="fa fa-navicon"></i></span>
             </div>
             <div class="loncom_sidebar_list">
                 <ul>
@@ -79,9 +79,35 @@ export default {
     mounted() {
         
     },
+    data() {
+       return {
+           navbtn:'open'
+       }
+   },
     methods:{
         navclick(){
-            // $(this.$refs.sidebar).css("left","-200px");
+            if(this.navbtn=='open'){
+                $(this.$refs.sidebar).css("left","-200px");
+                $(this.$refs.content).css({
+                    "padding-left":"0",
+                });
+                $(this.$refs.navbtn).css({
+                    "right":"-33px",
+                    "color":"#17C4BB"
+                })
+                this.navbtn='close';
+            }else{
+                $(this.$refs.sidebar).css("left","0");
+                $(this.$refs.content).css({
+                    "padding-left":"200px",
+                });
+                $(this.$refs.navbtn).css({
+                    "right":"0",
+                    "color":"#fff"
+                })
+                this.navbtn='open';
+            }
+             
         }
     }
 }

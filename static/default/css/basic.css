@@ -467,10 +467,10 @@ em{
   height: 100%;
   display: block;
   background: #26344B;
-  float: left;
+  left: 0;
   color: #fff;
-  position: relative;
-  transition: all 2s ease-in
+  position: absolute;
+  transition: all 0.5s ease-in
 }
 .loncom_sidebar_top{
   width: 100%;
@@ -479,6 +479,12 @@ em{
   background: #17C4BB;
   font-size: 21px;
   line-height: 35px;
+}
+.loncom_navbtn{
+  position: relative;
+  right: 0;
+  transition: all 0.5s ease-in;
+  cursor: pointer;
 }
 .loncom_sidebar_list li p{
   text-align: center;
@@ -549,11 +555,11 @@ em{
 
 /*公共右边*/
 .loncom_sidebar_right{
-  width: -webkit-calc(100% - 200px);
-  width: -moz-calc(100% - 200px);
-  width: calc(100% - 200px);
+  width: 100%;
   height: 100%;
+  padding-left: 200px;
   float: left;
+  transition: all 0.5s ease-in
 }
 .loncom_public_top{
   width: 100%;
