@@ -3,13 +3,9 @@
 
 
       <div style="width: 1000px;margin:0 auto; position:relative;">
-       <el-search-table-pagination type="local" :show-pagination="true"  fit border stripe select selection :data="tableData" :page-sizes="[2, 10]" :columns="columns" :form-options="formOptions"  >
+       <el-search-table-pagination type="local" :show-pagination="true" border :data="tableData" :page-sizes="[2, 10]" :columns="columns">
           <el-table-column slot="prepend" type="selection"></el-table-column>
-          <template slot="preview-column" 
-          slot-scope="scope">
-          <input type="checkbox">
-        </template>
-      
+
       </el-search-table-pagination>
       </div>
      

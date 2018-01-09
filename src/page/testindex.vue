@@ -40,7 +40,9 @@
       <ChildtoFather @childToParentMsg="showChildToParentMsg" ></ChildtoFather>
       
       <!--父向子-->
-      <FathertoChild v-bind:parentToChild="parentMsg"></FathertoChild>
+      <FathertoChild v-bind:parentToChild="parentMsg" v-on:parentFn="theFatherFn"></FathertoChild>
+
+      
 
     </div>
     
@@ -122,8 +124,12 @@ export default {
       $(".styleLink").attr("href",strLink);
     },
     showChildToParentMsg:function(data){
-        console.log("父组件显示信息："+data)
-      }
+      console.log("父组件显示信息："+data)
+    },
+    theFatherFn:function(param){
+      console.log("子组件点击来执行的这个方法");
+      console.log(param)
+    }
   },
   components:{ChildtoFather,FathertoChild},
 }
