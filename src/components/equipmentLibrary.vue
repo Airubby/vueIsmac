@@ -12,7 +12,11 @@
                         设备分类：
                     </div>
                     <div class="loncom_equipment_list_box_right">
-                        <span v-for="item in classify">{{item.name}}</span>
+                        <el-radio-group v-model="classifyRadio" size="mini">
+                            <span v-for="item in classify">
+                                <el-radio-button :label="item.name" @change="classifyClick(item)"></el-radio-button>
+                            </span>
+                        </el-radio-group>
                     </div>
                 </div>
                 <div class="loncom_list_box">
@@ -20,7 +24,11 @@
                         （多选）品牌型号：
                     </div>
                     <div class="loncom_equipment_list_box_right">
-                        <span v-for="item in brand">{{item.name}}</span>
+                        <el-checkbox-group v-model="brandRadio" size="mini">
+                            <span v-for="item in brand">
+                                <el-checkbox-button :label="item.id" @change="brandClick(item)">{{item.name}}</el-checkbox-button>
+                            </span>
+                        </el-checkbox-group>
                     </div>
                 </div>
                 <div class="loncom_list_box">
@@ -28,7 +36,11 @@
                         总线类型：
                     </div>
                     <div class="loncom_equipment_list_box_right">
-                        <span v-for="item in type">{{item.name}}</span>
+                        <el-checkbox-group v-model="typeRadio" size="mini">
+                            <span v-for="item in type">
+                                <el-checkbox-button :label="item.id" @change="typeClick(item)">{{item.name}}</el-checkbox-button>
+                            </span>
+                        </el-checkbox-group>
                     </div>
                 </div>
             </div>
@@ -100,23 +112,29 @@ export default {
           ],
           //品牌型号
           brand:[
-              {name:'所有'},
-              {name:'标签一'},
-              {name:'标签一'},
-              {name:'标签一'},
-              {name:'标签一'},
-              {name:'标签一'},
+              {id:'all',name:'所有'},
+              {id:'1',name:'标签一'},
+              {id:'2',name:'标签一'},
+              {id:'3',name:'标签一'},
+              {id:'4',name:'标签一'},
+              {id:'5',name:'标签一'},
           ],
           //总线类型
           type:[
-              {name:'所有'},
-              {name:'Modbus'},
-              {name:'电总'},
-              {name:'SNMP'},
-              {name:'Modbus-TCP'},
-              {name:'其它串口总线'},
-              {name:'其它IP总线'},
+              {id:'all',name:'所有'},
+              {id:'modbus',name:'Modbus'},
+              {id:'line',name:'电总'},
+              {id:'snmp',name:'SNMP'},
+              {id:'tcp',name:'Modbus-TCP'},
+              {id:'ck',name:'其它串口总线'},
+              {id:'ip',name:'其它IP总线'},
           ],
+          //设备分类radio标识
+          classifyRadio:'所有',
+          //品牌型号标识
+          brandRadio:['all'],
+          //总线标识
+          typeRadio:['all'],
           //模板列表
           equipment_info:[
             {addType:'ck',img:'loushui.png',title:'UPS_艾默生_ITA',type:'UPS',trunk:'Modbus',brand:'艾默生',model:'ITA',detail:'这里可以放一两项简单描述.不带操作，仅可点击查看详情'},
@@ -128,6 +146,34 @@ export default {
        }
    },
    methods:{
+       //点击设备类型筛选
+       classifyClick:function(item){
+
+       },
+       //点击品牌型号筛选
+       brandClick:function(item){
+            if(item.id=="all"){  //点击所有其它的active去掉
+                this.brandRadio=['all'];
+            }else{
+                if(this.brandRadio[0]=='all'){
+                    this.brandRadio.splice(0,1);
+                }else if(this.brandRadio.length==0){
+                    this.brandRadio=['all'];
+                }
+            }
+       },
+       //点击总线筛选
+       typeClick:function(item){
+            if(item.id=="all"){  //点击所有其它的active去掉
+                this.typeRadio=['all'];
+            }else{
+                if(this.typeRadio[0]=='all'){
+                    this.typeRadio.splice(0,1);
+                }else if(this.typeRadio.length==0){
+                    this.typeRadio=['all'];
+                }
+            }
+       },
        //清空
        emptyInfo:function(){
             this.equipment_info=[];
