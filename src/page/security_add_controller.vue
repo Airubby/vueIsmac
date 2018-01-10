@@ -31,20 +31,11 @@
                                             <em>*</em>通讯方式
                                         </div>
                                         <div class="loncom_list_box_right">
-                                            <div class="loncom_dis_inlineblock loncom_mr10">
-                                                <span class="loncom_public_radio loncom_fl">
-                                                    <input type="radio" name="radioType" id="radioType1" checked="checked" class="loncom_public_radio_input"> 
-                                                    <label for="radioType1"></label>
-                                                </span> 
-                                                <span>TCP/IP</span>
-                                            </div>
-                                            <div class="loncom_dis_inlineblock">
-                                                <span class="loncom_public_radio loncom_fl">
-                                                    <input type="radio" name="radioType" id="radioType2" class="loncom_public_radio_input"> 
-                                                    <label for="radioType2"></label>
-                                                </span> 
-                                                <span>RS485</span>
-                                            </div>
+                                            <el-radio-group v-model="tx_show">
+                                                <el-radio :label="0">TCP/IP</el-radio>
+                                                <el-radio :label="1">RS485</el-radio>
+                                            </el-radio-group>
+                                            
                                         </div>
                                     </div>
                                     <div class="loncom_list_box">
@@ -169,6 +160,8 @@ export default {
            controller_info:{},
            //新增设备编辑设备显示不同的按钮信息
            activeBtn:true,
+           //通讯方式
+           tx_show:0,
        }
    },
    methods:{

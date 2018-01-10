@@ -195,9 +195,9 @@
                             </div>
                             <div class="loncom_system_user_bottom">
                                 <a href="javascript:;" @click="editUser(item)"><i class="fa fa-edit"></i></a>
-                                <a href="javascript:;" @mouseenter="enter(item)" @mouseleave="leave(item)">
+                                <a href="javascript:;" class="loncom_system_user_bottomhover">
                                     <i class="fa fa-ellipsis-h"></i>
-                                    <div class="loncom_system_user_bottombox loncom_public_shadow" v-show="item.bottomShow">
+                                    <div class="loncom_system_user_bottombox loncom_public_shadow">
                                         <a href="javascript:;">操作日志</a>
                                         <a href="javascript:;">禁用</a>
                                         <a href="javascript:;">删除</a>
@@ -583,15 +583,7 @@ export default {
             this.$router.push({path:'/loncom/system/userAdd',query:item});
             console.log("修改用户")
         },
-        //enter移入显示
-        enter:function(item){
-            console.log()
-            item.bottomShow=true;
-        },
-        //leave移出隐藏
-        leave:function(item){
-            item.bottomShow=false;
-        },
+       
         //********后台信息
         handleClick(tab) {  //超出滚动用
             tabScroll(tab.index);

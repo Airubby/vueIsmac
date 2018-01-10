@@ -82,6 +82,10 @@
     background: #fff;
     font-size: 12px;
     text-align: center;
+    display: none;
+}
+.loncom_equipment_classify_list_handle:hover .loncom_equipment_classify_list_handlecon{
+    display: block !important;
 }
 .loncom_equipment_classify_list_handlecon a{
     height: 26px;

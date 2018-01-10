@@ -170,6 +170,10 @@
     background: #fff;
     font-size: 12px;
     text-align: left;
+    display: none;
+}
+.loncom_system_user_bottomhover:hover .loncom_system_user_bottombox{
+    display: block;
 }
 .loncom_system_user_bottombox a{
     height: 28px;

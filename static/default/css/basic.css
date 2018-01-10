@@ -757,7 +757,13 @@ em{
     top: 4px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
+  .loncom_public_card li {
+    width: 33.33%;
+  }
+
+}
+@media (min-width: 1400px) {
   .loncom_public_card li {
     width: 25%;
   }
