@@ -250,9 +250,10 @@
                                             </div>
                                             <el-upload
                                                 class="upload-demo"
-                                                action="https://jsonplaceholder.typicode.com/posts/"
+                                                action
                                                 multiple
-                                                :limit="3">
+                                                :before-upload="beforeUpload"
+                                                :limit="1">
                                                 <el-button size="small" type="primary">LOGO上传<i class="el-icon-upload el-icon--right"></i></el-button>
                                                 <div slot="tip" class="el-upload__tip">只能上传jpg/png格式文件，文件不能超过50kb</div>
                                             </el-upload>
@@ -597,7 +598,24 @@ export default {
         },
         giveUp:function(){ //取消
             this.activeBtn=true;
-        }
+        },
+        //上传图片
+        beforeUpload:function(file){
+           let config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                } 
+            }; //添加请求头
+             
+            let fd = new FormData()
+            fd.append('file', file)
+            fd.append('headers', config)
+             
+            this.$api.post('/upload/xls',fd, r => {
+                console.log(111)
+            	 console.log(r);
+            }); 
+       },
 
    },
    components:{TopChangeInfo,DialogSystemInformTime,DialogSystemInformUser},

@@ -100,7 +100,16 @@
                         <el-tab-pane label="测点信息" name="second">
                             <div class="loncom_public_tabbox loncom_public_tabbox1">
                                 <div class="loncom_equipment_addelibrary loncom_public_table loncom_public_tabboxcon1">
-                                    <el-button size="small" icon="el-icon-upload2" round class="loncom_mb10">导入测点</el-button>
+                                    <div class="loncom_mb10 loncom_overflow_hidden">
+                                        <el-upload
+                                            class="upload-demo"
+                                            action
+                                            multiple
+                                            :before-upload="beforeUpload"
+                                            :limit="1">
+                                            <el-button size="small" icon="el-icon-upload2" round>导入测点</el-button>
+                                        </el-upload>
+                                    </div>
                                     <el-search-table-pagination type="local" :show-pagination="true" border :data="table_info" :page-sizes="[10,20,50]" :columns="table_info_columns" >                                           
                                         <template slot-scope="scope" slot="preview-units">
                                             <span>
@@ -207,6 +216,23 @@ export default {
        }
    },
    methods:{
+        //导入测点
+       beforeUpload:function(file){
+           let config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                } 
+            }; //添加请求头
+             
+            let fd = new FormData()
+            fd.append('file', file)
+            fd.append('headers', config)
+             
+            this.$api.post('/upload/xls',fd, r => {
+                console.log(111)
+            	 console.log(r);
+            }); 
+       },
        //新增提交
         addSubmitInfo:function(){
             if(true){
