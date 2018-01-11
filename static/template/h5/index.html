@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/basic.css">
+</head>
+
+<body>
+    <div class="swiper-container swiper-container-vertical">
+        <div class="swiper-wrapper" >
+            <div class="swiper-slide">
+                <div class="swiper-slide-con">
+                    <h2 class="ani" swiper-animate-effect="slideInDown" swiper-animate-duration="0.5s">新年特惠</h2>
+                    <p class="ani" swiper-animate-effect="slideInUp" swiper-animate-duration="1s" swiper-animate-delay="0.5s"><input type="text" placeholder="输入兑换码" id="code"></p>
+                    <a href="javascript:;" class="ani" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="1s" id="codeBtn">使用兑换券</a>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="swiper-slide-con">
+                    <h2 class="ani" swiper-animate-effect="slideInDown" swiper-animate-duration="0.5s">请填写收货地址</h2>
+                    <p class="ani" swiper-animate-effect="slideInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"><input type="text" placeholder="姓名"></p>
+                    <p class="ani" swiper-animate-effect="slideInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"><input type="text" placeholder="手机"></p>
+                    <p class="ani"swiper-animate-effect="slideInUp" swiper-animate-duration="1s" swiper-animate-delay="0.5s"><textarea placeholder="地址"></textarea></p>
+                    <a href="javascript:;" class="ani" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="1s">提交</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/swiper.animate1.0.2.min.js"></script>
+    <script>
+    // var swiper = new Swiper('.swiper-container', {
+    //     direction: 'vertical',
+    //     pagination: {
+    //         el: '.swiper-pagination',
+    //         clickable: true,
+    //     },
+    //     on:{
+    //         init: function(){
+    //             swiperAnimateCache(this); //隐藏动画元素 
+    //             swiperAnimate(this); //初始化完成开始动画
+    //         }, 
+    //         slideChangeTransitionEnd: function(){ 
+    //             swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+    //         } 
+    //     }
+    // });
+
+    //ajax请求没用ajax请求
+    function open_ajax(url, parameter, request,type, error, async) {
+        type = type ? type : "Get";
+        $.ajax({
+            type: type,
+            url: url,
+            data: parameter,
+            async: async ? async : true,
+            cache:false,
+            error: function () {
+                if (error != null && error != "") {
+                    error();
+                }
+            },
+            success: function (msg) {
+                if (request)
+                    request(msg);
+            }
+        });
+    }
+    // open_ajax("url",{},function(result){
+    //   console.log(result)
+    // })
+    var swiper=null;
+    $('#code').on('input propertychange', function() {  
+        swiper.destroy(true, true)
+    });
+    $("#codeBtn").on("click",function(){
+        if($("#code").val()=="123456"){
+            swiper = new Swiper('.swiper-container', {
+                direction: 'vertical',
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                initialSlide: 1,
+                on:{
+                    init: function(){
+                        swiperAnimateCache(this); //隐藏动画元素 
+                        swiperAnimate(this); //初始化完成开始动画
+                    }, 
+                    slideChangeTransitionEnd: function(){ 
+                        swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+                    } 
+                }
+            });
+        }else{
+            alert("兑换码不正确！");
+        }
+    });
+
+
+  </script>
+</body>
+
+</html>

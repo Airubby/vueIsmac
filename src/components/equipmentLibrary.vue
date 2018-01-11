@@ -175,6 +175,7 @@ export default {
               visible:false,
               width:"50%",
               top:"15vh",
+              url:"h5/index.html",
           },
 
        }

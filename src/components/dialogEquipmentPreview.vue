@@ -4,12 +4,19 @@
             <div class="loncom_dis_inlineblock">界面模板预览</div>
             <div class="loncom_dis_inlineblock loncom_fr" style="margin-right: 30px;cursor:pointer;" @click="fullPreview"><i class="el-icon-rank"></i></div>
         </div>
-        <div class="loncom_public_table loncom_dialog_scroll" ref="fullPreview" style="height:400px;">
-            
+        <div class="loncom_dialog_scroll" ref="fullPreview" style="height:400px;">
+            <iframe id="show-iframe" frameborder=0 :src="'static/template/'+dialogEquipmentPreview.url"></iframe>
         </div>
     </el-dialog>
 </template>
-
+<style>
+    #show-iframe{
+        width: 100%;
+        height: -webkit-calc(100% - 10px);
+        height: -moz-calc(100% - 10px);
+        height: calc(100% - 10px);
+    }
+</style>
 <script>
 
 export default {
