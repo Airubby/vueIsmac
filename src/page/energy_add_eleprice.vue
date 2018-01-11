@@ -129,7 +129,7 @@
                                             </template>
                                             <template slot-scope="scope" slot="preview-handle">
                                                 <span>
-                                                    <a href="javascript:;" ref="editbtn" class="loncom_color" @click="editTableInfo(scope.row)">编辑</a> 
+                                                    <a href="javascript:;" :id="'editbtn'+scope.$index" class="loncom_color" @click="editTableInfo(scope.row,scope.$index)">编辑</a> 
                                                     <em>|</em> 
                                                     <a href="javascript:;" class="loncom_color" @click="removeTableInfo(scope.row)">删除</a>
                                                 </span>
@@ -318,9 +318,12 @@ export default {
             this.showTimeslot=false;
         },
         //编辑
-        editTableInfo:function(row){
+        editTableInfo:function(row,index){
             row.loncom_active=row.loncom_active?false:true;
-            row.loncom_active?$(this.$refs.editbtn).html('编辑'):$(this.$refs.editbtn).html('保存');
+            row.loncom_active?$("#editbtn"+index).html('编辑'):$("#editbtn"+index).html('保存'); 
+            if(row.loncom_active){  //保存
+                this.table_info[index]=row;
+            }
         },
         
    },
