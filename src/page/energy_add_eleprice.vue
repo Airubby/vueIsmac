@@ -143,15 +143,7 @@
                         
                     </el-tabs>
                 </div>
-                <div class="loncom_public_tabbtn">
-                    <span v-show="!activeBtn">
-                        <el-button type="info" plain @click="giveUp">放弃修改</el-button>
-                        <el-button type="primary" @click="editSubmitInfo">提交</el-button>
-                    </span>
-                    <span v-show="activeBtn">
-                        <el-button type="primary" @click="addSubmitInfo">提交</el-button>
-                    </span>
-                </div>
+                <SubmitBtnInfo v-bind:submitBtnInfo="activeBtn" v-on:giveUp="giveUp" v-on:submitInfo="submitInfo"></SubmitBtnInfo>
             </div>
         </div>
     </div>
@@ -160,7 +152,7 @@
 
 <script>
 
-
+import SubmitBtnInfo from '../components/submitBtnInfo.vue'
 export default {
     
   created () {
@@ -169,7 +161,7 @@ export default {
         this.topInfo="新增电价";
     }else{
         this.topInfo="编辑电价";
-        this.activeBtn=false;
+        this.activeBtn=true;
     }
   },
   mounted() {
@@ -183,7 +175,7 @@ export default {
            topInfo:'',
            energy_info:{},
            //新增设备编辑设备显示不同的按钮信息
-           activeBtn:true,
+           activeBtn:false,
 
             //树形
             tree_data: [{
@@ -255,24 +247,25 @@ export default {
    },
    methods:{
        //新增提交
-        addSubmitInfo:function(){
-            if(true){
-                this.$message({
-                    message: '新增成功',
-                    type: 'success'
-                });
-                this.$router.push({path:'/loncom/energy',query:{configItem:'true',configName:'third'}});
+        submitInfo:function(){
+            if(this.activeBtn){
+                if(true){
+                    this.$message({
+                        message: '新增成功',
+                        type: 'success'
+                    });
+                    this.$router.push({path:'/loncom/energy',query:{configItem:'true',configName:'third'}});
+                }
+            }else{
+                if(true){
+                    this.$message({
+                        message: '编辑成功',
+                        type: 'success'
+                    });
+                    this.$router.push({path:'/loncom/energy',query:{configItem:'true',configName:'third'}});
+                }
             }
-        },
-        //编辑提交
-        editSubmitInfo:function(){
-            if(true){
-                this.$message({
-                    message: '编辑成功',
-                    type: 'success'
-                });
-                this.$router.push({path:'/loncom/energy',query:{configItem:'true',configName:'third'}});
-            }
+            
         },
         //放弃编辑
         giveUp:function(){
@@ -327,6 +320,6 @@ export default {
         },
         
    },
-   
+   components:{SubmitBtnInfo},
 }
 </script>

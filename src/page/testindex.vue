@@ -97,6 +97,35 @@ export default {
     $(".logo").on("click",function(){
       console.log(12)
     })
+//测试生成树形json
+    var datajson=[
+       {id:"5832adde-49f4-4a12-a38f-c609d2c5a723",pid:"0",name:"控制器"},
+      {id:"1",pid:"5832adde-49f4-4a12-a38f-c609d2c5a723",name:"门一"},
+      {id:"11",pid:"1",name:"门一1"},
+      {id:"12",pid:"1",name:"门一2"},
+       {id:"122",pid:"12",name:"门一222"},
+      {id:"2",pid:"5832adde-49f4-4a12-a38f-c609d2c5a723",name:"门2"},
+      {id:"3",pid:"5832adde-49f4-4a12-a38f-c609d2c5a723",name:"门3"},
+      {id:"5832adde-49f4-4a12-a38f",pid:"0",name:"控制器"},
+      {id:"1",pid:"5832adde-49f4-4a12-a38f",name:"门一"},
+      {id:"2",pid:"5832adde-49f4-4a12-a38f",name:"门2"},
+      {id:"3",pid:"5832adde-49f4-4a12-a38f",name:"门3"},
+    ]
+    function getJsonTree1(dataJson,parentId){
+        var itemArr=[];
+        for(var i=0;i<dataJson.length;i++){ 
+            var node=dataJson[i];
+             if(node.pid==parentId){ 
+               var newNode=node;
+               newNode.children=getJsonTree1(dataJson,node.id);
+                itemArr.push(newNode);              
+             }
+        }
+        return itemArr;
+    }
+    console.log(getJsonTree1(datajson,"0"))
+
+
   },
   data() {
     return {

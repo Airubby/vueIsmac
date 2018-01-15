@@ -120,7 +120,19 @@ function tabScroll(num){
         autohidemode: true //是否隐藏滚动条
     });
 }
-
+//生成树形JSON
+function getJsonTree(dataJson,parentId){
+    var itemArr=[];
+    for(var i=0;i<dataJson.length;i++){ 
+        var node=dataJson[i];
+            if(node.pid==parentId){ 
+            var newNode=node;
+            newNode.children=getJsonTree(dataJson,node.id);
+            itemArr.push(newNode);              
+        }
+    }
+    return itemArr;
+}
 
 
 
