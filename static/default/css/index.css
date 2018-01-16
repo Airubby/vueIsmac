@@ -53,18 +53,19 @@
   margin-bottom: 20px;
 }
 
-.loncom_login_input p.loncom_user input {
+.loncom_login_input .loncom_user input {
   background: url(../images/login_user.png) no-repeat 10px center;
 }
 
-.loncom_login_input p.loncom_pass input {
+.loncom_login_input .loncom_pass input {
   background: url(../images/login_pass.png) no-repeat 10px center;
 }
-
+.loncom_login_input .el-form-item__content{
+  margin-left:0 !important; 
+}
 .loncom_login_input button {
   width: 100%;
   height: 50px;
-  line-height: 50px;
   font-size: 16px;
   font-weight: bold;
   text-align: center;

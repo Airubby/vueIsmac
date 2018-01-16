@@ -367,8 +367,15 @@ export default {
         switcFullScreen();
     },
     powerOff:function(){
-        localStorage.clear();
-        this.$router.push({path:'/login'});
+        this.$confirm("退出系统?", '提示', {
+	        confirmButtonText: '确定',
+	        cancelButtonText: '取消',
+	        type: 'warning'
+	        }).then(() => {
+		    	 localStorage.clear();
+                this.$router.push({path:'/login'});
+	      });
+        
     },
     //切换大小展示
     listChange:function(item){
