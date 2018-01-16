@@ -74,7 +74,14 @@
 <script>
 export default {
     created () {
-    
+        if(JSON.stringify(localStorage.loginInfo) == undefined){
+            this.$message({
+                message: "请登录",
+                type: 'warning'
+            });
+            this.$router.push({path:'/login'});
+            return;
+        }
     },
     mounted() {
         

@@ -284,6 +284,16 @@ export default {
 
     // })
 
+        if(JSON.stringify(localStorage.loginInfo) == undefined){
+            this.$message({
+                message: "请登录",
+                type: 'warning'
+            });
+            this.$router.push({path:'/login'});
+            return;
+        }
+
+
   },
   mounted() {
     //首页隐藏滚动
@@ -357,6 +367,7 @@ export default {
         switcFullScreen();
     },
     powerOff:function(){
+        localStorage.clear();
         this.$router.push({path:'/login'});
     },
     //切换大小展示
