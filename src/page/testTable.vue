@@ -3,7 +3,8 @@
       <h2>测试table</h2>
       <el-search-table-pagination type="local" :show-pagination="false" border :data="tableData1" :page-sizes="[2, 10]" :columns="columns1" >
       <template slot="preview-column" slot-scope="scope">
-      {{scope}}
+      
+      <el-input size="small" v-model="tableData1[scope.$index].mobile"></el-input>
         </template> 
 </el-search-table-pagination>
 
