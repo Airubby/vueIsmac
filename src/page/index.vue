@@ -53,8 +53,8 @@
                         </a>
                         <div class="loncom_index_style_info loncom_public_shadow">
                             <ul>
-                                <li>风格一</li>
-                                <li>风格二</li>
+                                <li><el-button type="primary" size="mini" @click="defaultStyle">默认风格</el-button></li>
+                                <li><el-button type="primary" size="mini" @click="blueStyle">风格二</el-button></li>
                             </ul>
                         </div>
                     </li>
@@ -393,7 +393,36 @@ export default {
     checkboxSelect:function(){
         console.log(1)
         this.listAlarm.checkbox_select=this.listAlarm.checkbox_select?false:true;
-    }
+    },
+
+    //切换风格
+    defaultStyle:function(){
+        this.$confirm("确认切换默认风格?", '提示', {
+	        confirmButtonText: '确定',
+	        cancelButtonText: '取消',
+	        type: 'warning'
+        }).then(() => {
+            for(var i=0;i<$(".styleLink").length;i++){
+               var str= $(".styleLink").eq(i).attr("href");
+               $(".styleLink").eq(i).attr("href",replaceString(str,"default"));
+            }
+        });
+        
+    },
+    blueStyle:function(){
+        this.$confirm("确认切换风格二?", '提示', {
+	        confirmButtonText: '确定',
+	        cancelButtonText: '取消',
+	        type: 'warning'
+        }).then(() => {
+             for(var i=0;i<$(".styleLink").length;i++){
+               var str= $(".styleLink").eq(i).attr("href");
+               $(".styleLink").eq(i).attr("href",replaceString(str,"blue"));
+            }
+        });
+        
+    },
+
     
   }
   

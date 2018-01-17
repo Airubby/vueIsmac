@@ -4,14 +4,14 @@
             <div class="loncom_logo_img"></div>
             <div class="loncom_logo_text">机房监控管理系统</div>
             <div class="loncom_login_input">
-                <el-form :model="user" :rules="rules" ref="user">
+                <el-form :model="user" :rules="rules" ref="userName">
                     <el-form-item prop="userid" class="loncom_user">
                         <el-input v-model.trim="user.userid" placeholder="请输入用户名称"></el-input>
                     </el-form-item>
                     <el-form-item prop="psword" class="loncom_pass">
                         <el-input v-model.trim="user.psword" placeholder="请输入登录密码"></el-input>
                     </el-form-item>
-                    <el-button type="primary" @click="loginIn('user')">登录</el-button>
+                    <el-button type="primary" @click="loginIn('userName')" @keydown="keyLogin($event,'userName')">登录</el-button>
                 </el-form>
             </div>
         </div>
@@ -40,6 +40,11 @@ export default {
   	}
   },
   methods:{
+      keyLogin:function(ev,user){
+		if(ev.keyCode == 13){
+			this.loginIn(user);
+		}
+	  },
       loginIn:function(formName){
         this.$refs[formName].validate((valid) => {
             if (valid) {
