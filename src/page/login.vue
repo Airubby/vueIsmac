@@ -9,7 +9,7 @@
                         <el-input v-model.trim="user.userid" placeholder="请输入用户名称"></el-input>
                     </el-form-item>
                     <el-form-item prop="psword" class="loncom_pass">
-                        <el-input v-model.trim="user.psword" placeholder="请输入登录密码"></el-input>
+                        <el-input v-model.trim="user.psword" placeholder="请输入登录密码" @keyup.native="keyLogin($event,'userName')"></el-input>
                     </el-form-item>
                     <el-button type="primary" @click="loginIn('userName')" @keydown="keyLogin($event,'userName')">登录</el-button>
                 </el-form>
