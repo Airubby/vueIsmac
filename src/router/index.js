@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from '@/page/index'
 import Login from '@/page/login'
 import Loncom from '@/page/loncom'
+import Configure from '@/page/configure'  //组态页面
 
 import Environment from '@/page/environment'  //环境页面
 import Environment_detail from '@/page/environment_detail'
@@ -57,6 +58,9 @@ export default new Router({
     },{
       path: '/login',
       component: Login
+    },{
+      path: '/configure',
+      component: Configure
     },{
       path:'/loncom',
       component: Loncom,

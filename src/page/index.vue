@@ -59,6 +59,12 @@
                         </div>
                     </li>
                     <li>
+                        <a href="javascript:void(0)" @click="configure">
+                            <i class="fa fa-file-code-o"></i>
+                            <span>组态</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="javascript:void(0)" @click="powerOff">
                             <i class="fa fa-power-off"></i>
                             <span>退出</span>
@@ -422,7 +428,10 @@ export default {
         });
         
     },
-
+    //组态
+    configure:function(){
+        this.$router.push({path:'/configure'});
+    },
     
   }
   
