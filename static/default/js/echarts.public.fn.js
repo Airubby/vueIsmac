@@ -268,7 +268,87 @@ function annulus(ID,title,color,data){
     myChart.setOption(option, true);
     return myChart; 
 }
-
+//单个线性图
+function lineChar(ID,xData,yData,title,color){
+    // var color="#0A9ABD";
+    // var title='回风温度';
+    // var xData=["09:00", "09:03", "09:13", "09:14", "09:24","09:34","09:44","09:54","10:04","10:14","10:24"];
+    // var yData=[220, 18, 391, 234, 290, 343, 310, 301, 234, 390, 230, 310,18];
+    var myChart = echarts.init(document.getElementById(ID));
+    var option = {
+        color:[color],
+        tooltip : {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '15px',
+            right: '45px',
+            top:'15%',
+            bottom: '15px',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                axisLine:{
+                    lineStyle:{
+                        color:"#CCCCCC",
+                        width:1,
+                    }
+                },
+                axisTick:{
+                    show:false
+                },
+                axisLabel:{
+                    color:"#ccc"    
+                },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                data :xData
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value',
+                splitLine:{
+                    show:true,
+                },
+                axisLine:{
+                    lineStyle:{
+                        color:"#CCCCCC",
+                        width:1,
+                    }
+                },
+                 splitLine:{
+                    show:false,
+                    lineStyle:{
+                        color:"#1c3042",
+                        width:1,
+                        type:"dashed",
+                    }
+                },
+                axisTick:{
+                    show:true
+                },
+                axisLabel:{
+                    color:"#ccc",
+					formatter: '{value}'
+                }
+            }
+        ],
+        series : [
+            {
+                name:title,
+                type:'line',
+                smooth:"true", //平滑
+                symbol:"line", //不要圆圈
+                symbolSize:0, //平滑的时候设置为0
+                data:yData
+            },
+        ]
+    };
+    myChart.setOption(option, true);
+    return myChart; 
+}
 
 
 

@@ -46,7 +46,7 @@ export default {
                     {
                         state:"1",
                         mgrobjid:"09110874",
-                        htmlurl:"baidu.com",
+                        htmlurl:"airDetail",
                         devtypename:"温湿度",
                         dev_name:"动力05",
                         dev_image:"wenshidu.png",

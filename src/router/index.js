@@ -7,6 +7,7 @@ import Configure from '@/page/configure'  //组态页面
 
 import Environment from '@/page/environment'  //环境页面
 import Environment_detail from '@/page/environment_detail'
+import Detail_air from '@/page/Detail_air' //环境系统，动力系统公用的空调详情组件
 
 import Power from '@/page/power' //动力系统
 
@@ -69,6 +70,8 @@ export default new Router({
         //环境系统
         {path:'/loncom/environment',component:Environment}, //环境系统卡片,环境系统列表
         {path:'/loncom/environment_detail',component:Environment_detail}, //环境系统详情
+        {path:'/loncom/environment/airDetail',component:Detail_air},  //环境系统空调详情
+        {path:'/loncom/power/airDetail',component:Detail_air},  //动力系统空调详情
 
         {path:'/loncom/power',component:Power}, //动力系统
 

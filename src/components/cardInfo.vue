@@ -32,7 +32,7 @@
                   <div @click="trend()">趋势</div>
                   <div @click="events()">事件</div>
                   <div v-if="item.htmlurl==''" style="color:#999;cursor:auto;">详情</div>
-                  <div v-else @click="detail()">详情</div>
+                  <div v-else @click="detail(item)">详情</div>
               </div>
           </div>
       </li>
@@ -73,8 +73,8 @@ export default {
             this.dialogHistoricalEvents.visible=true;
         },
         //详情
-        detail(){
-
+        detail(item){
+            this.$router.push({path:'/loncom/environment/'+item.htmlurl});
         },
     },
     

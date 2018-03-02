@@ -757,18 +757,190 @@ em{
     top: 4px;
 }
 
+
+
+/*详情页面*/
+.loncom_detail{
+  padding: 20px 0 0 20px;
+}
+.loncom_detail_left{
+  float: left;
+    min-height: 180px;
+    padding-right: 20px;
+    width: 100%;
+}
+.loncom_detail_right{
+  width: 100%;
+  padding-right: 20px;
+  float: left;
+}
+.loncom_detail_box{
+  width: 100%;
+    margin-bottom: 20px;
+    background: #fff;
+    border: 1px solid #EBEBEB;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 5px 5px 10px #EBEBEB;
+}
+.loncom_detail_box_title{
+      width: 100%;
+    height: 36px;
+    border-left: 2px solid #17C4BB;
+    color: #17C4BB;
+    line-height: 36px;
+    font-weight: bold;
+    text-indent: 15px;
+    background: #EBEBEB;
+}
+.loncom_detail_box_li li{
+  width: 100%;
+    height: 35px;
+    line-height: 35px;
+    border-bottom: 1px solid #EBEBEB;
+    color: #737373;
+    font-size: 12px;
+}
+.loncom_detail_box_li .loncom_detail_box_li_left {
+    float: left;
+    width: 190px;
+    height: 35px;
+    overflow: hidden;
+    padding-left: 18px;
+}
+.loncom_detail_box_li .loncom_detail_box_li_right {
+    height: 35px;
+    text-align: left;
+    overflow: hidden;
+    text-indent: 20%;
+}
+.loncom_detail_box_li_title {
+    height: 36px;
+    line-height: 36px;
+    border-bottom: 1px solid #006CB1;
+    padding-left: 18px;
+    color: #2e86be;
+}
+.loncom_detail_pic{
+  width: 525px;
+    margin: 0 auto;
+    text-align: center;
+}
+.loncom_detail_pic>div {
+    display: block;
+    float: left;
+}
+.loncom_detail_pic .img {
+    height: 176px;
+    width: 145px;
+    padding: 15px 20px 15px 0;
+}
+.loncom_detail_pic .img img {
+    width: 100%;
+}
+.loncom_detail_pic .line {
+    position: relative;
+    width: 260px;
+    height: 176px;
+}
+.loncom_detail_pic .line em {
+    position: absolute;
+    height: 1px;
+}
+.loncom_detail_pic .line em:nth-of-type(1) {
+    width: 260px;
+    left: 0;
+    top: 30px;
+    border-bottom: 1px solid #666666;
+}
+.loncom_detail_pic .line em:nth-of-type(2) {
+    width: 130px;
+    left: 130px;
+    border-bottom: 1px dashed #666;
+    top: 86px;
+}
+.loncom_detail_pic .line em:nth-of-type(3) {
+    width: 130px;
+    left: 130px;
+    border-bottom: 1px dashed #666;
+    top: 142px;
+}
+.loncom_detail_pic .line em:nth-of-type(4) {
+    width: 1px;
+    height: 126px;
+    left: 130px;
+    border-left: 1px solid #666;
+    top: 31px;
+}
+.loncom_detail_pic .state {
+    position: relative;
+    width: 120px;
+    height: 176px;
+}
+.loncom_detail_pic .state span {
+    position: absolute;
+    height: 20px;
+    line-height: 20px;
+    color: #666;
+    font-size: 14px;
+}
+.loncom_detail_pic .state span:nth-of-type(1) {
+    top: 19px;
+}
+.loncom_detail_pic .state span:nth-of-type(2) {
+    top: 75px;
+}
+.loncom_detail_pic .state span:nth-of-type(3) {
+    top: 131px;
+}
+.loncom_detail_pic .state span:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    left: -45px;
+    top: 0;
+}
+.loncom_detail_pic .state .normal:after {
+    background: #156E4A;
+}
+.loncom_detail_pic .state .unusual:after {
+    background: #F14A5B;
+}
+
+
 @media (min-width: 1000px) {
   .loncom_public_card li {
     width: 33.33%;
   }
+  .loncom_detail_left{
+    width: 30%;
+  }
+  .loncom_detail_box_li .loncom_detail_box_li_left {
+    width: 158px;
+    padding-left: 10px;
+  }
+  .loncom_detail_box_li .loncom_detail_box_li_right{
+      text-indent: 0;
+  }
+
 
 }
 @media (min-width: 1400px) {
   .loncom_public_card li {
     width: 25%;
   }
+  .loncom_detail_right{
+    width: 70%;
+  }
+  .loncom_detail_box_li .loncom_detail_box_li_left {
+    width: 190px;
+    padding-left: 18px;
+  }
+
 
 }
+
 
 
 
