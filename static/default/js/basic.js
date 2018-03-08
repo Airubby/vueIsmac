@@ -18,6 +18,21 @@ function open_ajax(url, parameter, request,type, error, async) {
         }
     });
 }
+//获取url传递的参数
+function getQueryParams(url) {
+    var match,
+    pl = /\+/g,  // Regex for replacing addition symbol with a space
+    search = /([^&=]+)=?([^&]*)/g,
+    decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+    query = window.location.search.substring(1);
+    if (url) query = url.substr(url.indexOf("?") + 1)
+
+    var urlParams = {};
+    while (match = search.exec(query))
+        urlParams[decode(match[1])] = decode(match[2]);
+    
+    return urlParams;
+} 
 //替换字符串,指定用在样式替换上,切换风格用的
 function replaceString(string,str){
     var startStr=string.substring(0,9);
@@ -134,5 +149,29 @@ function getJsonTree(dataJson,parentId){
     return itemArr;
 }
 
-
+//websocket的连接函数
+function wsConnection(port, type, callback) {
+    // var url = location.host.indexOf(":")!=-1?location.host.slice(0, location.host.indexOf(":")):location.host
+    var url="192.168.10.134"
+    try {
+        var SOCKECT_ADDR = "ws://" + url +":"+ port+'/websocket';
+        ws = new WebSocket(SOCKECT_ADDR);
+        ws.onopen = function (event) {
+            console.log("已经与服务器建立了连接\r\n当前连接状态：" + this.readyState);
+            ws.send(type);
+        };
+       
+        ws.onmessage = callback;
+        ws.onclose = function (event) {
+        };
+        ws.onerror = function (event) {
+           // console("WebSocket异常！" + event.toString());
+        };
+    } catch (ex) {
+        console(ex.message);
+    }
+}
+// wsConnection('80','',function(r){
+//     console.log(r)
+// })
 

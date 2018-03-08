@@ -42,7 +42,14 @@
       <!--父向子-->
       <FathertoChild v-bind:parentToChild="parentMsg" v-on:parentFn="theFatherFn"></FathertoChild>
 
-      
+      <!--测试异步加载树形-->
+      <hr></hr>
+      <el-tree
+        :props="props"
+        :load="loadNode"
+        lazy
+        show-checkbox>
+      </el-tree>
 
     </div>
     
@@ -135,7 +142,16 @@ export default {
       parentMsg:{
         title:"父组件向子组件传值,我这个是父传给子显示的",
         content:"132"
-      }
+      },
+
+      //测试异步加载树形
+      props: {
+        label: 'name',
+        children: 'zones',
+        isLeaf: 'leaf'
+      },
+
+
     }
   },
   methods:{
@@ -158,7 +174,59 @@ export default {
     theFatherFn:function(param){
       console.log("子组件点击来执行的这个方法");
       console.log(param)
-    }
+    },
+    //测试异步加载树形
+    loadNode(node, resolve) {
+        console.log(node)
+        console.log(resolve)
+        if (node.level === 0) {
+          //return resolve([{ name: 'region' }]);
+          return resolve([{ name: '常规报表' },{name:'告警统计'},{name:'定制报表'}]);
+        }
+        if(node.level===1){
+          //获取接口数据
+          var has=true;
+          if(has){ //接口有数据
+            setTimeout(() => {
+              const data = [{
+                name: 'leaf',
+                leaf: true
+              }, {
+                name: 'zone'
+              }];
+              return resolve(data);
+            }, 500);
+          }else{ //没有数据
+            return resolve([]);
+          }
+          
+
+        }
+        if(node.level===2){
+          setTimeout(() => {
+            const data = [{
+              name: 'leaf',
+              leaf: true
+            }];
+            return resolve(data);
+          }, 500);
+        }
+        // if (node.level > 1) return resolve([]);
+
+        // setTimeout(() => {
+        //   const data = [{
+        //     name: 'leaf',
+        //     leaf: true
+        //   }, {
+        //     name: 'zone'
+        //   }];
+
+        //   resolve(data);
+        // }, 500);
+
+      },
+
+
   },
   components:{ChildtoFather,FathertoChild},
 }
