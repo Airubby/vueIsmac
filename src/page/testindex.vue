@@ -1,17 +1,5 @@
 <template>
     <div class="header">
-      <h2>
-      index
-      <div id="style">
-      <span @click="ccl">风格一</span>
-      <span @click="ccll">风格二</span>
-      
-      
-      </div>
-      </h2>
-      <router-link to="/anfang" class="colorStyle"><div class="content">安防系统123</div></router-link>  
-      <router-link to="/shezhi" class="colorStyle"><div class="content">设置</div></router-link>  
-      <router-link to="/content" class="colorStyle"><div class="content">内容</div></router-link>  
       <!--<img src="./assets/images/logo.png">
       <img src="/src/assets/images/logo.png">
       这样引图片会编译成base:64的图片
@@ -19,23 +7,6 @@
       <img src="static/default/images/login_logo.png" class="logo">
       <img v-bind:src="logoUrl">
       <div class="logo"></div>
-      <div class="article_list">
-        <ul>
-          <li v-for="item in testData">
-            <span>
-              {{ item.message }}
-            </span>
-          </li>
-        </ul>
-        <ul>
-          <li v-for="item in testData1">
-            <span>
-              {{ item.message }}
-            </span>
-          </li>
-        </ul>
-      </div>
-      <Loading></Loading>
       <!--子向父-->
       <ChildtoFather @childToParentMsg="showChildToParentMsg" ></ChildtoFather>
       
@@ -50,7 +21,10 @@
         lazy
         show-checkbox>
       </el-tree>
-
+      <hr />
+     
+      <hr>
+      <div style="height:100px;"></div>
     </div>
     
 </template>
@@ -76,14 +50,6 @@ export default {
     // this.$api.get('/api/topics', null, function(r) {
     //   console.log(r)
     // })
-    this.testData=[{ message: 'Foo' },
-      { message: 'Bar' }];
-      this.testData1=[{ message: 'Foo' },
-      { message: 'Bar' }];
-    this.$api.get('/loncomServlet', {}, r => {
-      console.log(1)
-      console.log(r)
-    })
    
     // this.$api.get('Dev', {'action':'query','model':{"devtypeid":"1"},'sid':'0424d65992c13f9657cb0fc7a4adcc56'}, r => {
     //   console.log(r)
@@ -151,23 +117,11 @@ export default {
         isLeaf: 'leaf'
       },
 
+      
 
     }
   },
   methods:{
-    ccl:function(){
-      this.styleLink="blue";
-      var str=$(".styleLink").attr("href");
-      var strLink=replaceString(str,"blue"); 
-      $(".styleLink").attr("href",strLink);
-      
-    },
-    ccll:function(){
-      this.styleLink="default";
-      var str=$(".styleLink").attr("href");
-      var strLink=replaceString(str,"default"); 
-      $(".styleLink").attr("href",strLink);
-    },
     showChildToParentMsg:function(data){
       console.log("父组件显示信息："+data)
     },
@@ -175,57 +129,57 @@ export default {
       console.log("子组件点击来执行的这个方法");
       console.log(param)
     },
-    //测试异步加载树形
+    //测试异步加载树形  
     loadNode(node, resolve) {
-        console.log(node)
-        console.log(resolve)
-        if (node.level === 0) {
-          //return resolve([{ name: 'region' }]);
-          return resolve([{ name: '常规报表' },{name:'告警统计'},{name:'定制报表'}]);
-        }
-        if(node.level===1){
-          //获取接口数据
-          var has=true;
-          if(has){ //接口有数据
-            setTimeout(() => {
-              const data = [{
-                name: 'leaf',
-                leaf: true
-              }, {
-                name: 'zone'
-              }];
-              return resolve(data);
-            }, 500);
-          }else{ //没有数据
-            return resolve([]);
-          }
-          
+            console.log(node)
+            console.log(resolve)
+            if (node.level === 0) {
+              //return resolve([{ name: 'region' }]);
+              return resolve([{ name: '常规报表' },{name:'告警统计'},{name:'定制报表'}]);
+            }
+            if(node.level===1){
+              //获取接口数据
+              var has=true;
+              if(has){ //接口有数据
+                setTimeout(() => {
+                  const data = [{
+                    name: 'leaf',
+                    leaf: true
+                  }, {
+                    name: 'zone'
+                  }];
+                  return resolve(data);
+                }, 500);
+              }else{ //没有数据
+                return resolve([]);
+              }
+              
 
-        }
-        if(node.level===2){
-          setTimeout(() => {
-            const data = [{
-              name: 'leaf',
-              leaf: true
-            }];
-            return resolve(data);
-          }, 500);
-        }
-        // if (node.level > 1) return resolve([]);
+            }
+            if(node.level===2){
+              setTimeout(() => {
+                const data = [{
+                  name: 'leaf',
+                  leaf: true
+                }];
+                return resolve(data);
+              }, 500);
+            }
+            // if (node.level > 1) return resolve([]);
 
-        // setTimeout(() => {
-        //   const data = [{
-        //     name: 'leaf',
-        //     leaf: true
-        //   }, {
-        //     name: 'zone'
-        //   }];
+            // setTimeout(() => {
+            //   const data = [{
+            //     name: 'leaf',
+            //     leaf: true
+            //   }, {
+            //     name: 'zone'
+            //   }];
 
-        //   resolve(data);
-        // }, 500);
+            //   resolve(data);
+            // }, 500);
 
-      },
-
+    },
+    
 
   },
   components:{ChildtoFather,FathertoChild},

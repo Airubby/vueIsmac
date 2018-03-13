@@ -36,6 +36,7 @@ import System from '@/page/system'  //系统管理
 import SystemUserAdd from '@/page/system_user_add'  //系统管理用户新增
 
 import Testindex from '@/page/testindex'
+import Testindex1 from '@/page/testindex1'
 
 import Anfang from '@/page/anfang'
 import Anfang1 from '@/page/anfang1'
@@ -112,6 +113,10 @@ export default new Router({
     {
       path:'/testindex',
       component:Testindex
+    },
+    {
+      path:'/testindex1',
+      component:Testindex1
     },
     {
       path:'/anfang',

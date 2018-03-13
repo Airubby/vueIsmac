@@ -342,7 +342,7 @@ export default {
                {key:'6',label:'温度6'},
                
            ],
-           transfer_value:[1,4]
+           transfer_value:['4']
 
 
        }
