@@ -412,6 +412,9 @@ export default {
                var str= $(".styleLink").eq(i).attr("href");
                $(".styleLink").eq(i).attr("href",replaceString(str,"default"));
             }
+            var cssUrl=JSON.parse(localStorage.cssUrl);
+            cssUrl.style="default";
+            localStorage.cssUrl=JSON.stringify(cssUrl);
         });
         
     },
@@ -425,6 +428,9 @@ export default {
                var str= $(".styleLink").eq(i).attr("href");
                $(".styleLink").eq(i).attr("href",replaceString(str,"blue"));
             }
+            var cssUrl=JSON.parse(localStorage.cssUrl);
+            cssUrl.style="blue";
+            localStorage.cssUrl=JSON.stringify(cssUrl);
         });
         
     },

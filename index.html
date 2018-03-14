@@ -5,14 +5,41 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no">
     <title>iSmac监控系统</title>
     <link rel="stylesheet" type="text/css" href="./static/public/css/font-awesome.4.7.min.css">
-    <link rel="stylesheet" type="text/css" href="./static/default/css/basic.css" class="styleLink">
-    <link rel="stylesheet" type="text/css" href="./static/default/css/index.css" class="styleLink">
-    <link rel="stylesheet" type="text/css" href="./static/default/css/environment.css" class="styleLink">
-    <link rel="stylesheet" type="text/css" href="./static/default/css/system.css" class="styleLink">
-    <link rel="stylesheet" type="text/css" href="./static/default/css/security.css" class="styleLink">
-    <link rel="stylesheet" type="text/css" href="./static/default/css/energy.css" class="styleLink">
-    <link rel="stylesheet" type="text/css" href="./static/default/css/alarm.css" class="styleLink">
-    <link rel="stylesheet" type="text/css" href="./static/default/css/equipment.css" class="styleLink">
+    <script>
+      function cssUrlSet(style,name){
+          var head = document.getElementsByTagName('head')[0];
+          var link = document.createElement('link');
+          link.href = "./static/"+style+"/css/"+name;
+          link.rel = 'stylesheet';
+          link.type = 'text/css';
+          link.className = 'styleLink';
+          head.appendChild(link);
+      }
+      if(localStorage.cssUrl&&localStorage.cssUrl!=""){
+        var style=JSON.parse(localStorage.cssUrl).style;
+        cssUrlSet(style,"basic.css");
+        cssUrlSet(style,"index.css");
+        cssUrlSet(style,"environment.css");
+        cssUrlSet(style,"system.css");
+        cssUrlSet(style,"security.css");
+        cssUrlSet(style,"energy.css");
+        cssUrlSet(style,"alarm.css");
+        cssUrlSet(style,"equipment.css");
+      }else{
+        var cssUrl={};
+        cssUrl.style="default";
+        localStorage.cssUrl=JSON.stringify(cssUrl);
+        cssUrlSet("default","basic.css");
+        cssUrlSet("default","index.css");
+        cssUrlSet("default","environment.css");
+        cssUrlSet("default","system.css");
+        cssUrlSet("default","security.css");
+        cssUrlSet("default","energy.css");
+        cssUrlSet("default","alarm.css");
+        cssUrlSet("default","equipment.css");
+      }
+    </script>
+    
   </head>
   <body>
     <div id="app"></div>
