@@ -1,0 +1,45 @@
+.loncom_statement_add_moontime .el-checkbox-group .el-checkbox{
+    margin: 0;
+    width: 80px;
+}
+.loncom_statement_transfer .el-transfer__buttons{
+    padding: 110px 10px;
+}
+
+.loncom_statement_transfer{
+    width: 100%;
+}
+.loncom_statement_transfer_panel{
+    border: 1px solid #e6ebf5;
+    border-radius: 4px;
+    overflow: scroll;
+    background: #fff;
+    display: block;
+    width: 186px;
+    height: 300px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    position: relative;
+    float: left;
+    padding: 10px;
+}
+.loncom_statement_transfer_panel .el-checkbox-group,
+.loncom_statement_transfer_con{
+    display: inline-block;
+}
+.loncom_statement_transfer_panel .el-checkbox-group .el-checkbox{
+    display: block;
+}
+
+
+
+
+
+@media (min-width: 1000px) {
+  
+}
+
+@media (min-width: 1200px) {
+  
+}

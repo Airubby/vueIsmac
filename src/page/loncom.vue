@@ -94,9 +94,13 @@ export default {
     methods:{
         navclick(){
             if(this.navbtn=='open'){
-                $(this.$refs.sidebar).css("left","-200px");
+                $(this.$refs.sidebar).css({
+                    "left":"-200px",
+                    "transition":"all 0.4s ease-in"
+                });
                 $(this.$refs.content).css({
                     "padding-left":"0",
+                    "transition":"all 0.4s ease-in"
                 });
                 $(this.$refs.navbtn).css({
                     "right":"-33px",
@@ -104,9 +108,13 @@ export default {
                 })
                 this.navbtn='close';
             }else{
-                $(this.$refs.sidebar).css("left","0");
+                $(this.$refs.sidebar).css({
+                    "left":"0px",
+                    "transition":"all 0.4s ease-in"
+                });
                 $(this.$refs.content).css({
                     "padding-left":"200px",
+                    "transition":"all 0.4s ease-in"
                 });
                 $(this.$refs.navbtn).css({
                     "right":"0",

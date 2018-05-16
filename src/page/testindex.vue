@@ -4,6 +4,7 @@
       <img src="/src/assets/images/logo.png">
       这样引图片会编译成base:64的图片
       -->
+      <div style="width: 500px;margin:30px auto;">{{timeShaft.moveStart}}-{{timeShaft.rev}}<Loading :videoTimeShaft="timeShaft"></Loading></div>
       <img src="static/default/images/login_logo.png" class="logo">
       <img v-bind:src="logoUrl">
       <div class="logo"></div>
@@ -117,7 +118,12 @@ export default {
         isLeaf: 'leaf'
       },
 
-      
+      timeShaft:{
+          startTime:'2018-4-14 12:00:00',
+          endTime:'2018-4-14 12:00:10',
+          moveStart:'2018-4-14 12:00:00',
+          rev:'true',
+      }
 
     }
   },
